@@ -1,13 +1,14 @@
 [build]
   functions = "netlify/functions"
   publish = "."
-  command = "npm install"
 
 [functions]
   node_bundler = "esbuild"
 
+[build.environment]
+  NODE_VERSION = "18"
+
 [[headers]]
-  for = "/data/*"
+  for = "/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"
-    Cache-Control = "public, max-age=300"
