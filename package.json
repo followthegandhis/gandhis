@@ -1,0 +1,9 @@
+{
+  "name": "gandhis-market-brief",
+  "version": "1.0.0",
+  "description": "Gandhis.co — The 8 PM Market Prep",
+  "private": true,
+  "dependencies": {
+    "nse-js": "^1.0.0"
+  }
+}

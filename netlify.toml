@@ -1,0 +1,17 @@
+[build]
+  functions = "netlify/functions"
+  publish = "."
+
+[functions]
+  node_bundler = "esbuild"
+
+# Schedule: Run at 4:30 PM IST (11:00 AM UTC) every weekday
+[functions."fetch-market-data"]
+  schedule = "0 11 * * 1-5"
+
+# Allow the data endpoint to be called from your site
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=300"
