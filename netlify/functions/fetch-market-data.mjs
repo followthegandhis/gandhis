@@ -1,32 +1,32 @@
 // ============================================================
 // GANDHIS.CO — NSE Market Data Fetcher
+// Zero dependencies — uses Node 18 built-in fetch
 // Runs daily at 4:30 PM IST via Netlify Scheduled Functions
-// Also callable on-demand: https://gandhis.co/.netlify/functions/fetch-market-data
+// Also callable: https://gandhis.co/.netlify/functions/fetch-market-data
 // ============================================================
 
 const NSE_BASE = "https://www.nseindia.com";
+
 const HEADERS = {
-  "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-  "Accept": "application/json, text/plain, */*",
+  "User-Agent":
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+  Accept: "application/json, text/plain, */*",
   "Accept-Language": "en-US,en;q=0.9",
-  "Accept-Encoding": "gzip, deflate, br",
-  "Referer": "https://www.nseindia.com/",
-  "Connection": "keep-alive",
+  Referer: "https://www.nseindia.com/",
+  Connection: "keep-alive",
 };
 
 // ---- COOKIE MANAGER ----
-// NSE requires a valid session cookie before any API call
-let sessionCookies = "";
-
 async function getSessionCookie() {
   try {
     const res = await fetch(NSE_BASE, {
       headers: HEADERS,
       redirect: "follow",
     });
-    const setCookies = res.headers.getSetCookie?.() || [];
-    sessionCookies = setCookies.map((c) => c.split(";")[0]).join("; ");
-    return sessionCookies;
+    const setCookies = res.headers.getSetCookie
+      ? res.headers.getSetCookie()
+      : [];
+    return setCookies.map((c) => c.split(";")[0]).join("; ");
   } catch (e) {
     console.error("Cookie fetch failed:", e.message);
     return "";
@@ -34,100 +34,70 @@ async function getSessionCookie() {
 }
 
 // ---- NSE API CALLER ----
-async function nseGet(path) {
-  if (!sessionCookies) await getSessionCookie();
-
+async function nseGet(path, cookie) {
   const url = `${NSE_BASE}${path}`;
-  const res = await fetch(url, {
-    headers: { ...HEADERS, Cookie: sessionCookies },
+  let res = await fetch(url, {
+    headers: { ...HEADERS, Cookie: cookie },
   });
 
+  // Retry once with fresh cookie if failed
   if (!res.ok) {
-    // Retry once with fresh cookie
-    await getSessionCookie();
-    const retry = await fetch(url, {
-      headers: { ...HEADERS, Cookie: sessionCookies },
+    const freshCookie = await getSessionCookie();
+    res = await fetch(url, {
+      headers: { ...HEADERS, Cookie: freshCookie },
     });
-    if (!retry.ok) throw new Error(`NSE API ${path} failed: ${retry.status}`);
-    return retry.json();
+    if (!res.ok) throw new Error(`NSE ${path} failed: ${res.status}`);
   }
   return res.json();
 }
 
-// Small delay to respect NSE rate limits (3 req/sec)
+// Small delay to respect NSE rate limits
 function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
 }
 
-// ---- DATA FETCHERS ----
-
-// 1. All indices (for ticker ribbon + sector map)
-async function fetchAllIndices() {
-  const data = await nseGet("/api/allIndices");
-  return data.data || [];
-}
-
-// 2. Index stocks (gainers/losers for a specific index)
-async function fetchIndexStocks(indexName) {
-  const encoded = encodeURIComponent(indexName);
-  const data = await nseGet(`/api/equity-stockIndices?index=${encoded}`);
-  return data.data || [];
-}
-
-// 3. Advance/Decline data
-async function fetchAdvanceDecline() {
-  const data = await nseGet("/api/market-data-pre-open?key=NIFTY%2050");
-  return data;
-}
-
-// ---- PROCESS SECTOR DATA ----
-function getTopMovers(stocks, count = 3) {
-  // Filter out the index summary row
+// ---- GET TOP MOVERS ----
+function getMovers(stocks, count = 3) {
   const filtered = stocks.filter(
-    (s) => s.symbol && s.symbol !== "NIFTY 50" && !s.symbol.startsWith("NIFTY")
+    (s) => s.symbol && !s.symbol.startsWith("NIFTY")
   );
-
   const sorted = [...filtered].sort(
     (a, b) => (b.pChange || 0) - (a.pChange || 0)
   );
-
-  const gainers = sorted.slice(0, count).map((s) => ({
-    symbol: s.symbol,
-    name: s.meta?.companyName || s.symbol,
-    price: s.lastPrice,
-    change: s.pChange ? s.pChange.toFixed(2) : "0.00",
-    absChange: s.change ? s.change.toFixed(2) : "0.00",
-  }));
-
-  const losers = sorted
-    .slice(-count)
-    .reverse()
-    .map((s) => ({
+  return {
+    gainers: sorted.slice(0, count).map((s) => ({
       symbol: s.symbol,
-      name: s.meta?.companyName || s.symbol,
       price: s.lastPrice,
-      change: s.pChange ? s.pChange.toFixed(2) : "0.00",
-      absChange: s.change ? s.change.toFixed(2) : "0.00",
-    }));
-
-  return { gainers, losers };
+      change: (s.pChange || 0).toFixed(2),
+    })),
+    losers: sorted
+      .slice(-count)
+      .reverse()
+      .map((s) => ({
+        symbol: s.symbol,
+        price: s.lastPrice,
+        change: (s.pChange || 0).toFixed(2),
+      })),
+  };
 }
 
 // ---- MAIN HANDLER ----
 export default async function handler(req) {
   try {
-    console.log("Gandhis: Starting NSE data fetch...");
+    console.log("Gandhis: Starting NSE fetch...");
 
     // Step 1: Get session cookie
-    await getSessionCookie();
-    console.log("Gandhis: Session cookie obtained");
+    const cookie = await getSessionCookie();
+    console.log("Gandhis: Cookie obtained");
 
-    // Step 2: Fetch all indices (for ticker + sector overview)
-    const allIndices = await fetchAllIndices();
-    await sleep(400);
+    // Step 2: Fetch all indices
+    await sleep(500);
+    const allIndices = await nseGet("/api/allIndices", cookie);
+    const indices = allIndices.data || [];
+    console.log("Gandhis: Got " + indices.length + " indices");
 
-    // Step 3: Extract key indices for ticker ribbon
-    const tickerIndices = [
+    // Step 3: Ticker ribbon data
+    const tickerNames = [
       "NIFTY 50",
       "NIFTY BANK",
       "NIFTY IT",
@@ -141,23 +111,22 @@ export default async function handler(req) {
       "NIFTY PSU BANK",
     ];
 
-    const ticker = allIndices
-      .filter((idx) => tickerIndices.includes(idx.index))
-      .map((idx) => ({
-        name: idx.index,
-        value: idx.last,
-        change: idx.percentChange,
-        pointChange: idx.variation,
+    const ticker = indices
+      .filter((i) => tickerNames.includes(i.index))
+      .map((i) => ({
+        name: i.index,
+        value: i.last,
+        change: i.percentChange,
+        pointChange: i.variation,
       }));
 
-    // Also extract SENSEX from BSE if available, or mark for manual
-    // NSE API only has NSE indices — Sensex comes from BSE
-    // We'll add a placeholder that the frontend can override
+    // Step 4: Nifty 50 headline
+    const nifty = indices.find((i) => i.index === "NIFTY 50") || {};
+    const bankNifty = indices.find((i) => i.index === "NIFTY BANK") || {};
 
-    console.log(`Gandhis: Got ${ticker.length} ticker indices`);
-
-    // Step 4: Fetch sector data for sector map
-    const sectorIndices = [
+    // Step 5: Sector map
+    const sectorNames = [
+      "NIFTY PSU BANK",
       "NIFTY BANK",
       "NIFTY IT",
       "NIFTY PHARMA",
@@ -165,21 +134,18 @@ export default async function handler(req) {
       "NIFTY AUTO",
       "NIFTY METAL",
       "NIFTY REALTY",
-      "NIFTY PSU BANK",
     ];
 
-    const sectorMap = allIndices
-      .filter((idx) => sectorIndices.includes(idx.index))
-      .map((idx) => ({
-        name: idx.index.replace("NIFTY ", ""),
-        value: idx.last,
-        change: idx.percentChange,
-      }));
+    const sectorMap = indices
+      .filter((i) => sectorNames.includes(i.index))
+      .map((i) => ({
+        name: i.index.replace("NIFTY ", ""),
+        value: i.last,
+        change: i.percentChange,
+      }))
+      .sort((a, b) => b.change - a.change);
 
-    console.log(`Gandhis: Got ${sectorMap.length} sectors for map`);
-
-    // Step 5: Fetch top movers for each index
-    // These are the 10 indices for the Top Movers tab
+    // Step 6: Top movers per index
     const moverIndices = [
       "NIFTY 50",
       "NIFTY BANK",
@@ -194,77 +160,60 @@ export default async function handler(req) {
     ];
 
     const topMovers = {};
-
-    for (const indexName of moverIndices) {
+    for (const idx of moverIndices) {
       try {
-        await sleep(500); // Respect NSE rate limit
-        const stocks = await fetchIndexStocks(indexName);
-        topMovers[indexName] = getTopMovers(stocks, 3);
-        console.log(
-          `Gandhis: Got movers for ${indexName} — ${stocks.length} stocks`
+        await sleep(600);
+        const encoded = encodeURIComponent(idx);
+        const data = await nseGet(
+          "/api/equity-stockIndices?index=" + encoded,
+          cookie
         );
+        topMovers[idx] = getMovers(data.data || [], 3);
+        console.log("Gandhis: Movers for " + idx + " done");
       } catch (e) {
-        console.error(`Gandhis: Failed to fetch ${indexName}:`, e.message);
-        topMovers[indexName] = { gainers: [], losers: [] };
+        console.warn("Gandhis: " + idx + " failed: " + e.message);
+        topMovers[idx] = { gainers: [], losers: [] };
       }
     }
 
-    // Step 6: Get Nifty 50 summary for the main card
-    const nifty50Summary = allIndices.find((idx) => idx.index === "NIFTY 50");
-    const bankNiftySummary = allIndices.find(
-      (idx) => idx.index === "NIFTY BANK"
-    );
+    // Step 7: Build IST timestamp
+    var now = new Date();
+    var istMs = now.getTime() + 5.5 * 3600000;
+    var ist = new Date(istMs);
 
-    // Step 7: Build the final JSON
-    const now = new Date();
-    const istOffset = 5.5 * 60 * 60 * 1000;
-    const istNow = new Date(now.getTime() + istOffset);
-
-    const marketData = {
-      // Metadata
+    // Step 8: Final JSON payload
+    var payload = {
       meta: {
-        date: istNow.toISOString().split("T")[0],
-        fetchedAt: istNow.toISOString(),
-        tradingDay: true,
+        date: ist.toISOString().split("T")[0],
+        fetchedAt: ist.toISOString(),
         source: "NSE India",
         note: "Auto-fetched by Gandhis Netlify Function",
       },
-
-      // Ticker ribbon data
       ticker: ticker,
-
-      // Main headline numbers
       headline: {
         nifty50: {
-          value: nifty50Summary?.last || 0,
-          change: nifty50Summary?.percentChange || 0,
-          pointChange: nifty50Summary?.variation || 0,
+          value: nifty.last || 0,
+          change: nifty.percentChange || 0,
+          pointChange: nifty.variation || 0,
         },
         bankNifty: {
-          value: bankNiftySummary?.last || 0,
-          change: bankNiftySummary?.percentChange || 0,
-          pointChange: bankNiftySummary?.variation || 0,
+          value: bankNifty.last || 0,
+          change: bankNifty.percentChange || 0,
+          pointChange: bankNifty.variation || 0,
         },
       },
-
-      // Sector map for Today's Brief
       sectorMap: sectorMap,
-
-      // Top Movers by index
       topMovers: topMovers,
-
-      // Market breadth (from allIndices advance/decline if available)
       breadth: {
-        advances: nifty50Summary?.advances || 0,
-        declines: nifty50Summary?.declines || 0,
-        unchanged: nifty50Summary?.unchanged || 0,
+        advances: nifty.advances || 0,
+        declines: nifty.declines || 0,
+        unchanged: nifty.unchanged || 0,
       },
     };
 
-    console.log("Gandhis: Data fetch complete! Returning JSON...");
+    console.log("Gandhis: All done. Returning JSON.");
 
-    // Return the data as JSON
-    return new Response(JSON.stringify(marketData, null, 2), {
+    return new Response(JSON.stringify(payload, null, 2), {
       status: 200,
       headers: {
         "Content-Type": "application/json",
@@ -272,13 +221,12 @@ export default async function handler(req) {
         "Cache-Control": "public, max-age=3600",
       },
     });
-  } catch (error) {
-    console.error("Gandhis: Fatal error:", error);
-
+  } catch (err) {
+    console.error("Gandhis: Fatal error:", err);
     return new Response(
       JSON.stringify({
         error: true,
-        message: error.message,
+        message: err.message,
         timestamp: new Date().toISOString(),
       }),
       {
