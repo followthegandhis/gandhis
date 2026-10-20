@@ -1,8 +1,7 @@
+
 // ============================================================
 // GANDHIS.CO — NSE Market Data Fetcher
 // Zero dependencies — uses Node 18 built-in fetch
-// Runs daily at 4:30 PM IST via Netlify Scheduled Functions
-// Also callable: https://gandhis.co/.netlify/functions/fetch-market-data
 // ============================================================
 
 const NSE_BASE = "https://www.nseindia.com";
@@ -16,7 +15,6 @@ const HEADERS = {
   Connection: "keep-alive",
 };
 
-// ---- COOKIE MANAGER ----
 async function getSessionCookie() {
   try {
     const res = await fetch(NSE_BASE, {
@@ -26,145 +24,128 @@ async function getSessionCookie() {
     const setCookies = res.headers.getSetCookie
       ? res.headers.getSetCookie()
       : [];
-    return setCookies.map((c) => c.split(";")[0]).join("; ");
+    return setCookies.map(function (c) {
+      return c.split(";")[0];
+    }).join("; ");
   } catch (e) {
     console.error("Cookie fetch failed:", e.message);
     return "";
   }
 }
 
-// ---- NSE API CALLER ----
 async function nseGet(path, cookie) {
-  const url = `${NSE_BASE}${path}`;
-  let res = await fetch(url, {
-    headers: { ...HEADERS, Cookie: cookie },
+  var url = NSE_BASE + path;
+  var res = await fetch(url, {
+    headers: Object.assign({}, HEADERS, { Cookie: cookie }),
   });
-
-  // Retry once with fresh cookie if failed
   if (!res.ok) {
-    const freshCookie = await getSessionCookie();
+    var freshCookie = await getSessionCookie();
     res = await fetch(url, {
-      headers: { ...HEADERS, Cookie: freshCookie },
+      headers: Object.assign({}, HEADERS, { Cookie: freshCookie }),
     });
-    if (!res.ok) throw new Error(`NSE ${path} failed: ${res.status}`);
+    if (!res.ok) throw new Error("NSE " + path + " failed: " + res.status);
   }
   return res.json();
 }
 
-// Small delay to respect NSE rate limits
 function sleep(ms) {
-  return new Promise((r) => setTimeout(r, ms));
+  return new Promise(function (r) {
+    setTimeout(r, ms);
+  });
 }
 
-// ---- GET TOP MOVERS ----
-function getMovers(stocks, count = 3) {
-  const filtered = stocks.filter(
-    (s) => s.symbol && !s.symbol.startsWith("NIFTY")
-  );
-  const sorted = [...filtered].sort(
-    (a, b) => (b.pChange || 0) - (a.pChange || 0)
-  );
+function getMovers(stocks, count) {
+  count = count || 3;
+  var filtered = stocks.filter(function (s) {
+    return s.symbol && !s.symbol.startsWith("NIFTY");
+  });
+  var sorted = filtered.slice().sort(function (a, b) {
+    return (b.pChange || 0) - (a.pChange || 0);
+  });
   return {
-    gainers: sorted.slice(0, count).map((s) => ({
-      symbol: s.symbol,
-      price: s.lastPrice,
-      change: (s.pChange || 0).toFixed(2),
-    })),
-    losers: sorted
-      .slice(-count)
-      .reverse()
-      .map((s) => ({
+    gainers: sorted.slice(0, count).map(function (s) {
+      return {
         symbol: s.symbol,
         price: s.lastPrice,
         change: (s.pChange || 0).toFixed(2),
-      })),
+      };
+    }),
+    losers: sorted
+      .slice(-count)
+      .reverse()
+      .map(function (s) {
+        return {
+          symbol: s.symbol,
+          price: s.lastPrice,
+          change: (s.pChange || 0).toFixed(2),
+        };
+      }),
   };
 }
 
-// ---- MAIN HANDLER ----
-export default async function handler(req) {
+exports.handler = async function (event, context) {
   try {
     console.log("Gandhis: Starting NSE fetch...");
 
-    // Step 1: Get session cookie
-    const cookie = await getSessionCookie();
+    var cookie = await getSessionCookie();
     console.log("Gandhis: Cookie obtained");
 
-    // Step 2: Fetch all indices
     await sleep(500);
-    const allIndices = await nseGet("/api/allIndices", cookie);
-    const indices = allIndices.data || [];
+    var allIndices = await nseGet("/api/allIndices", cookie);
+    var indices = allIndices.data || [];
     console.log("Gandhis: Got " + indices.length + " indices");
 
-    // Step 3: Ticker ribbon data
-    const tickerNames = [
-      "NIFTY 50",
-      "NIFTY BANK",
-      "NIFTY IT",
-      "NIFTY MIDCAP 100",
-      "NIFTY SMLCAP 100",
-      "NIFTY AUTO",
-      "NIFTY METAL",
-      "NIFTY PHARMA",
-      "NIFTY FMCG",
-      "NIFTY REALTY",
-      "NIFTY PSU BANK",
+    var tickerNames = [
+      "NIFTY 50", "NIFTY BANK", "NIFTY IT",
+      "NIFTY MIDCAP 100", "NIFTY SMLCAP 100",
+      "NIFTY AUTO", "NIFTY METAL", "NIFTY PHARMA",
+      "NIFTY FMCG", "NIFTY REALTY", "NIFTY PSU BANK",
     ];
 
-    const ticker = indices
-      .filter((i) => tickerNames.includes(i.index))
-      .map((i) => ({
-        name: i.index,
-        value: i.last,
-        change: i.percentChange,
-        pointChange: i.variation,
-      }));
+    var ticker = indices
+      .filter(function (i) { return tickerNames.indexOf(i.index) !== -1; })
+      .map(function (i) {
+        return {
+          name: i.index,
+          value: i.last,
+          change: i.percentChange,
+          pointChange: i.variation,
+        };
+      });
 
-    // Step 4: Nifty 50 headline
-    const nifty = indices.find((i) => i.index === "NIFTY 50") || {};
-    const bankNifty = indices.find((i) => i.index === "NIFTY BANK") || {};
+    var nifty = indices.find(function (i) { return i.index === "NIFTY 50"; }) || {};
+    var bankNifty = indices.find(function (i) { return i.index === "NIFTY BANK"; }) || {};
 
-    // Step 5: Sector map
-    const sectorNames = [
-      "NIFTY PSU BANK",
-      "NIFTY BANK",
-      "NIFTY IT",
-      "NIFTY PHARMA",
-      "NIFTY FMCG",
-      "NIFTY AUTO",
-      "NIFTY METAL",
-      "NIFTY REALTY",
+    var sectorNames = [
+      "NIFTY PSU BANK", "NIFTY BANK", "NIFTY IT",
+      "NIFTY PHARMA", "NIFTY FMCG", "NIFTY AUTO",
+      "NIFTY METAL", "NIFTY REALTY",
     ];
 
-    const sectorMap = indices
-      .filter((i) => sectorNames.includes(i.index))
-      .map((i) => ({
-        name: i.index.replace("NIFTY ", ""),
-        value: i.last,
-        change: i.percentChange,
-      }))
-      .sort((a, b) => b.change - a.change);
+    var sectorMap = indices
+      .filter(function (i) { return sectorNames.indexOf(i.index) !== -1; })
+      .map(function (i) {
+        return {
+          name: i.index.replace("NIFTY ", ""),
+          value: i.last,
+          change: i.percentChange,
+        };
+      })
+      .sort(function (a, b) { return b.change - a.change; });
 
-    // Step 6: Top movers per index
-    const moverIndices = [
-      "NIFTY 50",
-      "NIFTY BANK",
-      "NIFTY MIDCAP 100",
-      "NIFTY SMLCAP 100",
-      "NIFTY IT",
-      "NIFTY PHARMA",
-      "NIFTY FMCG",
-      "NIFTY METAL",
-      "NIFTY AUTO",
-      "NIFTY REALTY",
+    var moverIndices = [
+      "NIFTY 50", "NIFTY BANK", "NIFTY MIDCAP 100",
+      "NIFTY SMLCAP 100", "NIFTY IT", "NIFTY PHARMA",
+      "NIFTY FMCG", "NIFTY METAL", "NIFTY AUTO", "NIFTY REALTY",
     ];
 
-    const topMovers = {};
-    for (const idx of moverIndices) {
+    var topMovers = {};
+    for (var m = 0; m < moverIndices.length; m++) {
+      var idx = moverIndices[m];
       try {
         await sleep(600);
-        const encoded = encodeURIComponent(idx);
-        const data = await nseGet(
+        var encoded = encodeURIComponent(idx);
+        var data = await nseGet(
           "/api/equity-stockIndices?index=" + encoded,
           cookie
         );
@@ -176,68 +157,29 @@ export default async function handler(req) {
       }
     }
 
-    // Step 7: Build IST timestamp
     var now = new Date();
     var istMs = now.getTime() + 5.5 * 3600000;
     var ist = new Date(istMs);
 
-    // Step 8: Final JSON payload
-    var payload = {
-      meta: {
-        date: ist.toISOString().split("T")[0],
-        fetchedAt: ist.toISOString(),
-        source: "NSE India",
-        note: "Auto-fetched by Gandhis Netlify Function",
-      },
-      ticker: ticker,
-      headline: {
-        nifty50: {
-          value: nifty.last || 0,
-          change: nifty.percentChange || 0,
-          pointChange: nifty.variation || 0,
-        },
-        bankNifty: {
-          value: bankNifty.last || 0,
-          change: bankNifty.percentChange || 0,
-          pointChange: bankNifty.variation || 0,
-        },
-      },
-      sectorMap: sectorMap,
-      topMovers: topMovers,
-      breadth: {
-        advances: nifty.advances || 0,
-        declines: nifty.declines || 0,
-        unchanged: nifty.unchanged || 0,
-      },
-    };
-
-    console.log("Gandhis: All done. Returning JSON.");
-
-    return new Response(JSON.stringify(payload, null, 2), {
-      status: 200,
+    return {
+      statusCode: 200,
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
         "Cache-Control": "public, max-age=3600",
       },
-    });
+      body: JSON.stringify(payload, null, 2),
+    };
   } catch (err) {
     console.error("Gandhis: Fatal error:", err);
-    return new Response(
-      JSON.stringify({
+    return {
+      statusCode: 500,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
         error: true,
         message: err.message,
         timestamp: new Date().toISOString(),
       }),
-      {
-        status: 500,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    };
   }
-}
-
-// Netlify scheduled function config
-export const config = {
-  schedule: "0 11 * * 1-5",
 };
