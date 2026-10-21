@@ -75,7 +75,7 @@ function buildTicker(rows) {
   tkT.innerHTML = html + html + html;
 
   var fullWidth = tkT.scrollWidth;
-  var speed = 300;
+  var speed = 80;
   var duration = fullWidth / speed;
   tkT.style.animationDuration = duration + "s";
 
@@ -363,6 +363,10 @@ async function loadMarketData() {
 
 // ---- INIT ----
 document.addEventListener("DOMContentLoaded", function () {
+  // Show page + set language immediately
+  if (typeof go === 'function') go('brief');
+  if (typeof setLang === 'function') setLang('en');
+  // Load live data after short delay
   setTimeout(loadMarketData, 800);
 });
 
