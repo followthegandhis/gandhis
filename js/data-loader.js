@@ -206,6 +206,7 @@ async function loadMarketData() {
     buildTicker(rows);
     updateSectorMap(rows);
     updateHeadline(rows);
+    updateTimestamp();
 
     console.log("Gandhis: All live data loaded successfully!");
   } catch (e) {
@@ -218,5 +219,26 @@ document.addEventListener("DOMContentLoaded", function () {
   setTimeout(loadMarketData, 800);
 });
 
+// ---- AUTO-UPDATE TIMESTAMP ----
+function updateTimestamp() {
+  var el = document.querySelector("[data-k='data-ts']");
+  if (!el) return;
+  var now = new Date();
+  var h = now.getHours();
+  var m = now.getMinutes();
+  var ampm = h >= 12 ? "PM" : "AM";
+  h = h % 12 || 12;
+  var mm = m < 10 ? "0" + m : m;
+  var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var day = now.getDate();
+  var mon = months[now.getMonth()];
+  var year = now.getFullYear();
+  var isWeekend = (now.getDay() === 0 || now.getDay() === 6);
+  var status = isWeekend ? "Weekend · Markets closed" : "Indian markets";
+  el.textContent = "Data as of " + h + ":" + mm + " " + ampm + " IST · " + day + " " + mon + " " + year + " · " + status;
+}
+
 // ---- MANUAL REFRESH (type refreshGandhisData() in console to test) ----
 window.refreshGandhisData = loadMarketData;
+
+
