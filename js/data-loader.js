@@ -221,7 +221,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // ---- AUTO-UPDATE TIMESTAMP ----
 function updateTimestamp() {
-  var el = document.querySelector("[data-k='data-ts']");
+  var el = document.querySelector("[data-k='tktime']");
   if (!el) return;
   var now = new Date();
   var h = now.getHours();
