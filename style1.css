@@ -7,7 +7,7 @@ body{background:#F7F7F4;font-family:'DM Sans',system-ui,sans-serif;color:#111;ov
 /* ===== HEADER ===== */
 .hdr{background:#fff;padding:20px 0 14px;text-align:center;border-bottom:1px solid #E5E5E0}
 .lw{display:inline-block;position:relative;padding:10px 40px;border:2.5px solid #007A3F;border-radius:50%}
-.lw::before{content:'';position:absolute;top:4px;left:4px;right:4px;bottom:4px;border:1px solid #007A3F;border-radius:50%;opacity:.5}
+.lw::before{display:none}
 .ln{font-family:'Burgues Script',cursive;font-size:38px;color:#007A3F;line-height:1}
 .tgl2{font-size:9px;letter-spacing:3.5px;text-transform:uppercase;color:#777;margin-top:8px;font-weight:500}
 
