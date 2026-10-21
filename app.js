@@ -1,5 +1,5 @@
 
-/* ===== GANDHIS.CO — App Engine v2 ===== */
+/* ===== GANDHIS.CO — App Engine v3 ===== */
 
 /* ----- TAB SWITCHING ----- */
 function go(t) {
@@ -39,7 +39,6 @@ function setLang(lang) {
     btnHi.style.borderColor = lang === 'hi' ? '#007A3F' : '#ddd';
   }
 
-  /* Swap text using translations.js */
   if (typeof T !== 'undefined') {
     var els = document.querySelectorAll('[data-k]');
     for (var i = 0; i < els.length; i++) {
@@ -51,8 +50,11 @@ function setLang(lang) {
   }
 }
 
-/* ----- TICKER BUILDER (fallback if data-loader fails) ----- */
+/* ----- TICKER BUILDER (fallback only — data-loader.js overrides this) ----- */
 function buildTicker() {
+  var el = document.getElementById('tkT');
+  if (!el) return;
+
   var data = [
     { n: 'SENSEX',     v: '73,710',     c: '▼ 0.19%',  d: 0 },
     { n: 'NIFTY 50',   v: '22,811',     c: '▼ 0.34%',  d: 0 },
@@ -76,11 +78,7 @@ function buildTicker() {
     { n: 'STOXX 50',   v: '4,928',      c: '▲ 0.67%',  d: 1 }
   ];
 
-  var el = document.getElementById('tkT');
-  if (!el) return;
   var html = '';
-
-  /* Build 3 copies for infinite scroll */
   for (var r = 0; r < 3; r++) {
     for (var i = 0; i < data.length; i++) {
       var x = data[i];
@@ -91,14 +89,8 @@ function buildTicker() {
       html += '</span>';
     }
   }
-
   el.innerHTML = html;
 }
 
-/* ----- PAGE LOAD ----- */
-window.onload = function () {
-  buildTicker();
-  go('brief');
-  setLang('en');
-};
+/* ----- NO window.onload HERE — data-loader.js handles init ----- */
 
