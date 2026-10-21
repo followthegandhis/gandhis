@@ -68,7 +68,7 @@ function buildTicker(rows) {
   }
 
   // Duplicate for seamless infinite scroll (no gap, no halt)
-  tkT.innerHTML = html + html;
+  tkT.innerHTML = html + html + html;
 
   // Auto-adjust animation duration based on content width
   var fullWidth = tkT.scrollWidth;
