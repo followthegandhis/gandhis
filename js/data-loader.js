@@ -64,7 +64,7 @@ async function loadMarketData() {
 
 // ---- TICKER RIBBON ----
 function updateTicker(rows) {
-  var tickerTrack = document.querySelector(".ticker-track");
+  var tickerTrack = document.getElementById("tkT");
   if (!tickerTrack || rows.length === 0) return;
 
   var html = "";
