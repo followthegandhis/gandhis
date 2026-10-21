@@ -72,7 +72,7 @@ function buildTicker(rows) {
 
   // Auto-adjust animation duration based on content width
   var fullWidth = tkT.scrollWidth;
-  var speed = 80; // pixels per second — adjust for faster/slower
+  var speed = 140; // pixels per second — adjust for faster/slower
   var duration = fullWidth / speed;
   tkT.style.animationDuration = duration + "s";
 
