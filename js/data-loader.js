@@ -75,7 +75,7 @@ function buildTicker(rows) {
   tkT.innerHTML = html + html + html;
 
   var fullWidth = tkT.scrollWidth;
-  var speed = 80;
+  var speed = 600;
   var duration = fullWidth / speed;
   tkT.style.animationDuration = duration + "s";
 
