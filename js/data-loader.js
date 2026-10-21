@@ -1,7 +1,7 @@
 // ============================================================
 // GANDHIS.CO — Live Market Data Loader
-// Reads from Google Sheets — FREE, no API key, no CORS issues
-// One-time setup, auto-updates forever
+// Google Sheets → Ticker + Sector Map + Headline
+// Seamless infinite scroll, hover pause, fade edges
 // ============================================================
 
 var SHEET_CSV_URL =
@@ -23,84 +23,76 @@ function parseCSV(text) {
   return rows;
 }
 
-// ---- MAIN LOADER ----
-async function loadMarketData() {
-  try {
-    console.log("Gandhis: Loading live data from Google Sheets...");
+// ---- BUILD TICKER ITEM HTML ----
+function buildTickerItem(r) {
+  var name = r.name || "";
+  var price = parseFloat(r.price) || 0;
+  var change = parseFloat(r.changepct) || 0;
+  var isUp = change >= 0;
+  var arrow = isUp ? "▲" : "▼";
+  var cls = isUp ? "tk-up" : "tk-dn";
 
-    var res = await fetch(SHEET_CSV_URL);
-    if (!res.ok) throw new Error("Sheet fetch failed: " + res.status);
-
-    var text = await res.text();
-    var rows = parseCSV(text);
-    console.log("Gandhis: Got " + rows.length + " rows from sheet");
-
-    if (rows.length === 0) {
-      console.warn("Gandhis: No data in sheet, using static fallback.");
-      return;
-    }
-
-    // ---- FIX USD/INR CHANGE (hardcoded since Google Finance doesn't support it) ----
-    for (var r = 0; r < rows.length; r++) {
-      if (rows[r].name === "USD/INR" && (!rows[r].changepct || rows[r].changepct === "0")) {
-        rows[r].changepct = "0.12"; // Updated daily via brief
-      }
-    }
-
-    // ---- UPDATE TICKER RIBBON ----
-    updateTicker(rows);
-
-    // ---- UPDATE SECTOR MAP ----
-    updateSectorMap(rows);
-
-    // ---- UPDATE HEADLINE ----
-    updateHeadline(rows);
-
-    console.log("Gandhis: All live data loaded successfully!");
-  } catch (e) {
-    console.warn("Gandhis: Live data fetch failed, using static fallback.", e.message);
+  var priceStr;
+  if (name === "USD/INR") {
+    priceStr = price.toFixed(2);
+  } else if (name === "CRUDE OIL") {
+    priceStr = "$" + price.toFixed(2);
+  } else {
+    priceStr = Number(price).toLocaleString("en-IN", {
+      maximumFractionDigits: 0,
+    });
   }
+
+  return (
+    '<span class="tk-item">' +
+    '<span class="tk-name">' + name + "</span> " +
+    '<span class="tk-val">' + priceStr + "</span> " +
+    '<span class="' + cls + '">' +
+    arrow + " " + Math.abs(change).toFixed(2) + "%" +
+    "</span></span>"
+  );
 }
 
-// ---- TICKER RIBBON ----
-function updateTicker(rows) {
-  var tickerTrack = document.getElementById("tkT");
-  if (!tickerTrack || rows.length === 0) return;
-
-  var html = "";
-  for (var i = 0; i < rows.length; i++) {
-    var r = rows[i];
-    var name = r.name || "";
-    var price = parseFloat(r.price) || 0;
-    var change = parseFloat(r.changepct) || 0;
-    var isUp = change >= 0;
-    var arrow = isUp ? "▲" : "▼";
-    var cls = isUp ? "tk-up" : "tk-dn";
-
-    // Format price based on type
-    var priceStr;
-    if (name === "USD/INR") {
-      priceStr = price.toFixed(2);
-    } else if (name === "CRUDE OIL") {
-      priceStr = "$" + price.toFixed(2);
-    } else {
-      priceStr = Number(price).toLocaleString("en-IN", {
-        maximumFractionDigits: 0,
-      });
-    }
-
-    html +=
-      '<span class="tk-item">' +
-      '<span class="tk-name">' + name + "</span> " +
-      '<span class="tk-val">' + priceStr + "</span> " +
-      '<span class="' + cls + '">' +
-      arrow + " " + Math.abs(change).toFixed(2) + "%" +
-      "</span></span>";
+// ---- BUILD TICKER (writes to DOM + infinite scroll) ----
+function buildTicker(rows) {
+  var tkT = document.getElementById("tkT");
+  if (!tkT || rows.length === 0) {
+    console.warn("Gandhis: Ticker element #tkT not found or no data");
+    return;
   }
 
-  // Duplicate for seamless infinite scroll
-  tickerTrack.innerHTML = html + html;
-  console.log("Gandhis: Ticker ribbon updated");
+  // Build one full set of ticker items
+  var html = "";
+  for (var i = 0; i < rows.length; i++) {
+    html += buildTickerItem(rows[i]);
+  }
+
+  // Duplicate for seamless infinite scroll (no gap, no halt)
+  tkT.innerHTML = html + html;
+
+  // Auto-adjust animation duration based on content width
+  var fullWidth = tkT.scrollWidth;
+  var speed = 80; // pixels per second — adjust for faster/slower
+  var duration = fullWidth / speed;
+  tkT.style.animationDuration = duration + "s";
+
+  // Hover pause
+  tkT.addEventListener("mouseenter", function () {
+    tkT.style.animationPlayState = "paused";
+  });
+  tkT.addEventListener("mouseleave", function () {
+    tkT.style.animationPlayState = "running";
+  });
+
+  // Touch pause (mobile)
+  tkT.addEventListener("touchstart", function () {
+    tkT.style.animationPlayState = "paused";
+  });
+  tkT.addEventListener("touchend", function () {
+    tkT.style.animationPlayState = "running";
+  });
+
+  console.log("Gandhis: Ticker ribbon updated — " + rows.length + " items, duration: " + duration.toFixed(1) + "s");
 }
 
 // ---- HEADLINE (NIFTY 50) ----
@@ -121,8 +113,6 @@ function updateHeadline(rows) {
   var chg = parseFloat(nifty.changepct) || 0;
   var isUp = chg >= 0;
   var arrow = isUp ? "▲" : "▼";
-
-  // Calculate approximate point change
   var pts = Math.round(val * Math.abs(chg) / 100);
   var sign = isUp ? "+" : "-";
 
@@ -142,7 +132,6 @@ function updateSectorMap(rows) {
   );
   if (!container) return;
 
-  // Sector names to pick from sheet
   var sectorNames = [
     "PSU BANK", "BANK NIFTY", "IT", "PHARMA",
     "FMCG", "AUTO", "METAL", "REALTY",
@@ -159,7 +148,6 @@ function updateSectorMap(rows) {
     }
   }
 
-  // Sort by change — best to worst
   sectors.sort(function (a, b) {
     return b.change - a.change;
   });
@@ -190,7 +178,42 @@ function updateSectorMap(rows) {
   console.log("Gandhis: Sector map updated — " + sectors.length + " sectors");
 }
 
-// ---- INIT: Load data when page opens ----
+// ---- MAIN LOADER ----
+async function loadMarketData() {
+  try {
+    console.log("Gandhis: Loading live data from Google Sheets...");
+
+    var res = await fetch(SHEET_CSV_URL);
+    if (!res.ok) throw new Error("Sheet fetch failed: " + res.status);
+
+    var text = await res.text();
+    var rows = parseCSV(text);
+    console.log("Gandhis: Got " + rows.length + " rows from sheet");
+
+    if (rows.length === 0) {
+      console.warn("Gandhis: No data in sheet, using static fallback.");
+      return;
+    }
+
+    // Fix USD/INR change (Google Finance doesn't support changepct for currencies)
+    for (var r = 0; r < rows.length; r++) {
+      if (rows[r].name === "USD/INR" && (!rows[r].changepct || rows[r].changepct === "0")) {
+        rows[r].changepct = "0.12";
+      }
+    }
+
+    // ---- UPDATE ALL COMPONENTS ----
+    buildTicker(rows);
+    updateSectorMap(rows);
+    updateHeadline(rows);
+
+    console.log("Gandhis: All live data loaded successfully!");
+  } catch (e) {
+    console.warn("Gandhis: Live data fetch failed, using static fallback.", e.message);
+  }
+}
+
+// ---- INIT ----
 document.addEventListener("DOMContentLoaded", function () {
   setTimeout(loadMarketData, 800);
 });
