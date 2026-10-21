@@ -202,3 +202,9 @@ body{background:#F7F7F4;font-family:'DM Sans',system-ui,sans-serif;color:#111;ov
   font-size: 16px;
 }
 
+/* ===== MOBILE TICKER SPEED FIX ===== */
+@media (max-width: 768px) {
+  #tkT {
+    animation-duration: 15s !important;
+  }
+}
