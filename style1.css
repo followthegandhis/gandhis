@@ -116,3 +116,47 @@ body{background:#F7F7F4;font-family:'DM Sans',system-ui,sans-serif;color:#111;ov
   .wk-g{grid-template-columns:1fr}
   .lang-tog{margin-left:8px}
 }
+
+/* ===== TICKER FADE EDGES + HOVER PAUSE ===== */
+
+/* Fade edges on both sides of the ribbon */
+.tk {
+  position: relative;
+  overflow: hidden;
+}
+.tk::before,
+.tk::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  z-index: 2;
+  pointer-events: none;
+}
+.tk::before {
+  left: 0;
+  background: linear-gradient(to right, #007A3F 0%, transparent 100%);
+}
+.tk::after {
+  right: 0;
+  background: linear-gradient(to left, #007A3F 0%, transparent 100%);
+}
+
+/* Seamless infinite scroll animation */
+#tkT {
+  display: flex;
+  white-space: nowrap;
+  animation: tickerScroll linear infinite;
+  will-change: transform;
+}
+
+@keyframes tickerScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Hover pause */
+#tkT:hover {
+  animation-play-state: paused;
+}
