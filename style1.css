@@ -160,3 +160,45 @@ body{background:#F7F7F4;font-family:'DM Sans',system-ui,sans-serif;color:#111;ov
 #tkT:hover {
   animation-play-state: paused;
 }
+
+/* ===== TICKER ITEM STYLING ===== */
+
+.tk-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 18px;
+  font-family: Inter, Arial, sans-serif;
+  font-size: 13px;
+  white-space: nowrap;
+  color: #fff;
+}
+
+.tk-name {
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.tk-val {
+  font-weight: 600;
+  color: #fff;
+}
+
+.tk-up {
+  color: #a8ffa8;
+  font-weight: 700;
+}
+
+.tk-dn {
+  color: #ffb3b3;
+  font-weight: 700;
+}
+
+.tk-item::after {
+  content: "·";
+  margin-left: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 16px;
+}
+
