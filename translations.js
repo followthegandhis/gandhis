@@ -13,6 +13,24 @@ tabM: { en: "TOP MOVERS", hi: "टॉप मूवर्स" },
 tab2: { en: "PAST WEEK", hi: "पिछला हफ़्ता" },
 tab3: { en: "ARCHIVE", hi: "आर्काइव" },
 tab4: { en: "ABOUT", hi: "हमारे बारे में" },
+
+ verdict: {
+  en: "Opened 1% up on trade-deal hopes. Brent past $111 killed the rally. IT was the only survivor.",
+  hi: "ट्रेड-डील की उम्मीद पर 1% ऊपर खुला। ब्रेंट $111 के पार गया और रैली ख़त्म। IT एकमात्र बचा।"
+},
+arch21h: { en: "Opened 1% up. Brent past $111 killed the rally. IT only survivor.", hi: "1% ऊपर खुला। ब्रेंट $111 ने रैली मारी। IT एकमात्र बचा।" },
+arch21p: { en: "FIIs sold ₹413 Cr · Breadth 79% negative · VIX spiked 6.3%", hi: "FII ने ₹413 करोड़ बेचे · ब्रेड्थ 79% नेगेटिव · VIX 6.3% उछला" },
+arch19h: { en: "Broad sell-off. Only PSU Banks survived.", hi: "व्यापक बिकवाली। सिर्फ PSU Banks बचे।" },
+arch19p: { en: "FIIs dumped ₹5,285 Cr · Breadth 69% negative · VIX spiked 8.4%", hi: "FII ने ₹5,285 करोड़ बेचे · ब्रेड्थ 69% नेगेटिव · VIX 8.4% उछला" },
+arch18h: { en: "IT rallied 1.8% as TCS beat estimates.", hi: "TCS के अनुमान से बेहतर नतीजों पर IT 1.8% चढ़ा।" },
+arch18p: { en: "FIIs sold ₹4,200 Cr · Nifty flat · Rupee crossed 95", hi: "FII ने ₹4,200 करोड़ बेचे · निफ्टी फ्लैट · रुपया 95 पार" },
+arch17h: { en: "Pharma led. Metal crashed. Rotation accelerated.", hi: "फार्मा आगे। मेटल धराशायी। रोटेशन तेज़।" },
+arch17p: { en: "FIIs sold ₹5,100 Cr · DIIs bought ₹4,800 Cr · VIX at 14.2", hi: "FII ने ₹5,100 करोड़ बेचे · DII ने ₹4,800 करोड़ खरीदे · VIX 14.2" },
+arch16h: { en: "Auto surprised. PSU Banks gave back gains.", hi: "ऑटो ने चौंकाया। PSU Banks ने बढ़त गँवाई।" },
+arch16p: { en: "FIIs sold ₹3,800 Cr · Breadth improved to 45% · Brent hit $110", hi: "FII ने ₹3,800 करोड़ बेचे · ब्रेड्थ 45% सुधरी · ब्रेंट $110" },
+arch14h: { en: "Week opened red. FIIs dumped ₹6,500 Cr on day one.", hi: "हफ़्ता लाल खुला। FII ने पहले दिन ₹6,500 करोड़ बेचे।" },
+arch14p: { en: "Worst opening since June · All sectors red · VIX jumped 12%", hi: "जून के बाद सबसे खराब शुरुआत · सभी सेक्टर लाल · VIX 12% उछला" }, 
+
 disc: {
   en: "For educational purposes only · Not SEBI registered · Not investment advice · ",
   hi: "केवल शैक्षिक उद्देश्यों के लिए · SEBI पंजीकृत नहीं · निवेश सलाह नहीं · "
