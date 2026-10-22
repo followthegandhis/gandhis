@@ -1,22 +1,163 @@
 
 """
-GANDHIS.CO — Automated Top Movers Fetcher (v2)
-Uses free Yahoo Finance API via yfinance (no NSE blocking)
-Fetches top 3 gainers + 3 losers from 10 NSE indices
-Writes to Google Sheets automatically
+GANDHIS.CO — Automated Top Movers Fetcher (v3)
+Primary: NSE India API (accurate, auto-updated constituents)
+Fallback: Yahoo Finance (improved accuracy)
+Writes top 3 gainers + 3 losers per index to Google Sheets
 """
 
 import json
 import os
+import time
 import requests
 import gspread
 from google.oauth2.service_account import Credentials
 
 # ---- CONFIG ----
-# NSE index name → list of stock symbols (NSE tickers)
-# We fetch each stock's daily change and sort to find top movers
+TOP_N = 3
 
-INDICES = {
+# NSE API index names (exact names as NSE expects them)
+NSE_INDICES = [
+    "NIFTY 50",
+    "NIFTY MIDCAP 100",
+    "NIFTY SMLCAP 250",
+    "NIFTY BANK",
+    "NIFTY IT",
+    "NIFTY PSU BANK",
+    "NIFTY AUTO",
+    "NIFTY METAL",
+    "NIFTY PHARMA",
+    "NIFTY FMCG",
+    "NIFTY REALTY",
+]
+
+# Display names for your website (what data-loader.js expects)
+DISPLAY_NAMES = {
+    "NIFTY 50": "NIFTY 50",
+    "NIFTY MIDCAP 100": "NIFTY MIDCAP",
+    "NIFTY SMLCAP 250": "NIFTY SMALLCAP",
+    "NIFTY BANK": "BANK NIFTY",
+    "NIFTY IT": "NIFTY IT",
+    "NIFTY PSU BANK": "PSU BANK",
+    "NIFTY AUTO": "NIFTY AUTO",
+    "NIFTY METAL": "NIFTY METAL",
+    "NIFTY PHARMA": "NIFTY PHARMA",
+    "NIFTY FMCG": "NIFTY FMCG",
+    "NIFTY REALTY": "NIFTY REALTY",
+}
+
+
+# ---- NSE INDIA FETCHER (PRIMARY) ----
+
+NSE_BASE = "https://www.nseindia.com"
+NSE_API = "https://www.nseindia.com/api/equity-stockIndices?index="
+
+NSE_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Accept": "application/json, text/plain, */*",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Referer": "https://www.nseindia.com/market-data/live-equity-market",
+    "Connection": "keep-alive",
+}
+
+
+def get_nse_session():
+    """Create a session with NSE cookies (required to bypass blocking)."""
+    session = requests.Session()
+    session.headers.update(NSE_HEADERS)
+    try:
+        # First hit the main page to get cookies
+        r = session.get(NSE_BASE, timeout=15)
+        r.raise_for_status()
+        time.sleep(1)  # Be polite, wait 1 second
+        return session
+    except Exception as e:
+        print(f"  NSE session failed: {e}")
+        return None
+
+
+def fetch_nse_index(session, index_name):
+    """Fetch all constituents + prices for an index from NSE."""
+    import urllib.parse
+    encoded = urllib.parse.quote(index_name)
+    url = f"{NSE_API}{encoded}"
+
+    try:
+        time.sleep(1.5)  # Rate limit: max ~1 request per 1.5 sec
+        r = session.get(url, timeout=15)
+        r.raise_for_status()
+        data = r.json()
+
+        stocks = []
+        for item in data.get("data", []):
+            symbol = item.get("symbol", "")
+            # Skip the index row itself (e.g., "Nifty 50" row)
+            if symbol == index_name or not symbol:
+                continue
+
+            price = item.get("lastPrice", 0)
+            change_pct = item.get("pChange", 0)
+
+            if price and price > 0:
+                stocks.append({
+                    "symbol": symbol,
+                    "price": round(float(price), 2),
+                    "changepct": round(float(change_pct), 2),
+                })
+
+        return stocks
+
+    except Exception as e:
+        print(f"  NSE API failed for {index_name}: {e}")
+        return None
+
+
+def fetch_all_nse():
+    """Fetch top movers for all indices from NSE."""
+    print("Trying NSE India API (primary source)...")
+    session = get_nse_session()
+    if not session:
+        print("  Could not establish NSE session")
+        return None
+
+    all_data = {}
+    failures = 0
+
+    for index_name in NSE_INDICES:
+        display_name = DISPLAY_NAMES.get(index_name, index_name)
+        stocks = fetch_nse_index(session, index_name)
+
+        if stocks and len(stocks) >= TOP_N * 2:
+            sorted_stocks = sorted(stocks, key=lambda x: x["changepct"], reverse=True)
+            gainers = sorted_stocks[:TOP_N]
+            losers = sorted_stocks[-TOP_N:][::-1]  # Worst first
+            all_data[display_name] = (gainers, losers)
+
+            g_names = ", ".join([g["symbol"] for g in gainers])
+            l_names = ", ".join([l["symbol"] for l in losers])
+            print(f"  ✅ {display_name}: {len(stocks)} stocks | Gainers [{g_names}] | Losers [{l_names}]")
+        else:
+            failures += 1
+            print(f"  ❌ {display_name}: Failed or insufficient data")
+
+    # If more than half failed, consider NSE blocked — return None to trigger fallback
+    if failures > len(NSE_INDICES) // 2:
+        print(f"  Too many failures ({failures}/{len(NSE_INDICES)}), NSE likely blocked")
+        return None
+
+    return all_data if all_data else None
+
+
+# ---- YAHOO FINANCE FALLBACK (IMPROVED ACCURACY) ----
+# Only used if NSE API is blocked/down
+# Fix: Uses quote endpoint instead of chart meta for accurate closing prices
+
+YAHOO_QUOTE_URL = "https://query1.finance.yahoo.com/v7/finance/quote"
+
+# Yahoo fallback needs hardcoded lists (unlike NSE which auto-updates)
+# Update these quarterly when index constituents change
+YAHOO_FALLBACK = {
     "NIFTY 50": [
         "RELIANCE", "TCS", "HDFCBANK", "INFY", "ICICIBANK", "HINDUNILVR",
         "ITC", "SBIN", "BHARTIARTL", "KOTAKBANK", "LT", "AXISBANK",
@@ -29,6 +170,18 @@ INDICES = {
         "COALINDIA", "BRITANNIA", "BAJAJ-AUTO", "TRENT",
         "ETERNAL", "BEL", "SHRIRAMFIN", "TATACONSUM", "HINDALCO"
     ],
+    "NIFTY MIDCAP": [
+        "POLYCAB", "PIIND", "MUTHOOTFIN", "PAGEIND", "VOLTAS",
+        "ASTRAL", "CUMMINSIND", "COROMANDEL", "ESCORTS", "FEDERALBNK",
+        "INDHOTEL", "JUBLFOOD", "LICHSGFIN", "OBEROIRLTY", "PETRONET",
+        "TATACOMM", "TATAELXSI", "THERMAX", "TORNTPHARM", "DIXON"
+    ],
+    "NIFTY SMALLCAP": [
+        "IIFL", "ROUTE", "KPITTECH", "CDSL", "ANGELONE",
+        "BIKAJI", "CAMPUS", "CLEAN", "DATAPATTNS", "FIVESTAR",
+        "HAPPSTMNDS", "KALYANKJIL", "KAYNES", "LICI", "MAPMYINDIA",
+        "MEDANTA", "RAINBOW", "SYRMA", "TITAGARH", "ZOMATO"
+    ],
     "BANK NIFTY": [
         "HDFCBANK", "ICICIBANK", "KOTAKBANK", "AXISBANK", "SBIN",
         "INDUSINDBK", "BANKBARODA", "PNB", "FEDERALBNK", "IDFCFIRSTB",
@@ -38,109 +191,103 @@ INDICES = {
         "TCS", "INFY", "HCLTECH", "WIPRO", "TECHM", "LTIM",
         "PERSISTENT", "COFORGE", "MPHASIS", "LTTS"
     ],
-    "NIFTY PHARMA": [
-        "SUNPHARMA", "DRREDDY", "CIPLA", "DIVISLAB", "APOLLOHOSP",
-        "LUPIN", "AUROPHARMA", "TORNTPHARM", "ZYDUSLIFE", "BIOCON",
-        "ALKEM", "IPCALAB", "LAURUSLABS", "GLENMARK", "NATCOPHARMA",
-        "GRANULES", "ABBOTINDIA", "SYNGENE", "GLAND", "LALPATHLAB"
-    ],
-    "NIFTY FMCG": [
-        "HINDUNILVR", "ITC", "NESTLEIND", "BRITANNIA", "TATACONSUM",
-        "GODREJCP", "DABUR", "MARICO", "COLPAL", "VBL",
-        "UBL", "MCDOWELL-N", "EMAMILTD", "RADICO", "PGHH"
+    "PSU BANK": [
+        "SBIN", "BANKBARODA", "PNB", "CANBK", "UNIONBANK",
+        "INDIANB", "IOB", "CENTRALBK", "MAHABANK", "BANKINDIA",
+        "PSB", "UCOBANK"
     ],
     "NIFTY AUTO": [
         "TATAMOTORS", "M&M", "MARUTI", "BAJAJ-AUTO", "EICHERMOT",
-        "HEROMOTOCO", "TVSMOTOR", "ASHOKLEY", "BALKRISIND",
-        "BHARATFORG", "BOSCHLTD", "MRF", "MOTHERSON", "EXIDEIND",
-        "TIINDIA"
+        "HEROMOTOCO", "TVSMOTOR", "ASHOKLEY", "BALKRISIND", "BHARATFORG"
     ],
     "NIFTY METAL": [
         "TATASTEEL", "JSWSTEEL", "HINDALCO", "VEDL", "COALINDIA",
-        "NMDC", "SAIL", "NATIONALUM", "JINDALSTEL", "APLAPOLLO",
-        "RATNAMANI", "WELCORP", "MOIL", "HINDCOPPER", "JSWENERGY"
+        "NMDC", "SAIL", "NATIONALUM", "JINDALSTEL", "APLAPOLLO"
+    ],
+    "NIFTY PHARMA": [
+        "SUNPHARMA", "DRREDDY", "CIPLA", "DIVISLAB", "APOLLOHOSP",
+        "LUPIN", "AUROPHARMA", "TORNTPHARM", "ZYDUSLIFE", "BIOCON"
+    ],
+    "NIFTY FMCG": [
+        "HINDUNILVR", "ITC", "NESTLEIND", "BRITANNIA", "TATACONSUM",
+        "GODREJCP", "DABUR", "MARICO", "COLPAL", "VBL"
     ],
     "NIFTY REALTY": [
         "DLF", "GODREJPROP", "OBEROIRLTY", "PHOENIXLTD", "PRESTIGE",
         "BRIGADE", "SOBHA", "SUNTECK", "MAHLIFE", "LODHA"
     ],
-    "NIFTY PSU BANK": [
-        "SBIN", "BANKBARODA", "PNB", "CANBK", "UNIONBANK",
-        "INDIANB", "IOB", "CENTRALBK", "MAHABANK", "BANKINDIA",
-        "PSB", "UCOBANK"
-    ],
-    "NIFTY MIDCAP 50": [
-        "POLYCAB", "PIIND", "MUTHOOTFIN", "PAGEIND", "VOLTAS",
-        "ASTRAL", "CUMMINSIND", "AIAENG", "COROMANDEL", "ESCORTS",
-        "FEDERALBNK", "GMRINFRA", "IDFCFIRSTB", "INDHOTEL", "JUBLFOOD",
-        "LICHSGFIN", "MFSL", "NAM-INDIA", "NAVINFLUOR", "OBEROIRLTY",
-        "OFSS", "PETRONET", "PVRINOX", "RAMCOCEM", "SOLARINDS",
-        "SUNDARMFIN", "SYNGENE", "TATACOMM", "TATAELXSI", "THERMAX",
-        "TORNTPHARM", "UPL", "ZEEL", "CONCOR", "CROMPTON",
-        "DEEPAKNTR", "DIXON", "ENDURANCE", "FORTIS", "GLAXO",
-        "GODREJPROP", "HONAUT", "IRCTC", "KPITTECH", "L&TFH",
-        "LALPATHLAB", "LINDEINDIA", "METROPOLIS", "MPHASIS", "PERSISTENT"
-    ],
 }
 
-# Free Yahoo Finance API (no key needed, works from cloud)
-YAHOO_BASE = "https://query1.finance.yahoo.com/v8/finance/chart/"
 
-TOP_N = 3
+def fetch_yahoo_batch(symbols):
+    """Fetch prices for a batch of stocks using Yahoo quote endpoint."""
+    # Convert to Yahoo format: SBIN → SBIN.NS
+    yahoo_symbols = [s + ".NS" for s in symbols]
+    joined = ",".join(yahoo_symbols)
 
+    url = f"{YAHOO_QUOTE_URL}?symbols={joined}"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    }
 
-def fetch_stock_data(symbol):
-    """Fetch current price and % change for a single stock via Yahoo Finance."""
-    yahoo_symbol = symbol + ".NS"  # NSE suffix for Yahoo
-    url = f"{YAHOO_BASE}{yahoo_symbol}?interval=1d&range=2d"
-    headers = {"User-Agent": "Mozilla/5.0"}
     try:
-        resp = requests.get(url, headers=headers, timeout=10)
+        resp = requests.get(url, headers=headers, timeout=15)
         resp.raise_for_status()
         data = resp.json()
-        result = data["chart"]["result"][0]
-        meta = result["meta"]
-        current = meta.get("regularMarketPrice", 0)
-        previous = meta.get("chartPreviousClose", 0)
-        if previous and previous > 0:
-            changepct = round(((current - previous) / previous) * 100, 2)
-        else:
-            changepct = 0
-        return {
-            "symbol": symbol,
-            "price": round(current, 2),
-            "changepct": changepct,
-        }
+
+        stocks = []
+        for quote in data.get("quoteResponse", {}).get("result", []):
+            symbol = quote.get("symbol", "").replace(".NS", "")
+            price = quote.get("regularMarketPrice", 0)
+            prev_close = quote.get("regularMarketPreviousClose", 0)
+
+            if price and prev_close and prev_close > 0:
+                changepct = round(((price - prev_close) / prev_close) * 100, 2)
+                stocks.append({
+                    "symbol": symbol,
+                    "price": round(float(price), 2),
+                    "changepct": changepct,
+                })
+
+        return stocks
+
     except Exception as e:
-        return None
+        print(f"  Yahoo batch failed: {e}")
+        return []
 
 
-def fetch_index_stocks(index_name, symbols):
-    """Fetch data for all stocks in an index."""
-    print(f"Fetching: {index_name} ({len(symbols)} stocks)...")
-    stocks = []
-    for sym in symbols:
-        data = fetch_stock_data(sym)
-        if data:
-            stocks.append(data)
-    print(f"  Got data for {len(stocks)}/{len(symbols)} stocks")
-    return stocks
+def fetch_all_yahoo():
+    """Fetch top movers for all indices from Yahoo Finance (fallback)."""
+    print("Falling back to Yahoo Finance...")
+    all_data = {}
+
+    for display_name, symbols in YAHOO_FALLBACK.items():
+        time.sleep(0.5)  # Be polite
+        stocks = fetch_yahoo_batch(symbols)
+
+        if stocks and len(stocks) >= TOP_N * 2:
+            sorted_stocks = sorted(stocks, key=lambda x: x["changepct"], reverse=True)
+            gainers = sorted_stocks[:TOP_N]
+            losers = sorted_stocks[-TOP_N:][::-1]
+            all_data[display_name] = (gainers, losers)
+
+            g_names = ", ".join([g["symbol"] for g in gainers])
+            l_names = ", ".join([l["symbol"] for l in losers])
+            print(f"  ✅ {display_name}: Gainers [{g_names}] | Losers [{l_names}]")
+        else:
+            print(f"  ❌ {display_name}: Failed ({len(stocks)} stocks)")
+
+    return all_data if all_data else None
 
 
-def get_top_movers(stocks):
-    """Get top N gainers and losers."""
-    sorted_stocks = sorted(stocks, key=lambda x: x["changepct"], reverse=True)
-    gainers = sorted_stocks[:TOP_N]
-    losers = sorted_stocks[-TOP_N:][::-1]
-    return gainers, losers
-
+# ---- GOOGLE SHEETS WRITER ----
 
 def write_to_sheet(all_data):
     """Write all top movers data to Google Sheets."""
     creds_json = os.environ.get("GOOGLE_SHEETS_CREDS")
     if not creds_json:
         print("ERROR: GOOGLE_SHEETS_CREDS not found")
-        return
+        return False
 
     creds_dict = json.loads(creds_json)
     creds = Credentials.from_service_account_info(
@@ -155,17 +302,16 @@ def write_to_sheet(all_data):
     sheet_url = os.environ.get("GOOGLE_SHEET_URL")
     if not sheet_url:
         print("ERROR: GOOGLE_SHEET_URL not found")
-        return
+        return False
 
     spreadsheet = client.open_by_url(sheet_url)
 
     try:
         worksheet = spreadsheet.worksheet("topmovers")
     except gspread.exceptions.WorksheetNotFound:
-        worksheet = spreadsheet.add_worksheet(title="topmovers", rows=100, cols=5)
+        worksheet = spreadsheet.add_worksheet(title="topmovers", rows=200, cols=5)
 
-    worksheet.clear()
-
+    # Build rows
     rows = [["index", "stock", "price", "changepct", "type"]]
 
     for index_name, movers in all_data.items():
@@ -175,29 +321,43 @@ def write_to_sheet(all_data):
         for l in losers:
             rows.append([index_name, l["symbol"], l["price"], l["changepct"], "loser"])
 
-    worksheet.update(range_name="A1", values=rows)
-    print(f"SUCCESS: Wrote {len(rows) - 1} rows to 'topmovers' sheet")
+    # Only clear and write if we have real data (safety net)
+    if len(rows) > 1:
+        worksheet.clear()
+        worksheet.update(range_name="A1", values=rows)
+        print(f"SUCCESS: Wrote {len(rows) - 1} rows to 'topmovers' sheet")
+        return True
+    else:
+        print("ERROR: No rows to write, keeping existing data")
+        return False
 
+
+# ---- MAIN ----
 
 def main():
-    print("Gandhis: Starting Top Movers fetch (Yahoo Finance)...")
+    print("=" * 50)
+    print("GANDHIS.CO — Top Movers Fetcher v3")
+    print("=" * 50)
 
-    all_data = {}
-    for index_name, symbols in INDICES.items():
-        stocks = fetch_index_stocks(index_name, symbols)
-        if stocks:
-            gainers, losers = get_top_movers(stocks)
-            all_data[index_name] = (gainers, losers)
-            g_names = ", ".join([g["symbol"] for g in gainers])
-            l_names = ", ".join([l["symbol"] for l in losers])
-            print(f"  ✅ {index_name}: Gainers [{g_names}] | Losers [{l_names}]")
-        else:
-            print(f"  ❌ {index_name}: No data")
+    # LAYER 1: Try NSE India API (accurate, auto-updated constituents)
+    all_data = fetch_all_nse()
 
+    # LAYER 2: If NSE failed, fall back to Yahoo Finance
+    if not all_data:
+        print("\n" + "-" * 50)
+        all_data = fetch_all_yahoo()
+
+    # LAYER 3: Safety net — if both failed, don't touch the sheet
     if all_data:
+        print("\n" + "-" * 50)
+        print(f"Writing {len(all_data)} indices to Google Sheets...")
         write_to_sheet(all_data)
     else:
-        print("ERROR: No data fetched from any index")
+        print("\n❌ BOTH SOURCES FAILED — keeping existing sheet data untouched")
+        print("The website will show yesterday's top movers (better than nothing)")
+
+    print("\n" + "=" * 50)
+    print("Done!")
 
 
 if __name__ == "__main__":
