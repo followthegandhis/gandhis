@@ -89,10 +89,10 @@
   <button class="nb" data-t="brief" onclick="goA('brief')" style="color:#007A3F;border-bottom:3px solid #007A3F">19 OCT '26</button>
   <button class="nb" data-t="movers" onclick="goA('movers')">TOP MOVERS</button>
   <button class="nb" data-t="about" onclick="goA('about')">ABOUT</button>
-  <span style="margin-left:auto;display:flex;gap:4px">
-   <button class="lb la" id="btnEn" onclick="setLangA('en')">EN</button>
-   <button class="lb" id="btnHi" onclick="setLangA('hi')">हि</button>
-  </span>
+    <div class="lang-tog">
+    <button class="lang-btn" id="btnEn" onclick="setLangA('en')">EN</button>
+    <button class="lang-btn" id="btnHi" onclick="setLangA('hi')">हि</button>
+    </div>
 </nav>
 
 <!-- DATE BAR -->
@@ -180,7 +180,7 @@
     </div>
     <div class="ch" data-k="c1head">PSU Banks Were the only Sector in Green (+2.5%) While Everything Else Bled</div>
     <div class="cy">
-      Sensex fell 876 points. But the real story was underneath — PSU Banks rallied hard while private banks, IT, and realty all fell. Classic sector rotation.
+      <span data-k="c1body">Sensex fell 876 points. But the real story was underneath — PSU Banks rallied hard while private banks, IT, and realty all fell. Classic sector rotation.</span>
       <div class="pl">
         <div class="pi"><span class="pn">PSU Bank</span><span class="pv up">▲ 2.48%</span></div>
         <div class="pi"><span class="pn">IT</span><span class="pv dn">▼ 1.60%</span></div>
@@ -189,7 +189,7 @@
       </div>
       <div class="ins ig">
         <div class="it" data-k="c1insight">Educational Context</div>
-        <p>When only one sector is green and it's a <strong>defensive/value play</strong> like PSU Banks, it signals institutional money rotating into safety. The market isn't just falling — it's <strong>choosing where to hide</strong>.</p>
+        <p data-k="c1insightbody">When only one sector is green and it's a <strong>defensive/value play</strong> like PSU Banks, it signals institutional money rotating into safety. The market isn't just falling — it's <strong>choosing where to hide</strong>.</p>
     </div>
    </div>
   </div>
@@ -202,7 +202,7 @@
     </div>
     <div class="ch" data-k="c2head">PNB +6.6% on Strong Earnings. Axis Bank -4.2% Despite Beating Estimates.</div>
     <div class="cy">
-      Two banks. Both beat estimates. Completely opposite stock reactions. The market is telling you something about expectations.
+      <span data-k="c2body">Two banks. Both beat estimates. Completely opposite stock reactions. The market is telling you something about expectations.</span>
       <table class="dt">
         <tr><td class="dl">PNB Q2 Profit</td><td class="dv up">₹5,532 Cr (+13% YoY)</td></tr>
         <tr><td class="dl">PNB Stock</td><td class="dv up">▲ 6.55%</td></tr>
@@ -211,8 +211,7 @@
       </table>
       <div class="ins ib">
         <div class="it" data-k="c2insight">What the Data Shows</div>
-        <p>PNB was priced for mediocrity — any positive surprise gets rewarded. Axis Bank was priced for perfection — even beating estimates wasn't enough. This is called <strong>"buy the rumour, sell the news"</strong> and it reveals where institutional expectations were already positioned.</p>
-    </div>
+         <p data-k="c2insightbody">PNB was priced for mediocrity — any positive surprise gets rewarded. Axis Bank was priced for perfection — even beating estimates wasn't enough. This is called <strong>"buy the rumour, sell the news"</strong> and it reveals where institutional expectations were already positioned.</p>
    </div>
   </div>
 
@@ -224,7 +223,7 @@
     </div>
     <div class="ch" data-k="c3head">Breadth: 1,211 Advances vs 2,717 Declines — 69% of Stocks Fell</div>
     <div class="cy">
-      The Nifty fell 1.11%. But 69% of all listed stocks declined. The damage was wider than the index suggests.
+      <span data-k="c3body">The Nifty fell 1.11%. But 69% of all listed stocks declined. The damage was wider than the index suggests.</span>
       <table class="dt">
         <tr><td class="dl">Advances</td><td class="dv">1,211</td></tr>
         <tr><td class="dl">Declines</td><td class="dv">2,717</td></tr>
@@ -233,7 +232,7 @@
       </table>
       <div class="ins io">
         <div class="it" data-k="c3insight">Why Breadth Matters</div>
-        <p>When 69% of stocks fall but the index drops only 1.11%, it means <strong>index heavyweights are holding up</strong> while the broader market is crumbling. VIX spiking 8.4% confirms the fear is real. This kind of breadth deterioration often <strong>precedes further weakness</strong>.</p>
+        <p data-k="c3insightbody">When 69% of stocks fall but the index drops only 1.11%, it means <strong>index heavyweights are holding up</strong> while the broader market is crumbling. VIX spiking 8.4% confirms the fear is real. This kind of breadth deterioration often <strong>precedes further weakness</strong>.</p>
     </div>
    </div>
   </div>
@@ -246,7 +245,7 @@
     </div>
     <div class="ch" data-k="c4head">FIIs Sold ₹5,285 Cr. DIIs Bought ₹4,120 Cr. The Tug of War Continues.</div>
     <div class="cy">
-      FIIs have now sold in 14 of 15 October sessions. DIIs have bought in all 15. The numbers are staggering.
+      <span data-k="c4body">FIIs have now sold in 14 of 15 October sessions. DIIs have bought in all 15. The numbers are staggering.</span>
       <table class="dt">
         <tr><td class="dl">FII Cash (19 Oct)</td><td class="dv dn">-₹5,285 Cr</td></tr>
         <tr><td class="dl">DII Cash (19 Oct)</td><td class="dv up">+₹4,120 Cr</td></tr>
@@ -255,7 +254,7 @@
       </table>
       <div class="ins ip">
         <div class="it" data-k="c4insight">The Pattern</div>
-        <p>FIIs are pulling money out of India at a pace not seen since March 2020. But DIIs — mutual funds, insurance companies, pension funds — are absorbing almost every rupee. This <strong>FII-DII tug of war</strong> is what's keeping the market from a sharper fall.</p>
+        <p data-k="c4insightbody">FIIs are pulling money out of India at a pace not seen since March 2020. But DIIs — mutual funds, insurance companies, pension funds — are absorbing almost every rupee. This <strong>FII-DII tug of war</strong> is what's keeping the market from a sharper fall.</p>
     </div>
    </div>
   </div>
@@ -268,7 +267,7 @@
     </div>
     <div class="ch" data-k="c5head">Brent $108, Rupee ₹95/$, US 10Y at 5.1% — The Three Forces Driving FII Exits</div>
     <div class="cy">
-      Three macro numbers explain why FIIs keep selling Indian equities.
+      <span data-k="c5body">Three macro numbers explain why FIIs keep selling Indian equities.</span>
       <table class="dt">
         <tr><td class="dl">Brent Crude</td><td class="dv dn">$108.20 (▼ 1.51%)</td></tr>
         <tr><td class="dl">USD/INR</td><td class="dv dn">₹95.02 (▲ 0.12%)</td></tr>
@@ -276,8 +275,7 @@
       </table>
       <div class="ins ig">
         <div class="it" data-k="c5insight">Why These 3 Numbers Matter</div>
-        <p>US 10Y at <strong>5.1%</strong> = risk-free dollar returns are attractive, pulling capital away from emerging markets. Brent at <strong>$108</strong> = India's import bill stays elevated, pressuring the current account. Rupee at <strong>₹95/$</strong> = FII dollar returns erode, making India less attractive. All three are working against Indian equities simultaneously.</p>
-    </div>
+        <p data-k="c5insightbody">US 10Y at <strong>5.1%</strong> = risk-free dollar returns are attractive, pulling capital away from emerging markets. Brent at <strong>$108</strong> = India's import bill stays elevated, pressuring the current account. Rupee at <strong>₹95/$</strong> = FII dollar returns erode, making India less attractive. All three are working against Indian equities simultaneously.</p>
    </div>
   </div>
 
@@ -693,10 +691,14 @@ function setLangA(lang) {
   var btnEn = document.getElementById('btnEn');
   var btnHi = document.getElementById('btnHi');
   if (btnEn) {
-    btnEn.className = lang === 'en' ? 'lb la' : 'lb';
+    btnEn.style.background = lang === 'en' ? '#007A3F' : 'transparent';
+    btnEn.style.color = lang === 'en' ? '#fff' : '#777';
+    btnEn.style.borderColor = lang === 'en' ? '#007A3F' : '#ddd';
   }
   if (btnHi) {
-    btnHi.className = lang === 'hi' ? 'lb la' : 'lb';
+    btnHi.style.background = lang === 'hi' ? '#007A3F' : 'transparent';
+    btnHi.style.color = lang === 'hi' ? '#fff' : '#777';
+    btnHi.style.borderColor = lang === 'hi' ? '#007A3F' : '#ddd';
   }
   var els = document.querySelectorAll('[data-k]');
   for (var i = 0; i < els.length; i++) {
@@ -710,19 +712,29 @@ function setLangA(lang) {
 var TA = {
   c1label:{en:"Where the Money Moved",hi:"पैसा कहाँ गया"},
   c1head:{en:"PSU Banks Were the Only Sector in Green (+2.5%) While Everything Else Bled",hi:"PSU Banks एकमात्र हरा सेक्टर रहा (+2.5%) जबकि बाकी सब गिरे"},
+  c1body:{en:"Sensex fell 876 points. But the real story was underneath — PSU Banks rallied hard while private banks, IT, and realty all fell. Classic sector rotation.",hi:"सेंसेक्स 876 अंक गिरा। लेकिन असली कहानी नीचे थी — PSU Banks ज़ोरदार चढ़े जबकि प्राइवेट बैंक, IT और रियल्टी सब गिरे। क्लासिक सेक्टर रोटेशन।"},
   c1insight:{en:"Educational Context",hi:"शैक्षिक संदर्भ"},
+  c1insightbody:{en:'When only one sector is green and it\'s a <strong>defensive/value play</strong> like PSU Banks, it signals institutional money rotating into safety. The market isn\'t just falling — it\'s <strong>choosing where to hide</strong>.',hi:'जब सिर्फ एक सेक्टर हरा हो और वो <strong>डिफेंसिव/वैल्यू प्ले</strong> जैसे PSU Banks हो, तो इसका मतलब है संस्थागत पैसा सुरक्षा में जा रहा है। बाज़ार सिर्फ गिर नहीं रहा — वो <strong>छिपने की जगह चुन रहा है</strong>।'},
   c2label:{en:"The Signal",hi:"द सिग्नल"},
   c2head:{en:"PNB +6.6% on Strong Earnings. Axis Bank -4.2% Despite Beating Estimates.",hi:"PNB +6.6% मज़बूत अर्निंग्स पर। Axis Bank -4.2% अनुमान से बेहतर होने के बावजूद।"},
+  c2body:{en:"Two banks. Both beat estimates. Completely opposite stock reactions. The market is telling you something about expectations.",hi:"दो बैंक। दोनों ने अनुमान से बेहतर नतीजे दिए। स्टॉक की प्रतिक्रिया बिल्कुल उलट। बाज़ार आपको उम्मीदों के बारे में कुछ बता रहा है।"},
   c2insight:{en:"What the Data Shows",hi:"डेटा क्या बताता है"},
+  c2insightbody:{en:'PNB was priced for mediocrity — any positive surprise gets rewarded. Axis Bank was priced for perfection — even beating estimates wasn\'t enough. This is called <strong>"buy the rumour, sell the news"</strong> and it reveals where institutional expectations were already positioned.',hi:'PNB की कीमत औसत प्रदर्शन के लिए थी — कोई भी अच्छी ख़बर इनाम पाती है। Axis Bank की कीमत परफेक्शन के लिए थी — अनुमान से बेहतर भी काफी नहीं था। इसे <strong>"अफवाह पर खरीदो, खबर पर बेचो"</strong> कहते हैं।'},
   c3label:{en:"The Data Point",hi:"द डेटा पॉइंट"},
   c3head:{en:"Breadth: 1,211 Advances vs 2,717 Declines — 69% of Stocks Fell",hi:"ब्रेड्थ: 1,211 बढ़े vs 2,717 गिरे — 69% स्टॉक्स गिरे"},
+  c3body:{en:"The Nifty fell 1.11%. But 69% of all listed stocks declined. The damage was wider than the index suggests.",hi:"निफ्टी 1.11% गिरा। लेकिन 69% लिस्टेड स्टॉक्स गिरे। नुकसान इंडेक्स से कहीं ज़्यादा व्यापक था।"},
   c3insight:{en:"Why Breadth Matters",hi:"ब्रेड्थ क्यों मायने रखती है"},
+  c3insightbody:{en:'When 69% of stocks fall but the index drops only 1.11%, it means <strong>index heavyweights are holding up</strong> while the broader market is crumbling. VIX spiking 8.4% confirms the fear is real. This kind of breadth deterioration often <strong>precedes further weakness</strong>.',hi:'जब 69% स्टॉक्स गिरें लेकिन इंडेक्स सिर्फ 1.11% गिरे, तो इसका मतलब <strong>इंडेक्स हैवीवेट्स टिके हैं</strong> जबकि बाकी बाज़ार टूट रहा है। VIX का 8.4% उछलना डर की पुष्टि करता है। इस तरह की ब्रेड्थ गिरावट अक्सर <strong>और कमज़ोरी की भविष्यवाणी</strong> करती है।'},
   c4label:{en:"The Flow",hi:"द फ्लो"},
   c4head:{en:"FIIs Sold ₹5,285 Cr. DIIs Bought ₹4,120 Cr. The Tug of War Continues.",hi:"FII ने ₹5,285 करोड़ बेचे। DII ने ₹4,120 करोड़ खरीदे। रस्साकशी जारी।"},
+  c4body:{en:"FIIs have now sold in 14 of 15 October sessions. DIIs have bought in all 15. The numbers are staggering.",hi:"FII ने अक्टूबर के 15 में से 14 सत्रों में बेचा। DII ने सभी 15 में खरीदा। आंकड़े चौंकाने वाले हैं।"},
   c4insight:{en:"The Pattern",hi:"पैटर्न"},
+  c4insightbody:{en:'FIIs are pulling money out of India at a pace not seen since March 2020. But DIIs — mutual funds, insurance companies, pension funds — are absorbing almost every rupee. This <strong>FII-DII tug of war</strong> is what\'s keeping the market from a sharper fall.',hi:'FII मार्च 2020 के बाद सबसे तेज़ रफ्तार से भारत से पैसा निकाल रहे हैं। लेकिन DII — म्यूचुअल फंड, बीमा कंपनियां, पेंशन फंड — लगभग हर रुपया सोख रहे हैं। यह <strong>FII-DII रस्साकशी</strong> ही बाज़ार को तेज़ गिरावट से बचा रही है।'},
   c5label:{en:"The Context",hi:"द कॉन्टेक्स्ट"},
   c5head:{en:"Brent $108, Rupee ₹95/$, US 10Y at 5.1% — The Three Forces Driving FII Exits",hi:"ब्रेंट $108, रुपया ₹95/$, US 10Y 5.1% पर — FII निकासी की तीन ताकतें"},
+  c5body:{en:"Three macro numbers explain why FIIs keep selling Indian equities.",hi:"तीन मैक्रो नंबर बताते हैं कि FII भारतीय इक्विटी क्यों बेचते जा रहे हैं।"},
   c5insight:{en:"Why These 3 Numbers Matter",hi:"ये 3 नंबर क्यों मायने रखते हैं"},
+  c5insightbody:{en:'US 10Y at <strong>5.1%</strong> = risk-free dollar returns are attractive, pulling capital away from emerging markets. Brent at <strong>$108</strong> = India\'s import bill stays elevated, pressuring the current account. Rupee at <strong>₹95/$</strong> = FII dollar returns erode, making India less attractive. All three are working against Indian equities simultaneously.',hi:'US 10Y <strong>5.1%</strong> पर = जोखिम-मुक्त डॉलर रिटर्न आकर्षक हैं, उभरते बाज़ारों से पूंजी खींच रहे हैं। ब्रेंट <strong>$108</strong> पर = भारत का आयात बिल ऊंचा बना हुआ है। रुपया <strong>₹95/$</strong> पर = FII के डॉलर रिटर्न घट रहे हैं। तीनों एक साथ भारतीय इक्विटी के खिलाफ काम कर रहे हैं।'},
   tmTitle:{en:"Top Movers by Index",hi:"इंडेक्स के टॉप मूवर्स"},
   tmSub:{en:"3 Gainers · 3 Losers · Every Major Index",hi:"3 गेनर्स · 3 लूज़र्स · हर प्रमुख इंडेक्स"},
   aboutHead:{en:"We read the market so you don't have to. Then we tell you in 90 seconds.",hi:"हम बाज़ार पढ़ते हैं ताकि आपको न पढ़ना पड़े। फिर 90 सेकंड में बता देते हैं।"},
