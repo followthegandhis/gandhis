@@ -80,8 +80,10 @@
   <button class="nb" data-t="brief" onclick="goA('brief')" style="color:#007A3F;border-bottom:3px solid #007A3F">19 OCT '26</button>
   <button class="nb" data-t="movers" onclick="goA('movers')">TOP MOVERS</button>
   <button class="nb" data-t="about" onclick="goA('about')">ABOUT</button>
-  <button id="btnEn" class="nb" onclick="setLangA('en')" style="background:#007A3F;color:#fff;border-radius:6px;padding:4px 10px;font-size:11px">EN</button>
-  <button id="btnHi" class="nb" onclick="setLangA('hi')" style="border-radius:6px;padding:4px 10px;font-size:11px">हि</button>
+  <span style="margin-left:auto;display:flex;gap:4px">
+    <button id="btnEn" onclick="setLangA('en')" style="padding:4px 10px;border:1.5px solid #007A3F;border-radius:6px;background:#007A3F;color:#fff;font-size:11px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif">EN</button>
+    <button id="btnHi" onclick="setLangA('hi')" style="padding:4px 10px;border:1.5px solid #ddd;border-radius:6px;background:transparent;color:#777;font-size:11px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif">हि</button>
+  </span>
 </nav>
 
 <!-- DATE BAR -->
@@ -166,7 +168,7 @@
     <div class="ca" style="background:#D32F2F"></div>
     <div class="ct"><div class="cb" style="background:#FFF5F5;color:#D32F2F">1</div>
     <div class="cl" style="color:#D32F2F" data-k="c1label">Where the Money Moved</div>
-    <div class="ch">PSU Banks Were the Only Sector in Green (+2.5%) While Everything Else Bled</div>
+    <div class="ch" data-k="c1head">PSU Banks Were the only Sector in Green (+2.5%) While Everything Else Bled</div>
     <div class="cy">
       Sensex fell 876 points. But the real story was underneath — PSU Banks rallied hard while private banks, IT, and realty all fell. Classic sector rotation.
       <div class="pl">
@@ -176,7 +178,7 @@
         <div class="pi"><span class="pn">Pvt Bank</span><span class="pv dn">▼ 1.45%</span></div>
       </div>
       <div class="ins ig">
-        <div class="it">Educational Context</div>
+        <div class="it" data-k="c1insight">Educational Context</div>
         <p>When only one sector is green and it's a <strong>defensive/value play</strong> like PSU Banks, it signals institutional money rotating into safety. The market isn't just falling — it's <strong>choosing where to hide</strong>.</p>
       </div>
     </div>
@@ -187,7 +189,7 @@
     <div class="ca" style="background:#1565C0"></div>
     <div class="ct"><div class="cb" style="background:#F3F7FE;color:#1565C0">2</div>
     <div class="cl" style="color:#1565C0" data-k="c2label">The Signal</div>
-    <div class="ch">PNB +6.6% on Strong Earnings. Axis Bank -4.2% Despite Beating Estimates.</div>
+    <div class="ch" data-k="c2head">PNB +6.6% on Strong Earnings. Axis Bank -4.2% Despite Beating Estimates.</div>
     <div class="cy">
       Two banks. Both beat estimates. Completely opposite stock reactions. The market is telling you something about expectations.
       <table class="dt">
@@ -197,7 +199,7 @@
         <tr><td class="dl">Axis Bank Stock</td><td class="dv dn">▼ 4.20%</td></tr>
       </table>
       <div class="ins ib">
-        <div class="it">What the Data Shows</div>
+        <div class="it" data-k="c2insight">What the Data Shows</div>
         <p>PNB was priced for mediocrity — any positive surprise gets rewarded. Axis Bank was priced for perfection — even beating estimates wasn't enough. This is called <strong>"buy the rumour, sell the news"</strong> and it reveals where institutional expectations were already positioned.</p>
       </div>
     </div>
@@ -208,7 +210,7 @@
     <div class="ca" style="background:#D4740B"></div>
     <div class="ct"><div class="cb" style="background:#FFF9F2;color:#D4740B">3</div>
     <div class="cl" style="color:#D4740B" data-k="c3label">The Data Point</div>
-    <div class="ch">Breadth: 1,211 Advances vs 2,717 Declines — 69% of Stocks Fell</div>
+    <div class="ch" data-k="c3head">Breadth: 1,211 Advances vs 2,717 Declines — 69% of Stocks Fell</div>
     <div class="cy">
       The Nifty fell 1.11%. But 69% of all listed stocks declined. The damage was wider than the index suggests.
       <table class="dt">
@@ -218,7 +220,7 @@
         <tr><td class="dl">India VIX</td><td class="dv dn">15.22 (▲ 8.40%)</td></tr>
       </table>
       <div class="ins io">
-        <div class="it">Why Breadth Matters</div>
+        <div class="it" data-k="c3insight">Why Breadth Matters</div>
         <p>When 69% of stocks fall but the index drops only 1.11%, it means <strong>index heavyweights are holding up</strong> while the broader market is crumbling. VIX spiking 8.4% confirms the fear is real. This kind of breadth deterioration often <strong>precedes further weakness</strong>.</p>
       </div>
     </div>
@@ -229,7 +231,7 @@
     <div class="ca" style="background:#6A1B9A"></div>
     <div class="ct"><div class="cb" style="background:#F9F2FB;color:#6A1B9A">4</div>
     <div class="cl" style="color:#6A1B9A" data-k="c4label">The Flow</div>
-    <div class="ch">FIIs Sold ₹5,285 Cr. DIIs Bought ₹4,120 Cr. The Tug of War Continues.</div>
+    <div class="ch" data-k="c4head">FIIs Sold ₹5,285 Cr. DIIs Bought ₹4,120 Cr. The Tug of War Continues.</div>
     <div class="cy">
       FIIs have now sold in 14 of 15 October sessions. DIIs have bought in all 15. The numbers are staggering.
       <table class="dt">
@@ -239,7 +241,7 @@
         <tr><td class="dl">DII Oct Total</td><td class="dv up">+₹43,400 Cr</td></tr>
       </table>
       <div class="ins ip">
-        <div class="it">The Pattern</div>
+        <div class="it" data-k="c4insight">The Pattern</div>
         <p>FIIs are pulling money out of India at a pace not seen since March 2020. But DIIs — mutual funds, insurance companies, pension funds — are absorbing almost every rupee. This <strong>FII-DII tug of war</strong> is what's keeping the market from a sharper fall.</p>
       </div>
     </div>
@@ -250,7 +252,7 @@
     <div class="ca" style="background:#007A3F"></div>
     <div class="ct"><div class="cb" style="background:#E8F5EE;color:#007A3F">5</div>
     <div class="cl" style="color:#007A3F" data-k="c5label">The Context</div>
-    <div class="ch">Brent $108, Rupee ₹95/$, US 10Y at 5.1% — The Three Forces Driving FII Exits</div>
+    <div class="ch" data-k="c5head">Brent $108, Rupee ₹95/$, US 10Y at 5.1% — The Three Forces Driving FII Exits</div>
     <div class="cy">
       Three macro numbers explain why FIIs keep selling Indian equities.
       <table class="dt">
@@ -259,7 +261,7 @@
         <tr><td class="dl">US 10Y Yield</td><td class="dv dn">5.10% (▲ 0.18%)</td></tr>
       </table>
       <div class="ins ig">
-        <div class="it">Why These 3 Numbers Matter</div>
+        <div class="it" data-k="c5insight">Why These 3 Numbers Matter</div>
         <p>US 10Y at <strong>5.1%</strong> = risk-free dollar returns are attractive, pulling capital away from emerging markets. Brent at <strong>$108</strong> = India's import bill stays elevated, pressuring the current account. Rupee at <strong>₹95/$</strong> = FII dollar returns erode, making India less attractive. All three are working against Indian equities simultaneously.</p>
       </div>
     </div>
@@ -563,8 +565,8 @@
 <div class="pg" id="pg-about">
 
   <div class="abh">
-    <h2>We read the market so you don't have to. Then we tell you in 90 seconds.</h2>
-    <p>Every trading day. 8 PM. No exceptions.</p>
+    <h2 data-k="aboutHead">We read the market so you don't have to. Then we tell you in 90 seconds.</h2>
+    <p data-k="aboutSub">Every trading day. 8 PM. No exceptions.</p>
   </div>
   <div class="adiv"></div>
 
