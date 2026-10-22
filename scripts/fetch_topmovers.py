@@ -19,8 +19,6 @@ TOP_N = 3
 # NSE API index names (exact names as NSE expects them)
 NSE_INDICES = [
     "NIFTY 50",
-    "NIFTY MIDCAP 100",
-    "NIFTY SMLCAP 250",
     "NIFTY BANK",
     "NIFTY IT",
     "NIFTY PSU BANK",
@@ -29,13 +27,13 @@ NSE_INDICES = [
     "NIFTY PHARMA",
     "NIFTY FMCG",
     "NIFTY REALTY",
+    "NIFTY MIDCAP 100",
+    "NIFTY SMLCAP 250",
 ]
 
 # Display names for your website (what data-loader.js expects)
 DISPLAY_NAMES = {
     "NIFTY 50": "NIFTY 50",
-    "NIFTY MIDCAP 100": "NIFTY MIDCAP",
-    "NIFTY SMLCAP 250": "NIFTY SMALLCAP",
     "NIFTY BANK": "BANK NIFTY",
     "NIFTY IT": "NIFTY IT",
     "NIFTY PSU BANK": "PSU BANK",
@@ -44,6 +42,8 @@ DISPLAY_NAMES = {
     "NIFTY PHARMA": "NIFTY PHARMA",
     "NIFTY FMCG": "NIFTY FMCG",
     "NIFTY REALTY": "NIFTY REALTY",
+    "NIFTY MIDCAP 100": "NIFTY MIDCAP",
+    "NIFTY SMLCAP 250": "NIFTY SMALLCAP",
 }
 
 
@@ -149,11 +149,11 @@ def fetch_all_nse():
     return all_data if all_data else None
 
 
-# ---- YAHOO FINANCE FALLBACK (IMPROVED ACCURACY) ----
+# ---- YAHOO FINANCE FALLBACK (v8 CHART ENDPOINT — WORKING) ----
 # Only used if NSE API is blocked/down
-# Fix: Uses quote endpoint instead of chart meta for accurate closing prices
+# Uses v8 chart endpoint (confirmed working 2026) with proper close price calculation
 
-YAHOO_QUOTE_URL = "https://query1.finance.yahoo.com/v7/finance/quote"
+YAHOO_CHART_URL = "https://query1.finance.yahoo.com/v8/finance/chart/"
 
 # Yahoo fallback needs hardcoded lists (unlike NSE which auto-updates)
 # Update these quarterly when index constituents change
@@ -169,18 +169,6 @@ YAHOO_FALLBACK = {
         "DIVISLAB", "APOLLOHOSP", "EICHERMOT", "HEROMOTOCO",
         "COALINDIA", "BRITANNIA", "BAJAJ-AUTO", "TRENT",
         "ETERNAL", "BEL", "SHRIRAMFIN", "TATACONSUM", "HINDALCO"
-    ],
-    "NIFTY MIDCAP": [
-        "POLYCAB", "PIIND", "MUTHOOTFIN", "PAGEIND", "VOLTAS",
-        "ASTRAL", "CUMMINSIND", "COROMANDEL", "ESCORTS", "FEDERALBNK",
-        "INDHOTEL", "JUBLFOOD", "LICHSGFIN", "OBEROIRLTY", "PETRONET",
-        "TATACOMM", "TATAELXSI", "THERMAX", "TORNTPHARM", "DIXON"
-    ],
-    "NIFTY SMALLCAP": [
-        "IIFL", "ROUTE", "KPITTECH", "CDSL", "ANGELONE",
-        "BIKAJI", "CAMPUS", "CLEAN", "DATAPATTNS", "FIVESTAR",
-        "HAPPSTMNDS", "KALYANKJIL", "KAYNES", "LICI", "MAPMYINDIA",
-        "MEDANTA", "RAINBOW", "SYRMA", "TITAGARH", "ZOMATO"
     ],
     "BANK NIFTY": [
         "HDFCBANK", "ICICIBANK", "KOTAKBANK", "AXISBANK", "SBIN",
@@ -216,54 +204,87 @@ YAHOO_FALLBACK = {
         "DLF", "GODREJPROP", "OBEROIRLTY", "PHOENIXLTD", "PRESTIGE",
         "BRIGADE", "SOBHA", "SUNTECK", "MAHLIFE", "LODHA"
     ],
+    "NIFTY MIDCAP": [
+        "POLYCAB", "PIIND", "MUTHOOTFIN", "PAGEIND", "VOLTAS",
+        "ASTRAL", "CUMMINSIND", "COROMANDEL", "ESCORTS", "FEDERALBNK",
+        "INDHOTEL", "JUBLFOOD", "LICHSGFIN", "OBEROIRLTY", "PETRONET",
+        "TATACOMM", "TATAELXSI", "THERMAX", "TORNTPHARM", "DIXON"
+    ],
+    "NIFTY SMALLCAP": [
+        "IIFL", "ROUTE", "KPITTECH", "CDSL", "ANGELONE",
+        "BIKAJI", "CAMPUS", "CLEAN", "DATAPATTNS", "FIVESTAR",
+        "HAPPSTMNDS", "KALYANKJIL", "KAYNES", "LICI", "MAPMYINDIA",
+        "MEDANTA", "RAINBOW", "SYRMA", "TITAGARH", "ZOMATO"
+    ],
 }
 
 
-def fetch_yahoo_batch(symbols):
-    """Fetch prices for a batch of stocks using Yahoo quote endpoint."""
-    # Convert to Yahoo format: SBIN → SBIN.NS
-    yahoo_symbols = [s + ".NS" for s in symbols]
-    joined = ",".join(yahoo_symbols)
-
-    url = f"{YAHOO_QUOTE_URL}?symbols={joined}"
+def fetch_stock_yahoo(symbol):
+    """Fetch a single stock's close price and % change via Yahoo v8 chart."""
+    yahoo_symbol = symbol + ".NS"
+    url = f"{YAHOO_CHART_URL}{yahoo_symbol}?interval=1d&range=5d"
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     }
 
     try:
-        resp = requests.get(url, headers=headers, timeout=15)
+        resp = requests.get(url, headers=headers, timeout=10)
         resp.raise_for_status()
         data = resp.json()
+        result = data["chart"]["result"][0]
 
-        stocks = []
-        for quote in data.get("quoteResponse", {}).get("result", []):
-            symbol = quote.get("symbol", "").replace(".NS", "")
-            price = quote.get("regularMarketPrice", 0)
-            prev_close = quote.get("regularMarketPreviousClose", 0)
+        # Get close prices from the time series (most accurate)
+        closes = result["indicators"]["quote"][0]["close"]
 
-            if price and prev_close and prev_close > 0:
-                changepct = round(((price - prev_close) / prev_close) * 100, 2)
-                stocks.append({
-                    "symbol": symbol,
-                    "price": round(float(price), 2),
-                    "changepct": changepct,
-                })
+        # Filter out None values
+        valid_closes = [c for c in closes if c is not None]
 
-        return stocks
+        if len(valid_closes) >= 2:
+            current = valid_closes[-1]   # Today's close
+            previous = valid_closes[-2]  # Yesterday's close
+            changepct = round(((current - previous) / previous) * 100, 2)
+            return {
+                "symbol": symbol,
+                "price": round(current, 2),
+                "changepct": changepct,
+            }
+        elif len(valid_closes) == 1:
+            # Only one day of data, use meta as last resort
+            meta = result["meta"]
+            current = valid_closes[0]
+            previous = meta.get("chartPreviousClose", 0)
+            if previous and previous > 0:
+                changepct = round(((current - previous) / previous) * 100, 2)
+            else:
+                changepct = 0
+            return {
+                "symbol": symbol,
+                "price": round(current, 2),
+                "changepct": changepct,
+            }
 
-    except Exception as e:
-        print(f"  Yahoo batch failed: {e}")
-        return []
+    except Exception:
+        pass
+
+    return None
 
 
 def fetch_all_yahoo():
     """Fetch top movers for all indices from Yahoo Finance (fallback)."""
-    print("Falling back to Yahoo Finance...")
+    print("Falling back to Yahoo Finance (v8 chart)...")
     all_data = {}
 
     for display_name, symbols in YAHOO_FALLBACK.items():
-        time.sleep(0.5)  # Be polite
-        stocks = fetch_yahoo_batch(symbols)
+        print(f"  Fetching: {display_name} ({len(symbols)} stocks)...")
+        stocks = []
+
+        for sym in symbols:
+            time.sleep(0.3)  # Rate limit: ~3 requests per second
+            data = fetch_stock_yahoo(sym)
+            if data:
+                stocks.append(data)
+
+        print(f"    Got data for {len(stocks)}/{len(symbols)} stocks")
 
         if stocks and len(stocks) >= TOP_N * 2:
             sorted_stocks = sorted(stocks, key=lambda x: x["changepct"], reverse=True)
@@ -273,12 +294,11 @@ def fetch_all_yahoo():
 
             g_names = ", ".join([g["symbol"] for g in gainers])
             l_names = ", ".join([l["symbol"] for l in losers])
-            print(f"  ✅ {display_name}: Gainers [{g_names}] | Losers [{l_names}]")
+            print(f"    ✅ Gainers [{g_names}] | Losers [{l_names}]")
         else:
-            print(f"  ❌ {display_name}: Failed ({len(stocks)} stocks)")
+            print(f"    ❌ Failed ({len(stocks)} stocks)")
 
     return all_data if all_data else None
-
 
 # ---- GOOGLE SHEETS WRITER ----
 
