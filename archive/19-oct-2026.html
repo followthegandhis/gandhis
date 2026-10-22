@@ -74,6 +74,11 @@
 <!-- DISCLAIMER -->
 <div class="dc">For educational purposes only · Not SEBI registered · Not investment advice · <a href="../index.html">Full disclaimer →</a></div>
 
+<div class="lg-toggle" style="text-align:right;padding:8px 12px 0">
+  <button id="btnEn" onclick="setLangA('en')" style="padding:4px 12px;border:1.5px solid #007A3F;border-radius:6px;background:#007A3F;color:#fff;font-size:11px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif">EN</button>
+  <button id="btnHi" onclick="setLangA('hi')" style="padding:4px 12px;border:1.5px solid #ddd;border-radius:6px;background:transparent;color:#777;font-size:11px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif">हि</button>
+</div>
+  
 <!-- NAV -->
 <nav class="nv">
   <a class="nb" href="../index.html" style="color:#007A3F;text-decoration:none;font-weight:700">← LATEST EDITION</a>
@@ -676,6 +681,22 @@ function goA(t) {
 
 /* Show brief on load */
 goA('brief');
+/* Language toggle for archive */
+function setLangA(lang) {
+  var btnEn = document.getElementById('btnEn');
+  var btnHi = document.getElementById('btnHi');
+  if (btnEn) {
+    btnEn.style.background = lang === 'en' ? '#007A3F' : 'transparent';
+    btnEn.style.color = lang === 'en' ? '#fff' : '#777';
+    btnEn.style.borderColor = lang === 'en' ? '#007A3F' : '#ddd';
+  }
+  if (btnHi) {
+    btnHi.style.background = lang === 'hi' ? '#007A3F' : 'transparent';
+    btnHi.style.color = lang === 'hi' ? '#fff' : '#777';
+    btnHi.style.borderColor = lang === 'hi' ? '#007A3F' : '#ddd';
+  }
+  document.documentElement.lang = lang === 'hi' ? 'hi' : 'en';
+}
 </script>
 
 </body>
