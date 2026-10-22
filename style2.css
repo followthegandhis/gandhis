@@ -125,9 +125,8 @@
 
 /* ===== FOOTER ===== */
 .ft{text-align:center;padding:24px 20px 32px;max-width:720px;margin:0 auto;border-top:1px solid #F0F0EB}
-.fto{display:inline-block;position:relative;padding:6px 26px;border:1.5px solid #007A3F;border-radius:50%;margin-bottom:8px}
-.fto::before{content:'';position:absolute;top:2px;left:2px;right:2px;bottom:2px;border:.5px solid #007A3F;border-radius:50%;opacity:.5}
-.fto span{font-family:'Burgues Script',cursive;font-size:22px;color:#007A3F}
+.fto{display:flex;justify-content:center;padding:8px 0;background:none;border:none}
+.fto img{height:48px;border-radius:0;border:none;box-shadow:none}
 .ftg{font-size:10px;color:#777;margin-bottom:14px}
 
 /* Social Buttons */
