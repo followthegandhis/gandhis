@@ -3,17 +3,17 @@ name: Fetch Top Movers
 
 on:
   schedule:
-    # Runs at 4:30 PM IST (11:00 AM UTC) every weekday
-    - cron: '0 11 * * 1-5'
-  workflow_dispatch: # Allows manual trigger for testing
+    # Run 1: 4:00 PM IST (10:30 AM UTC) — right after market close
+    - cron: '30 10 * * 1-5'
+    # Run 2: 9:30 PM IST (4:00 PM UTC) — after settlement, final prices
+    - cron: '0 16 * * 1-5'
+  workflow_dispatch:  # Manual trigger
 
 jobs:
-  fetch-data:
+  fetch:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -21,13 +21,11 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: |
-          pip install requests gspread google-auth
+        run: pip install requests gspread google-auth
 
-      - name: Run Top Movers script
+      - name: Fetch top movers
         env:
           GOOGLE_SHEETS_CREDS: ${{ secrets.GOOGLE_SHEETS_CREDS }}
           GOOGLE_SHEET_URL: ${{ secrets.GOOGLE_SHEET_URL }}
-        run: |
-          python scripts/fetch_topmovers.py
+        run: python scripts/fetch_topmovers.py
 
