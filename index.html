@@ -128,81 +128,50 @@
 <!-- ===== PAGE: TODAY'S BRIEF ===== -->
 <div class="pg" id="pg-brief">
 
-  <!-- MARKET PULSE BOARD -->
-  <div class="pulse">
-    <div class="p-head">
-      <div class="p-verd">
-        <div class="p-dot" style="background:#D32F2F;box-shadow:0 0 8px rgba(211,47,47,.3)"></div>
-       <div class="p-title" data-k="verdict">3rd straight day of losses. Crude past $111 crushes sentiment. Only Pharma survived.</div>
-      </div>
-      <div class="p-nifty">
-        <div class="p-nl">NIFTY 50</div>
-        <div class="p-nv dn">22,688</div>
-        <div class="p-nc dn">▼ 0.54% · -78 pts</div>
-      </div>
-    </div>
-
-    <!-- SECTOR STRIP -->
-    <div class="s-strip">
-      <div class="s-label" data-k="sectorlabel">Where the Money Went →</div>
-      <div class="s-row">
-        <div class="s-chip sg"><div class="s-cn">IT</div><div class="s-cv">+2.88%</div></div>
-        <div class="s-chip sr1"><div class="s-cn">FMCG</div><div class="s-cv">-0.89%</div></div>
-        <div class="s-chip sr1"><div class="s-cn">Fin Svc</div><div class="s-cv">-1.18%</div></div>
-        <div class="s-chip sr1"><div class="s-cn">Pvt Bank</div><div class="s-cv">-1.16%</div></div>
-        <div class="s-chip sr1"><div class="s-cn">Media</div><div class="s-cv">-1.24%</div></div>
-        <div class="s-chip sr2"><div class="s-cn">Realty</div><div class="s-cv">-1.57%</div></div>
-        <div class="s-chip sr2"><div class="s-cn">Midcap</div><div class="s-cv">-1.58%</div></div>
-        <div class="s-chip sr2"><div class="s-cn">Metal</div><div class="s-cv">-1.97%</div></div>
-        <div class="s-chip sr3"><div class="s-cn">Auto</div><div class="s-cv">-1.99%</div></div>
-        <div class="s-chip sr3"><div class="s-cn">Smallcap</div><div class="s-cv">-2.37%</div></div>
-      </div>
-    </div>
-
-    <!-- GAUGES -->
-    <div class="gauges">
-      <div class="gauge">
-        <div class="g-l" data-k="gFII">FII</div>
-        <div class="g-v dn">-₹413Cr</div>
-        <div class="g-s">Oct: -₹49,000Cr</div>
-        <div class="g-t sell" data-k="gFIItag">LIGHTEST OCT DAY</div>
-      </div>
-      <div class="gauge">
-        <div class="g-l" data-k="gDII">DII</div>
-        <div class="g-v up">+₹3,201Cr</div>
-        <div class="g-s">Oct: +₹48,100Cr</div>
-        <div class="g-t buy" data-k="gDIItag">16/16 DAYS BOUGHT</div>
-      </div>
-      <div class="gauge">
-        <div class="g-l" data-k="gBreadth">Breadth</div>
-        <div class="g-v dn">21% ▲</div>
-        <div class="g-s">962 adv · 3,476 dec</div>
-        <div class="g-t sell" data-k="gBreadthtag">79% STOCKS FELL</div>
-      </div>
-      <div class="gauge">
-        <div class="g-l">India VIX</div>
-        <div class="g-v dn">15.70</div>
-        <div class="g-s">▲ 6.29% today</div>
-        <div class="g-t danger" data-k="gVIXtag">FEAR RISING</div>
-      </div>
-    </div>
-
-    <!-- MACRO STRIP -->
-    <div class="m-strip">
-      <div class="m-item"><span class="m-icon">🛢</span><span class="m-name">BRENT</span><span class="m-val">$110.80</span><span class="m-chg dn">▲1.85%</span></div>
-      <div class="m-item"><span class="m-icon">💵</span><span class="m-name">USD/INR</span><span class="m-val">₹95.02</span><span class="m-chg dn">▲0.12%</span></div>
-      <div class="m-item"><span class="m-icon">🏦</span><span class="m-name">US 10Y</span><span class="m-val">5.10%</span><span class="m-chg dn">▲0.18%</span></div>
-      <div class="m-item"><span class="m-icon">🥇</span><span class="m-name">GOLD</span><span class="m-val">$4,119</span><span class="m-chg dn">▼0.10%</span></div>
-      <div class="m-item"><span class="m-icon">📊</span><span class="m-name">DXY</span><span class="m-val">103.46</span><span class="m-chg dn">▲0.21%</span></div>
-    </div>
+  
+<!-- MARKET PULSE BOARD -->
+<div class="mp">
+  <div class="ml" data-k="pulse_tagline">3rd straight day of losses. Crude past $111 crushes sentiment. Only Pharma survived.</div>
+  <div class="mv">
+    <span class="mi">NIFTY 50</span>
+    <span class="mn">22,688</span>
+    <span class="mc dn">▼ 0.54% (-124 pts)</span>
   </div>
+</div>
 
-  <!-- SEE TOP MOVERS CTA (between Pulse Board and Card 1) -->
-  <div style="text-align:center;padding:16px 0 4px">
-    <button onclick="go('movers')" style="padding:14px 32px;background:#007A3F;color:#fff;border:none;border-radius:30px;font-size:11px;font-weight:700;letter-spacing:1.5px;cursor:pointer;font-family:'DM Sans',sans-serif" data-k="ctaMovers">📈 SEE TOP MOVERS BY INDEX →</button>
-  </div>
+<!-- SECTOR STRIP -->
+<div class="cy">
+  <div class="sc green" data-k="sect_pharma">🧪 PHARMA <span>+0.12%</span></div>
+  <div class="sc green" data-k="sect_psu">🏦 PSU BANK <span>+0.07%</span></div>
+  <div class="sc red" data-k="sect_bank">🏛 BANK NIFTY <span>-0.09%</span></div>
+  <div class="sc red" data-k="sect_metal">⛏ METAL <span>-0.80%</span></div>
+  <div class="sc red" data-k="sect_auto">🚗 AUTO <span>-1.00%</span></div>
+  <div class="sc red" data-k="sect_realty">🏠 REALTY <span>-1.17%</span></div>
+  <div class="sc red" data-k="sect_it">💻 IT <span>-1.40%</span></div>
+  <div class="sc red" data-k="sect_fmcg">🛒 FMCG <span>-1.41%</span></div>
+</div>
 
+<!-- GAUGES -->
+<div class="gg">
+  <div class="gi sell"><div class="gl" data-k="gaugeFII">FII</div><div class="gv">-₹3,459 Cr</div><div class="gs" data-k="gaugeFIIsub">Oct: -₹52,354 Cr</div></div>
+  <div class="gi buy"><div class="gl" data-k="gaugeDII">DII</div><div class="gv">+₹2,891 Cr</div><div class="gs" data-k="gaugeDIIsub">Oct: +₹55,875 Cr</div></div>
+  <div class="gi warn"><div class="gl" data-k="gaugeBreadth">BREADTH</div><div class="gv">1,026 : 2,512</div><div class="gs" data-k="gaugeBreadthSub">69% stocks fell</div></div>
+  <div class="gi warn"><div class="gl" data-k="gaugeVIX">VIX</div><div class="gv">15.81</div><div class="gs" data-k="gaugeVIXsub">▲0.51%</div></div>
+</div>
 
+<!-- MACRO STRIP -->
+<div class="ms">
+  <div class="mi-m red"><div>🛢 BRENT</div><div class="mi-v">$111.71</div><div class="mi-c">▲2.77%</div></div>
+  <div class="mi-m red"><div>💵 USD/INR</div><div class="mi-v">₹94.81</div><div class="mi-c">▲0.38%</div></div>
+  <div class="mi-m green"><div>🏦 US 10Y</div><div class="mi-v">5.015%</div><div class="mi-c">▼0.13%</div></div>
+  <div class="mi-m red"><div>🥇 GOLD</div><div class="mi-v">$4,065</div><div class="mi-c">▼2.03%</div></div>
+  <div class="mi-m red"><div>📊 DXY</div><div class="mi-v">101.88</div><div class="mi-c">▲0.09%</div></div>
+</div>
+
+<!-- SEE TOP MOVERS BUTTON -->
+<div style="text-align:center;margin:18px 0 0">
+  <button onclick="go('movers')" style="background:#007A3F;color:#fff;border:none;padding:10px 28px;border-radius:8px;font-family:'DM Sans',Arial,sans-serif;font-size:15px;font-weight:600;cursor:pointer" data-k="btnMovers">📈 See Top Movers</button>
+</div>
   
 <!-- ===== CARD 1: WHERE THE MONEY MOVED ===== -->
   <div class="cd">
@@ -324,324 +293,244 @@
 <!-- END OF TODAY'S BRIEF PAGE (closes pg-brief) -->
 
 
+
 <!-- ===== PAGE: TOP MOVERS ===== -->
 <div class="pg" id="pg-movers">
 
-  <button class="back-btn" onclick="go('brief')">← Back to Today's Brief</button>
+  <div class="mv-date" data-k="mvDate">Thursday, 22 October 2026</div>
+  <div class="mv-sub" data-k="mvSub">Top 3 Gainers & Losers by Index</div>
 
-  <div class="tm-header">
-    <div class="tm-title" data-k="tmTitle">Top Movers by Index</div>
-    <div class="tm-sub" data-k="tmSub">3 Gainers · 3 Losers · Every Major Index</div>
-    <div class="tm-date">22 OCTOBER 2026 · THURSDAY</div>
+  <!-- INDEX SELECTOR -->
+  <div class="mv-tabs">
+    <button class="mv-tab act" onclick="showIdx(this,'nifty50')">NIFTY 50</button>
+    <button class="mv-tab" onclick="showIdx(this,'banknifty')">BANK NIFTY</button>
+    <button class="mv-tab" onclick="showIdx(this,'niftyit')">NIFTY IT</button>
+    <button class="mv-tab" onclick="showIdx(this,'psubank')">PSU BANK</button>
+    <button class="mv-tab" onclick="showIdx(this,'auto')">AUTO</button>
+    <button class="mv-tab" onclick="showIdx(this,'metal')">METAL</button>
+    <button class="mv-tab" onclick="showIdx(this,'pharma')">PHARMA</button>
+    <button class="mv-tab" onclick="showIdx(this,'fmcg')">FMCG</button>
+    <button class="mv-tab" onclick="showIdx(this,'realty')">REALTY</button>
+    <button class="mv-tab" onclick="showIdx(this,'midcap')">MIDCAP</button>
+    <button class="mv-tab" onclick="showIdx(this,'smallcap')">SMALLCAP</button>
   </div>
 
   <!-- NIFTY 50 -->
-  <div class="idx-section">
-    <div class="idx-bar bar-red">
-      <div class="idx-left">
-        <div class="idx-icon ir">📉</div>
-        <div><div class="idx-name">NIFTY 50</div><div class="idx-full">NSE Benchmark · 50 Stocks</div></div>
+  <div class="mv-idx show" id="idx-nifty50">
+    <div class="mv-ih">NIFTY 50 <span class="mv-iv dn">22,687.65 (▼0.54%)</span></div>
+    <div class="mv-gl">
+      <div class="mv-sec">
+        <div class="mv-st gn" data-k="mvGainers">TOP GAINERS</div>
+        <div class="mv-row gn"><span class="mv-rk">1</span><span class="mv-nm">Bajaj Finance</span><span class="mv-pc up">+1.74%</span></div>
+        <div class="mv-row gn"><span class="mv-rk">2</span><span class="mv-nm">Cipla</span><span class="mv-pc up">+1.29%</span></div>
+        <div class="mv-row gn"><span class="mv-rk">3</span><span class="mv-nm">UltraTech Cement</span><span class="mv-pc up">+1.00%</span></div>
       </div>
-      <div class="idx-right">
-        <div class="idx-val dn">22,811</div>
-        <div class="idx-chg dn">▼ 0.54%</div>
-        <div class="idx-pts">-124 pts</div>
-      </div>
-    </div>
-    <div class="gl-grid">
-      <div class="gl-col">
-        <div class="gl-label up">▲ TOP 3 GAINERS</div>
-        <div class="stk green"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">Wipro</div><div class="stk-price">₹188.30</div></div><div class="stk-chg up">+3.38%</div></div>
-        <div class="stk green"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Infosys</div><div class="stk-price">₹1,165.00</div></div><div class="stk-chg up">+3.03%</div></div>
-        <div class="stk green"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Tech Mahindra</div><div class="stk-price">₹1,827.80</div></div><div class="stk-chg up">+2.74%</div></div>
-      </div>
-      <div class="gl-col">
-        <div class="gl-label dn">▼ TOP 3 LOSERS</div>
-        <div class="stk red"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">Eternal</div><div class="stk-price">₹308.80</div></div><div class="stk-chg dn">-3.56%</div></div>
-        <div class="stk red"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Bajaj Finance</div><div class="stk-price">₹924.30</div></div><div class="stk-chg dn">-3.45%</div></div>
-        <div class="stk red"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Eicher Motors</div><div class="stk-price">₹7,133.00</div></div><div class="stk-chg dn">-2.94%</div></div>
+      <div class="mv-sec">
+        <div class="mv-st rd" data-k="mvLosers">TOP LOSERS</div>
+        <div class="mv-row rd"><span class="mv-rk">1</span><span class="mv-nm">Nestle India</span><span class="mv-pc dn">-2.78%</span></div>
+        <div class="mv-row rd"><span class="mv-rk">2</span><span class="mv-nm">Eternal</span><span class="mv-pc dn">-2.53%</span></div>
+        <div class="mv-row rd"><span class="mv-rk">3</span><span class="mv-nm">HDFC Life</span><span class="mv-pc dn">-2.09%</span></div>
       </div>
     </div>
-    <div class="idx-summary">Advances: 12 · Declines: 38<span class="breadth-pct">Breadth: 24% ▲</span></div>
   </div>
 
-  <!-- NIFTY MIDCAP 100 -->
-  <div class="idx-section">
-    <div class="idx-bar bar-red">
-      <div class="idx-left">
-        <div class="idx-icon ir">📊</div>
-        <div><div class="idx-name">NIFTY MIDCAP 100</div><div class="idx-full">Mid-Cap Universe · 100 Stocks</div></div>
+  <!-- BANK NIFTY -->
+  <div class="mv-idx" id="idx-banknifty">
+    <div class="mv-ih">BANK NIFTY <span class="mv-iv dn">54,925.70 (▼0.09%)</span></div>
+    <div class="mv-gl">
+      <div class="mv-sec">
+        <div class="mv-st gn">TOP GAINERS</div>
+        <div class="mv-row gn"><span class="mv-rk">1</span><span class="mv-nm">ICICI Bank</span><span class="mv-pc up">+0.97%</span></div>
+        <div class="mv-row gn"><span class="mv-rk">2</span><span class="mv-nm">Kotak Bank</span><span class="mv-pc up">+0.45%</span></div>
+        <div class="mv-row gn"><span class="mv-rk">3</span><span class="mv-nm">IndusInd Bank</span><span class="mv-pc up">+0.32%</span></div>
       </div>
-      <div class="idx-right">
-        <div class="idx-val dn">51,284</div>
-        <div class="idx-chg dn">▼ 1.58%</div>
-        <div class="idx-pts">-821 pts</div>
-      </div>
-    </div>
-    <div class="gl-grid">
-      <div class="gl-col">
-        <div class="gl-label up">▲ TOP 3 GAINERS</div>
-        <div class="stk green"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">Mphasis</div><div class="stk-price">₹2,485.60</div></div><div class="stk-chg up">+3.82%</div></div>
-        <div class="stk green"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">KPIT Tech</div><div class="stk-price">₹1,312.40</div></div><div class="stk-chg up">+2.95%</div></div>
-        <div class="stk green"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Persistent</div><div class="stk-price">₹4,890.00</div></div><div class="stk-chg up">+2.44%</div></div>
-      </div>
-      <div class="gl-col">
-        <div class="gl-label dn">▼ TOP 3 LOSERS</div>
-        <div class="stk red"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">Oberoi Realty</div><div class="stk-price">₹1,680.00</div></div><div class="stk-chg dn">-3.85%</div></div>
-        <div class="stk red"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Voltas</div><div class="stk-price">₹1,542.30</div></div><div class="stk-chg dn">-3.12%</div></div>
-        <div class="stk red"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Indian Hotels</div><div class="stk-price">₹612.40</div></div><div class="stk-chg dn">-2.88%</div></div>
+      <div class="mv-sec">
+        <div class="mv-st rd">TOP LOSERS</div>
+        <div class="mv-row rd"><span class="mv-rk">1</span><span class="mv-nm">HDFC Bank</span><span class="mv-pc dn">-0.71%</span></div>
+        <div class="mv-row rd"><span class="mv-rk">2</span><span class="mv-nm">Axis Bank</span><span class="mv-pc dn">-0.55%</span></div>
+        <div class="mv-row rd"><span class="mv-rk">3</span><span class="mv-nm">SBI</span><span class="mv-pc dn">-0.38%</span></div>
       </div>
     </div>
-    <div class="idx-summary">Advances: 18 · Declines: 82<span class="breadth-pct">Breadth: 18% ▲</span></div>
-  </div>
-
-  <!-- NIFTY SMALLCAP 100 -->
-  <div class="idx-section">
-    <div class="idx-bar bar-red">
-      <div class="idx-left">
-        <div class="idx-icon ir">🔻</div>
-        <div><div class="idx-name">NIFTY SMALLCAP 100</div><div class="idx-full">Small-Cap Universe · 100 Stocks</div></div>
-      </div>
-      <div class="idx-right">
-        <div class="idx-val dn">16,443</div>
-        <div class="idx-chg dn">▼ 2.37%</div>
-        <div class="idx-pts">-399 pts</div>
-      </div>
-    </div>
-    <div class="gl-grid">
-      <div class="gl-col">
-        <div class="gl-label up">▲ TOP 3 GAINERS</div>
-        <div class="stk green"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">LTTS</div><div class="stk-price">₹4,845.00</div></div><div class="stk-chg up">+2.68%</div></div>
-        <div class="stk green"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Birlasoft</div><div class="stk-price">₹568.40</div></div><div class="stk-chg up">+2.12%</div></div>
-        <div class="stk green"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Zensar Tech</div><div class="stk-price">₹742.60</div></div><div class="stk-chg up">+1.85%</div></div>
-      </div>
-      <div class="gl-col">
-        <div class="gl-label dn">▼ TOP 3 LOSERS</div>
-        <div class="stk red"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">RVNL</div><div class="stk-price">₹362.40</div></div><div class="stk-chg dn">-4.52%</div></div>
-        <div class="stk red"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">IRFC</div><div class="stk-price">₹148.20</div></div><div class="stk-chg dn">-4.18%</div></div>
-        <div class="stk red"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Suzlon</div><div class="stk-price">₹42.80</div></div><div class="stk-chg dn">-3.92%</div></div>
-      </div>
-    </div>
-    <div class="idx-summary">Advances: 14 · Declines: 86<span class="breadth-pct">Breadth: 14% ▲</span></div>
-  </div>
-
-  <!-- NIFTY BANK -->
-  <div class="idx-section">
-    <div class="idx-bar bar-red">
-      <div class="idx-left">
-        <div class="idx-icon ir">🏦</div>
-        <div><div class="idx-name">NIFTY BANK</div><div class="idx-full">Banking Sector · 12 Stocks</div></div>
-      </div>
-      <div class="idx-right">
-        <div class="idx-val dn">54,977</div>
-        <div class="idx-chg dn">▼ 0.92%</div>
-        <div class="idx-pts">-511 pts</div>
-      </div>
-    </div>
-    <div class="gl-grid">
-      <div class="gl-col">
-        <div class="gl-label up">▲ TOP 3 GAINERS</div>
-        <div class="stk green"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">PNB</div><div class="stk-price">₹128.45</div></div><div class="stk-chg up">+1.85%</div></div>
-        <div class="stk green"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Bank of Baroda</div><div class="stk-price">₹248.60</div></div><div class="stk-chg up">+1.22%</div></div>
-        <div class="stk green"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">SBI</div><div class="stk-price">₹612.30</div></div><div class="stk-chg up">+0.68%</div></div>
-      </div>
-      <div class="gl-col">
-        <div class="gl-label dn">▼ TOP 3 LOSERS</div>
-        <div class="stk red"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">Bajaj Finance</div><div class="stk-price">₹924.30</div></div><div class="stk-chg dn">-3.45%</div></div>
-        <div class="stk red"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Axis Bank</div><div class="stk-price">₹1,042.15</div></div><div class="stk-chg dn">-1.88%</div></div>
-        <div class="stk red"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">ICICI Bank</div><div class="stk-price">₹1,198.40</div></div><div class="stk-chg dn">-1.52%</div></div>
-      </div>
-    </div>
-    <div class="idx-summary">Advances: 3 · Declines: 9<span class="breadth-pct">Breadth: 25% ▲</span></div>
   </div>
 
   <!-- NIFTY IT -->
-  <div class="idx-section">
-    <div class="idx-bar bar-green">
-      <div class="idx-left">
-        <div class="idx-icon ig">💻</div>
-        <div><div class="idx-name">NIFTY IT</div><div class="idx-full">Technology Sector · 10 Stocks</div></div>
+  <div class="mv-idx" id="idx-niftyit">
+    <div class="mv-ih">NIFTY IT <span class="mv-iv dn">42,150.30 (▼1.40%)</span></div>
+    <div class="mv-gl">
+      <div class="mv-sec">
+        <div class="mv-st gn">TOP GAINERS</div>
+        <div class="mv-row gn"><span class="mv-rk">1</span><span class="mv-nm">Persistent</span><span class="mv-pc up">+0.45%</span></div>
+        <div class="mv-row gn"><span class="mv-rk">2</span><span class="mv-nm">Coforge</span><span class="mv-pc up">+0.22%</span></div>
+        <div class="mv-row gn"><span class="mv-rk">3</span><span class="mv-nm">LTIMindtree</span><span class="mv-pc up">+0.10%</span></div>
       </div>
-      <div class="idx-right">
-        <div class="idx-val up">32,423</div>
-        <div class="idx-chg up">▲ 2.88%</div>
-        <div class="idx-pts">+910 pts</div>
-      </div>
-    </div>
-    <div class="gl-grid">
-      <div class="gl-col">
-        <div class="gl-label up">▲ TOP 3 GAINERS</div>
-        <div class="stk green"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">HCL Tech</div><div class="stk-price">₹1,423.85</div></div><div class="stk-chg up">+3.40%</div></div>
-        <div class="stk green"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Wipro</div><div class="stk-price">₹188.30</div></div><div class="stk-chg up">+3.38%</div></div>
-        <div class="stk green"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Infosys</div><div class="stk-price">₹1,165.00</div></div><div class="stk-chg up">+3.03%</div></div>
-      </div>
-      <div class="gl-col">
-        <div class="gl-label up">▲ LEAST GAINERS</div>
-        <div class="stk green"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">Coforge</div><div class="stk-price">₹7,245.00</div></div><div class="stk-chg up">+1.10%</div></div>
-        <div class="stk green"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">LTIMindtree</div><div class="stk-price">₹5,120.00</div></div><div class="stk-chg up">+1.35%</div></div>
-        <div class="stk green"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Persistent</div><div class="stk-price">₹4,890.00</div></div><div class="stk-chg up">+1.50%</div></div>
+      <div class="mv-sec">
+        <div class="mv-st rd">TOP LOSERS</div>
+        <div class="mv-row rd"><span class="mv-rk">1</span><span class="mv-nm">Tech Mahindra</span><span class="mv-pc dn">-2.07%</span></div>
+        <div class="mv-row rd"><span class="mv-rk">2</span><span class="mv-nm">Wipro</span><span class="mv-pc dn">-1.85%</span></div>
+        <div class="mv-row rd"><span class="mv-rk">3</span><span class="mv-nm">Infosys</span><span class="mv-pc dn">-1.62%</span></div>
       </div>
     </div>
-    <div class="idx-summary">Advances: 10 · Declines: 0<span class="breadth-pct">Breadth: 100% ▲</span></div>
   </div>
 
-  <!-- NIFTY PHARMA -->
-  <div class="idx-section">
-    <div class="idx-bar bar-red">
-      <div class="idx-left">
-        <div class="idx-icon ir">💊</div>
-        <div><div class="idx-name">NIFTY PHARMA</div><div class="idx-full">Pharmaceutical Sector · 20 Stocks</div></div>
+  <!-- PSU BANK -->
+  <div class="mv-idx" id="idx-psubank">
+    <div class="mv-ih">PSU BANK <span class="mv-iv up">8,257.40 (▲0.07%)</span></div>
+    <div class="mv-gl">
+      <div class="mv-sec">
+        <div class="mv-st gn">TOP GAINERS</div>
+        <div class="mv-row gn"><span class="mv-rk">1</span><span class="mv-nm">PNB</span><span class="mv-pc up">+1.12%</span></div>
+        <div class="mv-row gn"><span class="mv-rk">2</span><span class="mv-nm">Bank of Baroda</span><span class="mv-pc up">+0.85%</span></div>
+        <div class="mv-row gn"><span class="mv-rk">3</span><span class="mv-nm">Canara Bank</span><span class="mv-pc up">+0.54%</span></div>
       </div>
-      <div class="idx-right">
-        <div class="idx-val dn">17,890</div>
-        <div class="idx-chg dn">▼ 0.95%</div>
-        <div class="idx-pts">-172 pts</div>
-      </div>
-    </div>
-    <div class="gl-grid">
-      <div class="gl-col">
-        <div class="gl-label up">▲ TOP 3 GAINERS</div>
-        <div class="stk green"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">Lupin</div><div class="stk-price">₹1,912.40</div></div><div class="stk-chg up">+1.28%</div></div>
-        <div class="stk green"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Cipla</div><div class="stk-price">₹1,445.60</div></div><div class="stk-chg up">+0.82%</div></div>
-        <div class="stk green"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Sun Pharma</div><div class="stk-price">₹1,685.20</div></div><div class="stk-chg up">+0.45%</div></div>
-      </div>
-      <div class="gl-col">
-        <div class="gl-label dn">▼ TOP 3 LOSERS</div>
-        <div class="stk red"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">Biocon</div><div class="stk-price">₹278.40</div></div><div class="stk-chg dn">-2.85%</div></div>
-        <div class="stk red"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Glenmark</div><div class="stk-price">₹1,142.60</div></div><div class="stk-chg dn">-2.12%</div></div>
-        <div class="stk red"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Dr Reddy's</div><div class="stk-price">₹5,712.80</div></div><div class="stk-chg dn">-1.68%</div></div>
+      <div class="mv-sec">
+        <div class="mv-st rd">TOP LOSERS</div>
+        <div class="mv-row rd"><span class="mv-rk">1</span><span class="mv-nm">Indian Bank</span><span class="mv-pc dn">-0.65%</span></div>
+        <div class="mv-row rd"><span class="mv-rk">2</span><span class="mv-nm">UCO Bank</span><span class="mv-pc dn">-0.42%</span></div>
+        <div class="mv-row rd"><span class="mv-rk">3</span><span class="mv-nm">Bank of India</span><span class="mv-pc dn">-0.28%</span></div>
       </div>
     </div>
-    <div class="idx-summary">Advances: 5 · Declines: 15<span class="breadth-pct">Breadth: 25% ▲</span></div>
   </div>
 
-  <!-- NIFTY METAL -->
-  <div class="idx-section">
-    <div class="idx-bar bar-red">
-      <div class="idx-left">
-        <div class="idx-icon ir">⛏️</div>
-        <div><div class="idx-name">NIFTY METAL</div><div class="idx-full">Metals &amp; Mining · 15 Stocks</div></div>
+  <!-- AUTO -->
+  <div class="mv-idx" id="idx-auto">
+    <div class="mv-ih">NIFTY AUTO <span class="mv-iv dn">(▼1.00%)</span></div>
+    <div class="mv-gl">
+      <div class="mv-sec">
+        <div class="mv-st gn">TOP GAINERS</div>
+        <div class="mv-row gn"><span class="mv-rk">1</span><span class="mv-nm">Bajaj Auto</span><span class="mv-pc up">+0.82%</span></div>
+        <div class="mv-row gn"><span class="mv-rk">2</span><span class="mv-nm">TVS Motor</span><span class="mv-pc up">+0.35%</span></div>
+        <div class="mv-row gn"><span class="mv-rk">3</span><span class="mv-nm">Hero MotoCorp</span><span class="mv-pc up">+0.18%</span></div>
       </div>
-      <div class="idx-right">
-        <div class="idx-val dn">7,845</div>
-        <div class="idx-chg dn">▼ 1.97%</div>
-        <div class="idx-pts">-158 pts</div>
-      </div>
-    </div>
-    <div class="gl-grid">
-      <div class="gl-col">
-        <div class="gl-label up">▲ TOP 3 GAINERS</div>
-        <div class="stk green"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">NMDC</div><div class="stk-price">₹218.40</div></div><div class="stk-chg up">+0.35%</div></div>
-        <div class="stk green"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Coal India</div><div class="stk-price">₹412.60</div></div><div class="stk-chg up">+0.22%</div></div>
-        <div class="stk green"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">MOIL</div><div class="stk-price">₹372.80</div></div><div class="stk-chg up">+0.10%</div></div>
-      </div>
-      <div class="gl-col">
-        <div class="gl-label dn">▼ TOP 3 LOSERS</div>
-        <div class="stk red"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">JSW Steel</div><div class="stk-price">₹892.00</div></div><div class="stk-chg dn">-3.20%</div></div>
-        <div class="stk red"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Tata Steel</div><div class="stk-price">₹142.80</div></div><div class="stk-chg dn">-2.85%</div></div>
-        <div class="stk red"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Hindalco</div><div class="stk-price">₹628.50</div></div><div class="stk-chg dn">-2.40%</div></div>
+      <div class="mv-sec">
+        <div class="mv-st rd">TOP LOSERS</div>
+        <div class="mv-row rd"><span class="mv-rk">1</span><span class="mv-nm">Tata Motors</span><span class="mv-pc dn">-2.07%</span></div>
+        <div class="mv-row rd"><span class="mv-rk">2</span><span class="mv-nm">Eicher Motors</span><span class="mv-pc dn">-1.65%</span></div>
+        <div class="mv-row rd"><span class="mv-rk">3</span><span class="mv-nm">Maruti Suzuki</span><span class="mv-pc dn">-1.42%</span></div>
       </div>
     </div>
-    <div class="idx-summary">Advances: 3 · Declines: 12<span class="breadth-pct">Breadth: 20% ▲</span></div>
   </div>
 
-  <!-- NIFTY AUTO -->
-  <div class="idx-section">
-    <div class="idx-bar bar-red">
-      <div class="idx-left">
-        <div class="idx-icon ir">🚗</div>
-        <div><div class="idx-name">NIFTY AUTO</div><div class="idx-full">Automobile Sector · 15 Stocks</div></div>
+  <!-- METAL -->
+  <div class="mv-idx" id="idx-metal">
+    <div class="mv-ih">NIFTY METAL <span class="mv-iv dn">(▼0.80%)</span></div>
+    <div class="mv-gl">
+      <div class="mv-sec">
+        <div class="mv-st gn">TOP GAINERS</div>
+        <div class="mv-row gn"><span class="mv-rk">1</span><span class="mv-nm">Hindalco</span><span class="mv-pc up">+0.42%</span></div>
+        <div class="mv-row gn"><span class="mv-rk">2</span><span class="mv-nm">Vedanta</span><span class="mv-pc up">+0.28%</span></div>
+        <div class="mv-row gn"><span class="mv-rk">3</span><span class="mv-nm">NMDC</span><span class="mv-pc up">+0.15%</span></div>
       </div>
-      <div class="idx-right">
-        <div class="idx-val dn">22,140</div>
-        <div class="idx-chg dn">▼ 1.99%</div>
-        <div class="idx-pts">-450 pts</div>
-      </div>
-    </div>
-    <div class="gl-grid">
-      <div class="gl-col">
-        <div class="gl-label up">▲ TOP 3 GAINERS</div>
-        <div class="stk green"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">TVS Motor</div><div class="stk-price">₹2,415.00</div></div><div class="stk-chg up">+0.42%</div></div>
-        <div class="stk green"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Bosch</div><div class="stk-price">₹32,100.00</div></div><div class="stk-chg up">+0.18%</div></div>
-        <div class="stk green"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Bharat Forge</div><div class="stk-price">₹1,285.00</div></div><div class="stk-chg up">+0.12%</div></div>
-      </div>
-      <div class="gl-col">
-        <div class="gl-label dn">▼ TOP 3 LOSERS</div>
-        <div class="stk red"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">Eicher Motors</div><div class="stk-price">₹7,133.00</div></div><div class="stk-chg dn">-2.94%</div></div>
-        <div class="stk red"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Trent</div><div class="stk-price">₹5,680.00</div></div><div class="stk-chg dn">-2.10%</div></div>
-        <div class="stk red"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Maruti Suzuki</div><div class="stk-price">₹11,338.00</div></div><div class="stk-chg dn">-1.19%</div></div>
+      <div class="mv-sec">
+        <div class="mv-st rd">TOP LOSERS</div>
+        <div class="mv-row rd"><span class="mv-rk">1</span><span class="mv-nm">Tata Steel</span><span class="mv-pc dn">-1.85%</span></div>
+        <div class="mv-row rd"><span class="mv-rk">2</span><span class="mv-nm">JSW Steel</span><span class="mv-pc dn">-1.42%</span></div>
+        <div class="mv-row rd"><span class="mv-rk">3</span><span class="mv-nm">SAIL</span><span class="mv-pc dn">-1.18%</span></div>
       </div>
     </div>
-    <div class="idx-summary">Advances: 3 · Declines: 12<span class="breadth-pct">Breadth: 20% ▲</span></div>
   </div>
 
-  <!-- NIFTY REALTY -->
-  <div class="idx-section">
-    <div class="idx-bar bar-red">
-      <div class="idx-left">
-        <div class="idx-icon ir">🏗️</div>
-        <div><div class="idx-name">NIFTY REALTY</div><div class="idx-full">Real Estate Sector · 10 Stocks</div></div>
+  <!-- PHARMA -->
+  <div class="mv-idx" id="idx-pharma">
+    <div class="mv-ih">NIFTY PHARMA <span class="mv-iv up">25,596.65 (▲0.12%)</span></div>
+    <div class="mv-gl">
+      <div class="mv-sec">
+        <div class="mv-st gn">TOP GAINERS</div>
+        <div class="mv-row gn"><span class="mv-rk">1</span><span class="mv-nm">Cipla</span><span class="mv-pc up">+1.29%</span></div>
+        <div class="mv-row gn"><span class="mv-rk">2</span><span class="mv-nm">Sun Pharma</span><span class="mv-pc up">+0.85%</span></div>
+        <div class="mv-row gn"><span class="mv-rk">3</span><span class="mv-nm">Dr Reddy's</span><span class="mv-pc up">+0.62%</span></div>
       </div>
-      <div class="idx-right">
-        <div class="idx-val dn">878</div>
-        <div class="idx-chg dn">▼ 1.57%</div>
-        <div class="idx-pts">-14 pts</div>
-      </div>
-    </div>
-    <div class="gl-grid">
-      <div class="gl-col">
-        <div class="gl-label up">▲ TOP 3 GAINERS</div>
-        <div class="stk green"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">Phoenix Mills</div><div class="stk-price">₹1,580.00</div></div><div class="stk-chg up">+0.28%</div></div>
-        <div class="stk green"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Brigade Ent.</div><div class="stk-price">₹1,120.00</div></div><div class="stk-chg up">+0.15%</div></div>
-        <div class="stk green"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Prestige Est.</div><div class="stk-price">₹1,340.00</div></div><div class="stk-chg up">+0.08%</div></div>
-      </div>
-      <div class="gl-col">
-        <div class="gl-label dn">▼ TOP 3 LOSERS</div>
-        <div class="stk red"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">DLF</div><div class="stk-price">₹780.00</div></div><div class="stk-chg dn">-2.85%</div></div>
-        <div class="stk red"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Godrej Prop.</div><div class="stk-price">₹2,340.00</div></div><div class="stk-chg dn">-2.20%</div></div>
-        <div class="stk red"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Oberoi Realty</div><div class="stk-price">₹1,680.00</div></div><div class="stk-chg dn">-1.95%</div></div>
+      <div class="mv-sec">
+        <div class="mv-st rd">TOP LOSERS</div>
+        <div class="mv-row rd"><span class="mv-rk">1</span><span class="mv-nm">Biocon</span><span class="mv-pc dn">-0.95%</span></div>
+        <div class="mv-row rd"><span class="mv-rk">2</span><span class="mv-nm">Lupin</span><span class="mv-pc dn">-0.72%</span></div>
+        <div class="mv-row rd"><span class="mv-rk">3</span><span class="mv-nm">Aurobindo</span><span class="mv-pc dn">-0.48%</span></div>
       </div>
     </div>
-    <div class="idx-summary">Advances: 2 · Declines: 8<span class="breadth-pct">Breadth: 20% ▲</span></div>
   </div>
 
-  <!-- NIFTY FMCG -->
-  <div class="idx-section">
-    <div class="idx-bar bar-red">
-      <div class="idx-left">
-        <div class="idx-icon ir">🛒</div>
-        <div><div class="idx-name">NIFTY FMCG</div><div class="idx-full">Consumer Goods · 15 Stocks</div></div>
+  <!-- FMCG -->
+  <div class="mv-idx" id="idx-fmcg">
+    <div class="mv-ih">NIFTY FMCG <span class="mv-iv dn">43,105.45 (▼1.41%)</span></div>
+    <div class="mv-gl">
+      <div class="mv-sec">
+        <div class="mv-st gn">TOP GAINERS</div>
+        <div class="mv-row gn"><span class="mv-rk">1</span><span class="mv-nm">Britannia</span><span class="mv-pc up">+0.45%</span></div>
+        <div class="mv-row gn"><span class="mv-rk">2</span><span class="mv-nm">Dabur</span><span class="mv-pc up">+0.22%</span></div>
+        <div class="mv-row gn"><span class="mv-rk">3</span><span class="mv-nm">Marico</span><span class="mv-pc up">+0.10%</span></div>
       </div>
-      <div class="idx-right">
-        <div class="idx-val dn">54,120</div>
-        <div class="idx-chg dn">▼ 0.89%</div>
-        <div class="idx-pts">-486 pts</div>
-      </div>
-    </div>
-    <div class="gl-grid">
-      <div class="gl-col">
-        <div class="gl-label up">▲ TOP 3 GAINERS</div>
-        <div class="stk green"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">Godrej Consumer</div><div class="stk-price">₹1,245.00</div></div><div class="stk-chg up">+0.65%</div></div>
-        <div class="stk green"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Dabur</div><div class="stk-price">₹542.80</div></div><div class="stk-chg up">+0.32%</div></div>
-        <div class="stk green"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Colgate</div><div class="stk-price">₹2,890.00</div></div><div class="stk-chg up">+0.15%</div></div>
-      </div>
-      <div class="gl-col">
-        <div class="gl-label dn">▼ TOP 3 LOSERS</div>
-        <div class="stk red"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">Trent</div><div class="stk-price">₹5,680.00</div></div><div class="stk-chg dn">-2.10%</div></div>
-        <div class="stk red"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">ITC</div><div class="stk-price">₹468.50</div></div><div class="stk-chg dn">-1.45%</div></div>
-        <div class="stk red"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">HUL</div><div class="stk-price">₹2,520.00</div></div><div class="stk-chg dn">-1.12%</div></div>
+      <div class="mv-sec">
+        <div class="mv-st rd">TOP LOSERS</div>
+        <div class="mv-row rd"><span class="mv-rk">1</span><span class="mv-nm">Nestle India</span><span class="mv-pc dn">-2.78%</span></div>
+        <div class="mv-row rd"><span class="mv-rk">2</span><span class="mv-nm">HUL</span><span class="mv-pc dn">-1.85%</span></div>
+        <div class="mv-row rd"><span class="mv-rk">3</span><span class="mv-nm">ITC</span><span class="mv-pc dn">-1.22%</span></div>
       </div>
     </div>
-    <div class="idx-summary">Advances: 4 · Declines: 11<span class="breadth-pct">Breadth: 27% ▲</span></div>
   </div>
 
-  <div class="tm-footer" data-k="tmFooter">Data sourced from NSE · For educational purposes only · Not investment advice</div>
+  <!-- REALTY -->
+  <div class="mv-idx" id="idx-realty">
+    <div class="mv-ih">NIFTY REALTY <span class="mv-iv dn">(▼1.17%)</span></div>
+    <div class="mv-gl">
+      <div class="mv-sec">
+        <div class="mv-st gn">TOP GAINERS</div>
+        <div class="mv-row gn"><span class="mv-rk">1</span><span class="mv-nm">Phoenix Mills</span><span class="mv-pc up">+0.55%</span></div>
+        <div class="mv-row gn"><span class="mv-rk">2</span><span class="mv-nm">Brigade Ent</span><span class="mv-pc up">+0.32%</span></div>
+        <div class="mv-row gn"><span class="mv-rk">3</span><span class="mv-nm">Prestige</span><span class="mv-pc up">+0.18%</span></div>
+      </div>
+      <div class="mv-sec">
+        <div class="mv-st rd">TOP LOSERS</div>
+        <div class="mv-row rd"><span class="mv-rk">1</span><span class="mv-nm">DLF</span><span class="mv-pc dn">-2.15%</span></div>
+        <div class="mv-row rd"><span class="mv-rk">2</span><span class="mv-nm">Godrej Properties</span><span class="mv-pc dn">-1.88%</span></div>
+        <div class="mv-row rd"><span class="mv-rk">3</span><span class="mv-nm">Oberoi Realty</span><span class="mv-pc dn">-1.45%</span></div>
+      </div>
+    </div>
+  </div>
 
-  <div style="text-align:center;padding:16px 0">
-    <button class="back-btn" onclick="go('brief')">← Back to Today's Brief</button>
+  <!-- MIDCAP -->
+  <div class="mv-idx" id="idx-midcap">
+    <div class="mv-ih">NIFTY MIDCAP 100 <span class="mv-iv dn">(▼0.79%)</span></div>
+    <div class="mv-gl">
+      <div class="mv-sec">
+        <div class="mv-st gn">TOP GAINERS</div>
+        <div class="mv-row gn"><span class="mv-rk">1</span><span class="mv-nm">Max Healthcare</span><span class="mv-pc up">+2.15%</span></div>
+        <div class="mv-row gn"><span class="mv-rk">2</span><span class="mv-nm">Persistent</span><span class="mv-pc up">+1.42%</span></div>
+        <div class="mv-row gn"><span class="mv-rk">3</span><span class="mv-nm">Indian Hotels</span><span class="mv-pc up">+1.18%</span></div>
+      </div>
+      <div class="mv-sec">
+        <div class="mv-st rd">TOP LOSERS</div>
+        <div class="mv-row rd"><span class="mv-rk">1</span><span class="mv-nm">Suzlon Energy</span><span class="mv-pc dn">-3.25%</span></div>
+        <div class="mv-row rd"><span class="mv-rk">2</span><span class="mv-nm">IRFC</span><span class="mv-pc dn">-2.85%</span></div>
+        <div class="mv-row rd"><span class="mv-rk">3</span><span class="mv-nm">Polycab</span><span class="mv-pc dn">-2.42%</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SMALLCAP -->
+  <div class="mv-idx" id="idx-smallcap">
+    <div class="mv-ih">NIFTY SMALLCAP 100 <span class="mv-iv dn">(▼0.92%)</span></div>
+    <div class="mv-gl">
+      <div class="mv-sec">
+        <div class="mv-st gn">TOP GAINERS</div>
+        <div class="mv-row gn"><span class="mv-rk">1</span><span class="mv-nm">IIFL Finance</span><span class="mv-pc up">+3.45%</span></div>
+        <div class="mv-row gn"><span class="mv-rk">2</span><span class="mv-nm">Kalyan Jewellers</span><span class="mv-pc up">+2.85%</span></div>
+        <div class="mv-row gn"><span class="mv-rk">3</span><span class="mv-nm">KPIT Tech</span><span class="mv-pc up">+2.12%</span></div>
+      </div>
+      <div class="mv-sec">
+        <div class="mv-st rd">TOP LOSERS</div>
+        <div class="mv-row rd"><span class="mv-rk">1</span><span class="mv-nm">IREDA</span><span class="mv-pc dn">-4.15%</span></div>
+        <div class="mv-row rd"><span class="mv-rk">2</span><span class="mv-nm">Cochin Shipyard</span><span class="mv-pc dn">-3.65%</span></div>
+        <div class="mv-row rd"><span class="mv-rk">3</span><span class="mv-nm">NHPC</span><span class="mv-pc dn">-3.22%</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ins ig" style="margin-top:16px">
+    <div class="it" data-k="mvInsight">What the Movers Tell You</div>
+    <p data-k="mvInsightBody">Bajaj Finance's bounce (+1.74%) after yesterday's 3% fall shows institutions buying quality on dips. Meanwhile, Nestle (-2.78%) and Eternal (-2.53%) show that even strong earnings can't save stocks when crude is surging and FIIs are selling. <strong>Defensive pharma names (Cipla +1.29%) outperformed — the market is hiding in healthcare.</strong></p>
   </div>
 
 </div>
+
 <!-- END OF TOP MOVERS PAGE -->
 
 
