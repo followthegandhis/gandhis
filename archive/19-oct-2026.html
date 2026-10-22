@@ -90,8 +90,8 @@
   <button class="nb" data-t="movers" onclick="goA('movers')">TOP MOVERS</button>
   <button class="nb" data-t="about" onclick="goA('about')">ABOUT</button>
   <span style="margin-left:auto;display:flex;gap:4px">
-    <button id="btnEn" onclick="setLangA('en')" style="padding:4px 10px;border:1.5px solid #007A3F;border-radius:6px;background:#007A3F;color:#fff;font-size:11px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif">EN</button>
-    <button id="btnHi" onclick="setLangA('hi')" style="padding:4px 10px;border:1.5px solid #ddd;border-radius:6px;background:transparent;color:#777;font-size:11px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif">हि</button>
+   <button class="lb la" id="btnEn" onclick="setLangA('en')">EN</button>
+   <button class="lb" id="btnHi" onclick="setLangA('hi')">हि</button>
   </span>
 </nav>
 
@@ -693,12 +693,10 @@ function setLangA(lang) {
   var btnEn = document.getElementById('btnEn');
   var btnHi = document.getElementById('btnHi');
   if (btnEn) {
-    btnEn.style.background = lang === 'en' ? '#007A3F' : 'transparent';
-    btnEn.style.color = lang === 'en' ? '#fff' : '#777';
+    btnEn.className = lang === 'en' ? 'lb la' : 'lb';
   }
   if (btnHi) {
-    btnHi.style.background = lang === 'hi' ? '#007A3F' : 'transparent';
-    btnHi.style.color = lang === 'hi' ? '#fff' : '#777';
+    btnHi.className = lang === 'hi' ? 'lb la' : 'lb';
   }
   var els = document.querySelectorAll('[data-k]');
   for (var i = 0; i < els.length; i++) {
