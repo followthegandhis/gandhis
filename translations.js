@@ -1,294 +1,219 @@
-/* ===== GANDHIS — TRANSLATION DICTIONARY ===== */
-/* Every data-k key from index.html is mapped here */
+
+/* ===== GANDHIS.CO — Translations v2 (Edition #2 · 21 Oct 2026) ===== */
 
 var T = {
 
-  /* Header */
-  tagline: {
-    en: 'Your 8 PM Post-Market Guide \u00b7 90 Seconds \u00b7 5 Things',
-    hi: '\u0906\u092a\u0915\u0940 \u0936\u093e\u092e 8 \u092c\u091c\u0947 \u0915\u0940 \u092a\u094b\u0938\u094d\u091f-\u092e\u093e\u0930\u094d\u0915\u0947\u091f \u0917\u093e\u0907\u0921 \u00b7 90 \u0938\u0947\u0915\u0902\u0921 \u00b7 5 \u092c\u093e\u0924\u0947\u0902'
-  },
+/* ----- TAGLINE & TABS ----- */
+tagline: {
+  en: "Your 8 PM Post-Market Guide · 90 Seconds · 5 Things",
+  hi: "आपकी शाम 8 बजे की पोस्ट-मार्केट गाइड · 90 सेकंड · 5 बातें"
+},
+tab1: { en: "TODAY'S BRIEF", hi: "आज का ब्रीफ" },
+tabM: { en: "TOP MOVERS", hi: "टॉप मूवर्स" },
+tab2: { en: "PAST WEEK", hi: "पिछला हफ़्ता" },
+tab3: { en: "ARCHIVE", hi: "आर्काइव" },
+tab4: { en: "ABOUT", hi: "हमारे बारे में" },
+disc: {
+  en: "For educational purposes only · Not SEBI registered · Not investment advice · ",
+  hi: "केवल शैक्षिक उद्देश्यों के लिए · SEBI पंजीकृत नहीं · निवेश सलाह नहीं · "
+},
+disclink: { en: "Full disclaimer →", hi: "पूर्ण अस्वीकरण →" },
+date: {
+  en: "Wednesday, 21 October 2026",
+  hi: "बुधवार, 21 अक्टूबर 2026"
+},
+edition: { en: "EDITION #2 · 8:00 PM IST", hi: "संस्करण #2 · रात 8:00 IST" },
 
-  /* Ticker */
-  tktime: {
-    en: 'Data as of 8:00 PM IST \u00b7 19 Oct 2026 \u00b7 Indian markets closed',
-    hi: '\u0921\u0947\u091f\u093e \u0936\u093e\u092e 8:00 \u092c\u091c\u0947 IST \u0924\u0915 \u00b7 19 \u0905\u0915\u094d\u091f\u0942\u092c\u0930 2026 \u00b7 \u092d\u093e\u0930\u0924\u0940\u092f \u092c\u093e\u091c\u093c\u093e\u0930 \u092c\u0902\u0926'
-  },
+/* ----- PULSE BOARD ----- */
+sectorlabel: { en: "Where the Money Went →", hi: "पैसा कहाँ गया →" },
+gFII: { en: "FII", hi: "FII (विदेशी)" },
+gDII: { en: "DII", hi: "DII (घरेलू)" },
+gBreadth: { en: "Breadth", hi: "ब्रेड्थ" },
+gFIItag: { en: "LIGHTEST OCT DAY", hi: "अक्टूबर का सबसे हल्का दिन" },
+gDIItag: { en: "16/16 DAYS BOUGHT", hi: "16/16 दिन खरीदा" },
+gBreadthtag: { en: "79% STOCKS FELL", hi: "79% स्टॉक गिरे" },
+gVIXtag: { en: "FEAR RISING", hi: "डर बढ़ रहा है" },
 
-  /* Disclaimer Bar */
-  disc: {
-    en: 'For educational purposes only \u00b7 Not SEBI registered \u00b7 Not investment advice \u00b7 ',
-    hi: '\u0915\u0947\u0935\u0932 \u0936\u0948\u0915\u094d\u0937\u093f\u0915 \u0909\u0926\u094d\u0926\u0947\u0936\u094d\u092f \u00b7 SEBI \u092a\u0902\u091c\u0940\u0915\u0943\u0924 \u0928\u0939\u0940\u0902 \u00b7 \u0928\u093f\u0935\u0947\u0936 \u0938\u0932\u093e\u0939 \u0928\u0939\u0940\u0902 \u00b7 '
-  },
-  disclink: {
-    en: 'Full disclaimer \u2192',
-    hi: '\u092a\u0942\u0930\u093e \u0905\u0938\u094d\u0935\u0940\u0915\u0930\u0923 \u2192'
-  },
+/* ----- CARD 1: WHERE THE MONEY MOVED ----- */
+c1label: { en: "Where the Money Moved", hi: "पैसा कहाँ गया" },
+c1head: {
+  en: "IT Was the Only Sector in Green (+2.9%) While Everything Else Bled Up to -2.4%",
+  hi: "IT एकमात्र हरा सेक्टर रहा (+2.9%) जबकि बाकी सब -2.4% तक गिरे"
+},
+c1body: {
+  en: 'The market opened <strong>1% higher</strong> on optimism around a potential India-US trade deal. Then Brent crude surged past <strong>$111/barrel</strong> intraday, and the rally evaporated. Sensex fell <strong>~1,300 points from the day\'s high</strong>.',
+  hi: 'बाज़ार <strong>1% ऊपर</strong> खुला — भारत-अमेरिका ट्रेड डील की उम्मीद पर। फिर ब्रेंट क्रूड <strong>$111/बैरल</strong> के पार गया और रैली ख़त्म हो गई। सेंसेक्स दिन के हाई से <strong>~1,300 अंक</strong> गिरा।'
+},
+c1insight: { en: "Educational Context", hi: "शैक्षिक संदर्भ" },
+c1insightbody: {
+  en: 'When the market opens strong and reverses hard, it\'s called a <strong>bull trap</strong>. The opening gap attracted buyers, then crude-driven selling overwhelmed them. Only one sector surviving in green signals <strong>defensive rotation</strong> — capital hiding in IT for dollar-revenue safety.',
+  hi: 'जब बाज़ार तेज़ी से खुलकर उलट जाता है, इसे <strong>बुल ट्रैप</strong> कहते हैं। ओपनिंग गैप ने खरीदारों को आकर्षित किया, फिर क्रूड-ड्रिवन बिकवाली ने उन्हें दबा दिया। सिर्फ एक सेक्टर का हरा रहना <strong>डिफेंसिव रोटेशन</strong> का संकेत है — पूंजी डॉलर-रेवेन्यू सुरक्षा के लिए IT में छिप रही है।'
+},
 
-  /* Nav Tabs */
-  tab1: {
-    en: "TODAY'S BRIEF",
-    hi: '\u0906\u091c \u0915\u093e \u092c\u094d\u0930\u0940\u092b'
-  },
-  tab2: {
-    en: 'PAST WEEK',
-    hi: 'पिछला सप्ताह'
-  },
-  tab3: {
-    en: 'ARCHIVE',
-    hi: '\u092a\u0941\u0930\u093e\u0928\u0947 \u0905\u0902\u0915'
-  },
-  tab4: {
-    en: 'ABOUT',
-    hi: '\u0939\u092e\u093e\u0930\u0947 \u092c\u093e\u0930\u0947 \u092e\u0947\u0902'
-  },
+/* ----- CARD 2: THE SIGNAL ----- */
+c2label: { en: "The Signal", hi: "द सिग्नल" },
+c2head: {
+  en: "Wipro +3.4%, Infosys +3.0%, Tech Mahindra +2.7% — While Bajaj Finance Fell -3.5% and Eternal -3.6%",
+  hi: "Wipro +3.4%, Infosys +3.0%, Tech Mahindra +2.7% — जबकि Bajaj Finance -3.5% और Eternal -3.6% गिरे"
+},
+c2body: {
+  en: "The top 3 Nifty gainers were all IT stocks. The top 3 losers were all consumption/financial names. Two completely different stories in the same index.",
+  hi: "निफ्टी के टॉप 3 गेनर्स सब IT स्टॉक्स थे। टॉप 3 लूज़र्स सब कंज़म्पशन/फाइनेंशियल नाम थे। एक ही इंडेक्स में दो बिल्कुल अलग कहानियाँ।"
+},
+c2insight: { en: "What the Data Shows", hi: "डेटा क्या बताता है" },
+c2insightbody: {
+  en: 'IT stocks benefit from a <strong>weaker rupee</strong> — they earn in dollars. When crude rises, the rupee weakens, and IT becomes a natural hedge. Meanwhile, <strong>Bajaj Finance and Eternal</strong> are domestic consumption plays that get hurt by rising input costs and tighter liquidity.',
+  hi: 'IT स्टॉक्स को <strong>कमज़ोर रुपये</strong> से फ़ायदा होता है — वे डॉलर में कमाते हैं। जब क्रूड बढ़ता है, रुपया कमज़ोर होता है, और IT नैचुरल हेज बन जाता है। वहीं, <strong>Bajaj Finance और Eternal</strong> घरेलू खपत वाले स्टॉक्स हैं जो बढ़ती लागत और तंग लिक्विडिटी से प्रभावित होते हैं।'
+},
 
-  /* Holiday Alert */
-  holiday: {
-    en: 'Markets closed tomorrow (Tue, 20 Oct) for Dussehra.',
-    hi: '\u0915\u0932 (\u092e\u0902\u0917\u0932\u0935\u093e\u0930, 20 \u0905\u0915\u094d\u091f\u0942\u092c\u0930) \u0926\u0936\u0939\u0930\u093e \u0915\u0947 \u0932\u093f\u090f \u092c\u093e\u091c\u093c\u093e\u0930 \u092c\u0902\u0926\u0964'
-  },
+/* ----- CARD 3: THE DATA POINT ----- */
+c3label: { en: "The Data Point", hi: "द डेटा पॉइंट" },
+c3head: {
+  en: "Breadth: 962 Advances vs 3,476 Declines — 79% of Stocks Fell Today",
+  hi: "ब्रेड्थ: 962 बढ़े vs 3,476 गिरे — आज 79% स्टॉक्स गिरे"
+},
+c3body: {
+  en: 'The Nifty fell "only" 0.34%. But underneath, the damage was far worse. Nearly 4 out of 5 stocks declined.',
+  hi: 'निफ्टी "सिर्फ" 0.34% गिरा। लेकिन अंदर से नुकसान कहीं ज़्यादा था। लगभग 5 में से 4 स्टॉक्स गिरे।'
+},
+c3insight: { en: "Why Breadth Matters", hi: "ब्रेड्थ क्यों मायने रखती है" },
+c3insightbody: {
+  en: 'When 79% of stocks decline but the index falls only 0.34%, a <strong>handful of heavyweights</strong> (IT names today) are masking the real damage. VIX spiking 6.29% to a <strong>4-month high</strong> confirms rising fear. The market is weaker than the headline number suggests.',
+  hi: 'जब 79% स्टॉक्स गिरें लेकिन इंडेक्स सिर्फ 0.34% गिरे, तो <strong>कुछ हैवीवेट्स</strong> (आज IT नाम) असली नुकसान छिपा रहे हैं। VIX का 6.29% उछलकर <strong>4 महीने के हाई</strong> पर जाना बढ़ते डर की पुष्टि करता है। बाज़ार हेडलाइन नंबर से कमज़ोर है।'
+}
 
-  /* Market Pulse Board */
-  verdict: {
-    en: 'Broad sell-off. Only PSU Banks survived. FIIs dumped \u20b95,285 Cr.',
-    hi: '\u092d\u093e\u0930\u0940 \u092c\u093f\u0915\u0935\u093e\u0932\u0940\u0964 \u0938\u093f\u0930\u094d\u092b\u093c PSU \u092c\u0948\u0902\u0915 \u092c\u091a\u0947\u0964 FII \u0928\u0947 \u20b95,285 \u0915\u0930\u094b\u0921\u093c \u092c\u0947\u091a\u0947\u0964'
-  },
-  seclabel: {
-    en: 'Where the Money Went \u2192',
-    hi: '\u092a\u0948\u0938\u093e \u0915\u0939\u093e\u0901 \u0917\u092f\u093e \u2192'
-  },
 
-  /* Card 1: Where the Money Moved */
-  c1l: {
-    en: 'Where the Money Moved',
-    hi: '\u092a\u0948\u0938\u093e \u0915\u0939\u093e\u0901 \u0917\u092f\u093e'
-  },
-  c1h: {
-    en: 'PSU Banks Were the Only Sector in Green (+2.5%) While the Market Fell -1.2%',
-    hi: 'PSU \u092c\u0948\u0902\u0915 \u090f\u0915\u092e\u093e\u0924\u094d\u0930 \u0938\u0947\u0915\u094d\u091f\u0930 \u091c\u094b \u0939\u0930\u0947 (+2.5%) \u092e\u0947\u0902 \u0930\u0939\u093e \u091c\u092c\u0915\u093f \u092c\u093e\u091c\u093c\u093e\u0930 -1.2% \u0917\u093f\u0930\u093e'
-  },
-  c1b: {
-    en: 'The Nifty PSU Bank index was the <strong>only sectoral index in the green today</strong> while the broader market bled. Sensex fell 876 points.',
-    hi: 'Nifty PSU Bank \u0907\u0902\u0921\u0947\u0915\u094d\u0938 \u0906\u091c <strong>\u090f\u0915\u092e\u093e\u0924\u094d\u0930 \u0938\u0947\u0915\u094d\u091f\u094b\u0930\u0932 \u0907\u0902\u0921\u0947\u0915\u094d\u0938 \u0925\u093e \u091c\u094b \u0939\u0930\u0947 \u092e\u0947\u0902 \u0930\u0939\u093e</strong>\u0964 \u0938\u0947\u0902\u0938\u0947\u0915\u094d\u0938 876 \u0905\u0902\u0915 \u0917\u093f\u0930\u093e\u0964'
-  },
-  c1i: {
-    en: 'Educational Context',
-    hi: '\u0936\u0948\u0915\u094d\u0937\u093f\u0915 \u0938\u0902\u0926\u0930\u094d\u092d'
-  },
-  c1ip: {
-    en: 'When one sub-sector surges while its sibling declines, it signals <strong>capital reallocation</strong> \u2014 money isn\'t leaving the market, it\'s moving within it.',
-    hi: '\u091c\u092c \u090f\u0915 \u0909\u092a-\u0915\u094d\u0937\u0947\u0924\u094d\u0930 \u092c\u0922\u093c\u0924\u093e \u0939\u0948 \u091c\u092c\u0915\u093f \u0926\u0942\u0938\u0930\u093e \u0917\u093f\u0930\u0924\u093e \u0939\u0948, \u0924\u094b \u092f\u0939 <strong>\u092a\u0942\u0902\u091c\u0940 \u092a\u0941\u0928\u0930\u094d\u0906\u0935\u0902\u091f\u0928</strong> \u0915\u093e \u0938\u0902\u0915\u0947\u0924 \u0939\u0948\u0964'
-  },
+,
+/* ----- CARD 4: THE FLOW ----- */
+c4label: { en: "The Flow", hi: "द फ्लो" },
+c4head: {
+  en: "FIIs Sold ₹413 Cr — Their Lightest Selling Day This October. DIIs Bought Again.",
+  hi: "FII ने ₹413 करोड़ बेचे — अक्टूबर का सबसे हल्का बिकवाली दिन। DII ने फिर खरीदा।"
+},
+c4body: {
+  en: "FII selling slowed dramatically — from ₹5,285 Cr last session to just ₹413 Cr today. But they're still net sellers. DIIs continue to absorb every dip.",
+  hi: "FII बिकवाली नाटकीय रूप से धीमी हुई — पिछले सत्र के ₹5,285 करोड़ से आज सिर्फ ₹413 करोड़। लेकिन वे अभी भी नेट सेलर्स हैं। DII हर गिरावट को सोख रहे हैं।"
+},
+c4insight: { en: "The Pattern", hi: "पैटर्न" },
+c4insightbody: {
+  en: 'FIIs have sold in <strong>15 of 16 sessions</strong> this October — nearly ₹49,000 Cr gone. But today\'s ₹413 Cr is the <strong>lightest outflow of the month</strong>. Is the selling exhaustion beginning? DIIs have been net buyers in <strong>every single session</strong> — absorbing almost rupee-for-rupee what FIIs are dumping.',
+  hi: 'FII ने इस अक्टूबर में <strong>16 में से 15 सत्रों</strong> में बेचा — लगभग ₹49,000 करोड़ गए। लेकिन आज के ₹413 करोड़ <strong>महीने का सबसे हल्का आउटफ्लो</strong> है। क्या बिकवाली थकान शुरू हो रही है? DII <strong>हर एक सत्र</strong> में नेट बायर्स रहे हैं — FII जो डंप कर रहे हैं उसे लगभग रुपये-दर-रुपये सोख रहे हैं।'
+},
 
-  /* Card 2: The Signal */
-  c2l: {
-    en: 'The Signal',
-    hi: '\u0938\u0902\u0915\u0947\u0924'
-  },
-  c2h: {
-    en: 'PNB: \u20b95,532 Cr Profit \u2014 Stock Rose 6.55%. Axis Bank: 39.4% Growth \u2014 Stock Fell 4.2%.',
-    hi: 'PNB: \u20b95,532 \u0915\u0930\u094b\u0921\u093c \u092e\u0941\u0928\u093e\u092b\u093c\u093e \u2014 \u0936\u0947\u092f\u0930 6.55% \u092c\u0922\u093c\u093e\u0964 Axis Bank: 39.4% \u0917\u094d\u0930\u094b\u0925 \u2014 \u0936\u0947\u092f\u0930 4.2% \u0917\u093f\u0930\u093e\u0964'
-  },
-  c2b: {
-    en: 'Two banks. Both beat estimates. Completely opposite market reactions.',
-    hi: '\u0926\u094b \u092c\u0948\u0902\u0915\u0964 \u0926\u094b\u0928\u094b\u0902 \u0928\u0947 \u0905\u0928\u0941\u092e\u093e\u0928 \u0938\u0947 \u092c\u0947\u0939\u0924\u0930 \u092a\u094d\u0930\u0926\u0930\u094d\u0936\u0928 \u0915\u093f\u092f\u093e\u0964 \u092a\u094d\u0930\u0924\u093f\u0915\u094d\u0930\u093f\u092f\u093e \u092c\u093f\u0932\u094d\u0915\u0941\u0932 \u0909\u0932\u091f\u0964'
-  },
-  c2i: {
-    en: 'What the Data Shows',
-    hi: '\u0921\u0947\u091f\u093e \u0915\u094d\u092f\u093e \u092c\u0924\u093e\u0924\u093e \u0939\u0948'
-  },
-  c2ip: {
-    en: 'When the market rewards one earnings beat and punishes another in the same sector, it reveals <strong>where institutional expectations are shifting</strong>.',
-    hi: '\u091c\u092c \u092c\u093e\u091c\u093c\u093e\u0930 \u090f\u0915 \u0915\u094b \u092a\u0941\u0930\u0938\u094d\u0915\u0943\u0924 \u0914\u0930 \u0926\u0942\u0938\u0930\u0947 \u0915\u094b \u0926\u0902\u0921\u093f\u0924 \u0915\u0930\u0924\u093e \u0939\u0948, \u0924\u094b \u092f\u0939 \u092c\u0924\u093e\u0924\u093e \u0939\u0948 <strong>\u0938\u0902\u0938\u094d\u0925\u093e\u0917\u0924 \u0909\u092e\u094d\u092e\u0940\u0926\u0947\u0902 \u0915\u0939\u093e\u0901 \u092c\u0926\u0932 \u0930\u0939\u0940 \u0939\u0948\u0902</strong>\u0964'
-  },
+/* ----- CARD 5: THE CONTEXT ----- */
+c5label: { en: "The Context", hi: "द कॉन्टेक्स्ट" },
+c5head: {
+  en: "Brent $111, Rupee ₹95/$, VIX at 4-Month High — The Three Numbers That Killed Today's Rally",
+  hi: "ब्रेंट $111, रुपया ₹95/$, VIX 4 महीने के हाई पर — तीन नंबर जिन्होंने आज की रैली मारी"
+},
+c5body: {
+  en: "The market opened strong. Then three macro forces converged to reverse it.",
+  hi: "बाज़ार मज़बूत खुला। फिर तीन मैक्रो ताकतों ने मिलकर इसे उलट दिया।"
+},
+c5insight: { en: "Why These 3 Numbers Matter", hi: "ये 3 नंबर क्यों मायने रखते हैं" },
+c5insightbody: {
+  en: 'Crude past <strong>$111</strong> = higher import bill = wider current account deficit. Rupee at <strong>₹95/$</strong> = FII dollar returns erode further, accelerating outflows. VIX at <strong>15.70</strong> (4-month high) = options market pricing in more turbulence ahead. When all three move against you on the same day, even trade-deal optimism can\'t hold.',
+  hi: 'क्रूड <strong>$111</strong> के पार = ज़्यादा आयात बिल = बड़ा करंट अकाउंट डेफिसिट। रुपया <strong>₹95/$</strong> पर = FII के डॉलर रिटर्न और घटे, आउटफ्लो तेज़। VIX <strong>15.70</strong> (4 महीने का हाई) = ऑप्शन मार्केट आगे और उथल-पुथल की कीमत लगा रहा है। जब तीनों एक ही दिन आपके खिलाफ चलें, तो ट्रेड-डील की उम्मीद भी टिक नहीं सकती।'
+},
 
-  /* Card 3: The Data Point */
-  c3l: {
-    en: 'The Data Point',
-    hi: '\u0906\u0901\u0915\u0921\u093c\u093e'
-  },
-  c3h: {
-    en: 'Breadth: 1,211 Advances vs 2,717 Declines \u2014 69% of Stocks Fell Today',
-    hi: '\u092c\u094d\u0930\u0947\u0921\u094d\u0925: 1,211 \u092c\u0922\u093c\u0947 vs 2,717 \u0917\u093f\u0930\u0947 \u2014 \u0906\u091c 69% \u0936\u0947\u092f\u0930 \u0917\u093f\u0930\u0947'
-  },
-  c3b: {
-    en: 'Despite the Sensex falling "only" 1.17%, the damage underneath was much wider.',
-    hi: '\u0938\u0947\u0902\u0938\u0947\u0915\u094d\u0938 "\u0938\u093f\u0930\u094d\u092b\u093c" 1.17% \u0917\u093f\u0930\u093e, \u0932\u0947\u0915\u093f\u0928 \u0905\u0902\u0926\u0930 \u0915\u093e \u0928\u0941\u0915\u0938\u093e\u0928 \u0915\u0939\u0940\u0902 \u091c\u093c\u094d\u092f\u093e\u0926\u093e \u0925\u093e\u0964'
-  },
-  c3i: {
-    en: 'Why Breadth Matters',
-    hi: '\u092c\u094d\u0930\u0947\u0921\u094d\u0925 \u0915\u094d\u092f\u094b\u0902 \u092e\u093e\u092f\u0928\u0947 \u0930\u0916\u0924\u0940 \u0939\u0948'
-  },
-  c3ip: {
-    en: 'When 69% of stocks decline but the index falls only 1.2%, <strong>a few heavyweights are holding the index up</strong>.',
-    hi: '\u091c\u092c 69% \u0936\u0947\u092f\u0930 \u0917\u093f\u0930\u0924\u0947 \u0939\u0948\u0902 \u0932\u0947\u0915\u093f\u0928 \u0907\u0902\u0921\u0947\u0915\u094d\u0938 \u0938\u093f\u0930\u094d\u092b\u093c 1.2% \u0917\u093f\u0930\u0924\u093e \u0939\u0948, \u0924\u094b <strong>\u0915\u0941\u091b \u092c\u0921\u093c\u0947 \u0936\u0947\u092f\u0930 \u0907\u0902\u0921\u0947\u0915\u094d\u0938 \u0915\u094b \u0925\u093e\u092e\u0947 \u0939\u0941\u090f \u0939\u0948\u0902</strong>\u0964'
-  },
+/* ----- TOP MOVERS ----- */
+tmTitle: { en: "Top Movers by Index", hi: "इंडेक्स के टॉप मूवर्स" },
+tmSub: { en: "3 Gainers · 3 Losers · Every Major Index", hi: "3 गेनर्स · 3 लूज़र्स · हर प्रमुख इंडेक्स" },
+tmFooter: {
+  en: "Data sourced from NSE · For educational purposes only · Not investment advice",
+  hi: "डेटा NSE से · केवल शैक्षिक उद्देश्यों के लिए · निवेश सलाह नहीं"
+},
+ctaMovers: { en: "📈 SEE TOP MOVERS BY INDEX →", hi: "📈 इंडेक्स के टॉप मूवर्स देखें →" },
 
-  /* Card 4: The Flow */
-  c4l: {
-    en: 'The Flow',
-    hi: '\u092a\u094d\u0930\u0935\u093e\u0939'
-  },
-  c4h: {
-    en: 'FIIs Sold \u20b95,285 Cr. DIIs Bought \u20b94,120 Cr. The Tug of War Continues.',
-    hi: 'FII \u0928\u0947 \u20b95,285 \u0915\u0930\u094b\u0921\u093c \u092c\u0947\u091a\u0947\u0964 DII \u0928\u0947 \u20b94,120 \u0915\u0930\u094b\u0921\u093c \u0916\u093c\u0930\u0940\u0926\u0947\u0964 \u0930\u0938\u094d\u0938\u093e\u0915\u0936\u0940 \u091c\u093e\u0930\u0940\u0964'
-  },
-  c4i: {
-    en: 'The Pattern',
-    hi: '\u092a\u0948\u091f\u0930\u094d\u0928'
-  },
-  c4ip: {
-    en: 'DIIs have been net buyers in <strong>every single session</strong> this October. FIIs net sellers in 14 of 15.',
-    hi: 'DII \u0928\u0947 \u0907\u0938 \u0905\u0915\u094d\u091f\u0942\u092c\u0930 <strong>\u0939\u0930 \u090f\u0915 \u0938\u0924\u094d\u0930</strong> \u092e\u0947\u0902 \u0916\u093c\u0930\u0940\u0926\u093e\u0930\u0940 \u0915\u0940\u0964 FII \u0928\u0947 15 \u092e\u0947\u0902 \u0938\u0947 14 \u092e\u0947\u0902 \u092c\u0947\u091a\u093e\u0964'
-  },
+/* ----- PAST WEEK ----- */
+wkTitle: { en: "Week of 14–21 October 2026", hi: "14–21 अक्टूबर 2026 का हफ़्ता" },
+wkSub: { en: "6 trading sessions · Here's what the data showed", hi: "6 ट्रेडिंग सत्र · डेटा ने क्या दिखाया" },
+wkNifty: { en: "NIFTY WEEKLY", hi: "निफ्टी साप्ताहिक" },
+wkSector: { en: "STRONGEST SECTOR", hi: "सबसे मज़बूत सेक्टर" },
+wkSectorNote: { en: "Only consistent green sector", hi: "एकमात्र लगातार हरा सेक्टर" },
+wkFII: { en: "FII WEEKLY", hi: "FII साप्ताहिक" },
+wkFIInote: { en: "Sold every single day", hi: "हर दिन बेचा" },
+wkDII: { en: "DII WEEKLY", hi: "DII साप्ताहिक" },
+wkDIInote: { en: "Bought every single day", hi: "हर दिन खरीदा" },
+wkRotation: { en: "Daily Rotation — Who Led, Who Lagged", hi: "दैनिक रोटेशन — कौन आगे, कौन पीछे" },
+wkInsight: { en: "The Week in One Line", hi: "हफ़्ता एक लाइन में" },
+wkInsightBody: {
+  en: 'FIIs sold over ₹25,000 Cr this week. DIIs absorbed almost all of it. The strongest sector changed almost every day — except IT, which led twice. That\'s <strong>sector rotation with a defensive tilt</strong>.',
+  hi: 'FII ने इस हफ़्ते ₹25,000 करोड़ से ज़्यादा बेचा। DII ने लगभग सब सोख लिया। सबसे मज़बूत सेक्टर लगभग हर दिन बदला — सिवाय IT के, जो दो बार आगे रहा। यह <strong>डिफेंसिव झुकाव के साथ सेक्टर रोटेशन</strong> है।'
+},
 
-  /* Card 5: The Context */
-  c5l: {
-    en: 'The Context',
-    hi: '\u0938\u0902\u0926\u0930\u094d\u092d'
-  },
-  c5h: {
-    en: 'Brent $108, Rupee \u20b995/$, US 10Y 5.1% \u2014 The Three Numbers That Explain Everything',
-    hi: '\u092c\u094d\u0930\u0947\u0902\u091f $108, \u0930\u0941\u092a\u092f\u093e \u20b995/$, US 10Y 5.1% \u2014 \u0924\u0940\u0928 \u0928\u0902\u092c\u0930 \u091c\u094b \u0938\u092c \u0938\u092e\u091d\u093e\u0924\u0947 \u0939\u0948\u0902'
-  },
-  c5i: {
-    en: 'Why These 3 Numbers Matter',
-    hi: '\u092f\u0947 3 \u0928\u0902\u092c\u0930 \u0915\u094d\u092f\u094b\u0902 \u092e\u093e\u092f\u0928\u0947 \u0930\u0916\u0924\u0947 \u0939\u0948\u0902'
-  },
-  c5ip: {
-    en: '<strong>Crude above $100</strong> = higher import bill = weaker rupee. <strong>Rupee above 95/$</strong> = FII dollar returns erode. <strong>US 10Y above 5%</strong> = global capital flows to US bonds.',
-    hi: '<strong>\u0915\u094d\u0930\u0942\u0921 $100 \u0938\u0947 \u090a\u092a\u0930</strong> = \u0906\u092f\u093e\u0924 \u092c\u093f\u0932 \u092c\u0922\u093c\u093e = \u0930\u0941\u092a\u092f\u093e \u0915\u092e\u091c\u093c\u094b\u0930\u0964 <strong>\u0930\u0941\u092a\u092f\u093e 95/$ \u0938\u0947 \u090a\u092a\u0930</strong> = FII \u0915\u0947 \u0921\u0949\u0932\u0930 \u0930\u093f\u091f\u0930\u094d\u0928 \u0918\u091f\u0947\u0964 <strong>US 10Y 5% \u0938\u0947 \u090a\u092a\u0930</strong> = \u0935\u0948\u0936\u094d\u0935\u093f\u0915 \u092a\u0942\u0902\u091c\u0940 US \u092c\u0949\u0902\u0921 \u092e\u0947\u0902\u0964'
-  },
+/* ----- ARCHIVE ----- */
+archTitle: { en: "Past Editions", hi: "पिछले संस्करण" },
 
-  /* This Week Tab */
-  wkt: {
-    en: 'Week of 14\u201319 October 2026',
-    hi: '\u0938\u092a\u094d\u0924\u093e\u0939: 14\u201319 \u0905\u0915\u094d\u091f\u0942\u092c\u0930 2026'
-  },
-  wks: {
-    en: '5 trading sessions \u00b7 Here\'s what the data showed',
-    hi: '5 \u091f\u094d\u0930\u0947\u0921\u093f\u0902\u0917 \u0938\u0924\u094d\u0930 \u00b7 \u0921\u0947\u091f\u093e \u0928\u0947 \u0915\u094d\u092f\u093e \u0926\u093f\u0916\u093e\u092f\u093e'
-  },
-  wkrot: {
-    en: 'Daily Rotation \u2014 Who Led, Who Lagged',
-    hi: '\u0926\u0948\u0928\u093f\u0915 \u0930\u094b\u091f\u0947\u0936\u0928 \u2014 \u0915\u094c\u0928 \u0906\u0917\u0947, \u0915\u094c\u0928 \u092a\u0940\u091b\u0947'
-  },
-  wki: {
-    en: 'The Week in One Line',
-    hi: '\u090f\u0915 \u0932\u093e\u0907\u0928 \u092e\u0947\u0902 \u092a\u0942\u0930\u093e \u0939\u092b\u093c\u094d\u0924\u093e'
-  },
-  wkip: {
-    en: 'FIIs sold nearly \u20b925,000 Cr this week. DIIs absorbed almost all of it. <strong>The strongest sector changed every single day</strong> \u2014 that\'s sector rotation.',
-    hi: 'FII \u0928\u0947 \u0907\u0938 \u0939\u092b\u093c\u094d\u0924\u0947 \u0932\u0917\u092d\u0917 \u20b925,000 \u0915\u0930\u094b\u0921\u093c \u092c\u0947\u091a\u0947\u0964 DII \u0928\u0947 \u0932\u0917\u092d\u0917 \u0938\u092c \u0938\u094b\u0916 \u0932\u093f\u092f\u093e\u0964 <strong>\u0938\u092c\u0938\u0947 \u092e\u091c\u093c\u092c\u0942\u0924 \u0938\u0947\u0915\u094d\u091f\u0930 \u0939\u0930 \u0926\u093f\u0928 \u092c\u0926\u0932\u093e</strong>\u0964'
-  },
+/* ----- ABOUT ----- */
+aboutHead: {
+  en: "We read the market so you don't have to. Then we tell you in 90 seconds.",
+  hi: "हम बाज़ार पढ़ते हैं ताकि आपको न पढ़ना पड़े। फिर 90 सेकंड में बता देते हैं।"
+},
+aboutSub: { en: "Every trading day. 8 PM. No exceptions.", hi: "हर ट्रेडिंग डे। शाम 8 बजे। कोई अपवाद नहीं।" },
+aboutWhat: { en: "What is Gandhis?", hi: "Gandhis क्या है?" },
+aboutWhatP1: {
+  en: "Gandhis is a daily post-market educational guide for the Indian stock market. Every trading day at 8 PM, we publish 5 cards — which sectors moved, what institutions did, and the macro picture.",
+  hi: "Gandhis भारतीय शेयर बाज़ार के लिए एक दैनिक पोस्ट-मार्केट शैक्षिक गाइड है। हर ट्रेडिंग डे शाम 8 बजे, हम 5 कार्ड प्रकाशित करते हैं — कौन से सेक्टर चले, संस्थानों ने क्या किया, और मैक्रो तस्वीर।"
+},
+aboutWhatP2: {
+  en: "We go through data from NSE, BSE, and official sources so you don't have to. Five cards. Ninety seconds. That's it.",
+  hi: "हम NSE, BSE और आधिकारिक स्रोतों से डेटा देखते हैं ताकि आपको न देखना पड़े। पाँच कार्ड। नब्बे सेकंड। बस।"
+},
+aboutCards: { en: "The 5 Cards — Every Day", hi: "5 कार्ड — हर दिन" },
+aboutC1: { en: "Where the Money Moved — which sectors saw capital flow in or out", hi: "पैसा कहाँ गया — किन सेक्टरों में पूंजी आई या गई" },
+aboutC2: { en: "The Signal — the one earnings result or stock move that stood out", hi: "द सिग्नल — वो एक अर्निंग्स रिज़ल्ट या स्टॉक मूव जो अलग दिखा" },
+aboutC3: { en: "The Data Point — market breadth, VIX, and numbers beneath the surface", hi: "द डेटा पॉइंट — मार्केट ब्रेड्थ, VIX, और सतह के नीचे के नंबर" },
+aboutC4: { en: "The Flow — FII and DII activity, who's buying, who's selling", hi: "द फ्लो — FII और DII गतिविधि, कौन खरीद रहा, कौन बेच रहा" },
+aboutC5: { en: "The Context — crude, rupee, US yields, and global forces", hi: "द कॉन्टेक्स्ट — क्रूड, रुपया, US यील्ड, और वैश्विक ताकतें" },
+aboutNoPredict: {
+  en: "We don't predict the market. We don't recommend stocks. We don't sell tips. We present publicly available data so patterns become visible.",
+  hi: "हम बाज़ार की भविष्यवाणी नहीं करते। स्टॉक्स रेकमेंड नहीं करते। टिप्स नहीं बेचते। हम सार्वजनिक डेटा पेश करते हैं ताकि पैटर्न दिखें।"
+},
+aboutHow: { en: "How We Think", hi: "हम कैसे सोचते हैं" },
+aboutHowP: {
+  en: "We focus on sector rotation — money doesn't leave the market, it moves. Most people look at the Nifty and react. We look at where the money is actually going.",
+  hi: "हम सेक्टर रोटेशन पर फोकस करते हैं — पैसा बाज़ार नहीं छोड़ता, वो चलता है। ज़्यादातर लोग निफ्टी देखते हैं और रिएक्ट करते हैं। हम देखते हैं पैसा असल में कहाँ जा रहा है।"
+},
+aboutWhy: { en: 'Why "Gandhis"?', hi: '"Gandhis" क्यों?' },
+aboutWhyP: {
+  en: "It's on every note in your wallet. Gandhis follow the cash.",
+  hi: "यह आपके बटुए के हर नोट पर है। Gandhis कैश को फॉलो करते हैं।"
+},
+aboutQuote: {
+  en: '"Everyone\'s watching the index. We\'re watching where the money goes."',
+  hi: '"सब इंडेक्स देख रहे हैं। हम देख रहे हैं पैसा कहाँ जा रहा है।"'
+},
+aboutCome: { en: "Come Back Tomorrow", hi: "कल फिर आइए" },
+aboutComeP: { en: "See you at 8 PM.", hi: "शाम 8 बजे मिलते हैं।" },
+lgTitle: { en: "IMPORTANT DISCLAIMER", hi: "महत्वपूर्ण अस्वीकरण" },
+lgP1: {
+  en: "Gandhis is an educational initiative. We are not registered with SEBI as investment advisors, research analysts, or portfolio managers.",
+  hi: "Gandhis एक शैक्षिक पहल है। हम SEBI के साथ निवेश सलाहकार, रिसर्च एनालिस्ट, या पोर्टफोलियो मैनेजर के रूप में पंजीकृत नहीं हैं।"
+},
+lgL1: { en: "We do not recommend buying, selling, or holding any securities", hi: "हम किसी भी सिक्योरिटी को खरीदने, बेचने या रखने की सिफारिश नहीं करते" },
+lgL2: { en: "We do not provide personalized investment advice", hi: "हम व्यक्तिगत निवेश सलाह नहीं देते" },
+lgL3: { en: "All data is sourced from publicly available NSE/BSE/NSDL/CDSL sources", hi: "सभी डेटा सार्वजनिक NSE/BSE/NSDL/CDSL स्रोतों से है" },
+lgL4: { en: "Past patterns do not guarantee future results", hi: "पिछले पैटर्न भविष्य के परिणामों की गारंटी नहीं देते" },
+lgL5: { en: "Always consult a SEBI-registered advisor before making investment decisions", hi: "निवेश निर्णय लेने से पहले हमेशा SEBI-पंजीकृत सलाहकार से परामर्श करें" },
+lgP2: {
+  en: "By using this website, you acknowledge that all content is for educational and informational purposes only.",
+  hi: "इस वेबसाइट का उपयोग करके, आप स्वीकार करते हैं कि सभी सामग्री केवल शैक्षिक और सूचनात्मक उद्देश्यों के लिए है।"
+},
 
-  /* Archive Tab */
-  arct: {
-    en: 'Past Editions',
-    hi: '\u092a\u0941\u0930\u093e\u0928\u0947 \u0905\u0902\u0915'
-  },
-
-  /* About Tab */
-  abt: {
-    en: 'We read the market so you don\'t have to. Then we tell you in 90 seconds.',
-    hi: '\u0939\u092e \u092c\u093e\u091c\u093c\u093e\u0930 \u092a\u0922\u093c\u0924\u0947 \u0939\u0948\u0902 \u0924\u093e\u0915\u093f \u0906\u092a\u0915\u094b \u0928 \u092a\u0922\u093c\u0928\u093e \u092a\u0921\u093c\u0947\u0964 \u092b\u093f\u0930 90 \u0938\u0947\u0915\u0902\u0921 \u092e\u0947\u0902 \u092c\u0924\u093e\u0924\u0947 \u0939\u0948\u0902\u0964'
-  },
-  absub: {
-    en: 'Every trading day. 8 PM. No exceptions.',
-    hi: '\u0939\u0930 \u091f\u094d\u0930\u0947\u0921\u093f\u0902\u0917 \u0926\u093f\u0928\u0964 \u0936\u093e\u092e 8 \u092c\u091c\u0947\u0964 \u092c\u093f\u0928\u093e \u0905\u092a\u0935\u093e\u0926\u0964'
-  },
-  abwhat: {
-    en: 'What is Gandhis?',
-    hi: 'Gandhis \u0915\u094d\u092f\u093e \u0939\u0948?'
-  },
-  abwhatp1: {
-    en: 'Gandhis is a <strong>daily post-market educational guide</strong> for the Indian stock market. Every trading day at 8 PM, we publish 5 cards \u2014 which sectors moved, what institutions did, and the macro picture.',
-    hi: 'Gandhis \u092d\u093e\u0930\u0924\u0940\u092f \u0936\u0947\u092f\u0930 \u092c\u093e\u091c\u093c\u093e\u0930 \u0915\u0947 \u0932\u093f\u090f \u090f\u0915 <strong>\u0926\u0948\u0928\u093f\u0915 \u092a\u094b\u0938\u094d\u091f-\u092e\u093e\u0930\u094d\u0915\u0947\u091f \u0936\u0948\u0915\u094d\u0937\u093f\u0915 \u0917\u093e\u0907\u0921</strong> \u0939\u0948\u0964 \u0939\u0930 \u091f\u094d\u0930\u0947\u0921\u093f\u0902\u0917 \u0926\u093f\u0928 \u0936\u093e\u092e 8 \u092c\u091c\u0947, \u0939\u092e 5 \u0915\u093e\u0930\u094d\u0921 \u092a\u094d\u0930\u0915\u093e\u0936\u093f\u0924 \u0915\u0930\u0924\u0947 \u0939\u0948\u0902\u0964'
-  },
-  abwhatp2: {
-    en: 'We go through data from NSE, BSE, and official sources so you don\'t have to. <strong>Five cards. Ninety seconds. That\'s it.</strong>',
-    hi: '\u0939\u092e NSE, BSE \u0914\u0930 \u0906\u0927\u093f\u0915\u093e\u0930\u093f\u0915 \u0938\u094d\u0930\u094b\u0924\u094b\u0902 \u0915\u093e \u0921\u0947\u091f\u093e \u0926\u0947\u0916\u0924\u0947 \u0939\u0948\u0902\u0964 <strong>\u092a\u093e\u0901\u091a \u0915\u093e\u0930\u094d\u0921\u0964 \u0928\u092c\u094d\u092c\u0947 \u0938\u0947\u0915\u0902\u0921\u0964 \u092c\u0938\u0964</strong>'
-  },
-  ab5t: {
-    en: 'The 5 Cards \u2014 Every Day',
-    hi: '5 \u0915\u093e\u0930\u094d\u0921 \u2014 \u0939\u0930 \u0926\u093f\u0928'
-  },
-  ab5c1: {
-    en: '<strong>Where the Money Moved</strong> \u2014 which sectors saw capital flow in or out',
-    hi: '<strong>\u092a\u0948\u0938\u093e \u0915\u0939\u093e\u0901 \u0917\u092f\u093e</strong> \u2014 \u0915\u093f\u0928 \u0938\u0947\u0915\u094d\u091f\u0930\u094b\u0902 \u092e\u0947\u0902 \u092a\u0942\u0902\u091c\u0940 \u0906\u0908 \u092f\u093e \u0917\u0908'
-  },
-  ab5c2: {
-    en: '<strong>The Signal</strong> \u2014 the one earnings result or stock move that stood out',
-    hi: '<strong>\u0938\u0902\u0915\u0947\u0924</strong> \u2014 \u0935\u094b \u090f\u0915 \u0928\u0924\u0940\u091c\u093e \u092f\u093e \u0936\u0947\u092f\u0930 \u092e\u0942\u0935\u092e\u0947\u0902\u091f \u091c\u094b \u0905\u0932\u0917 \u0926\u093f\u0916\u093e'
-  },
-  ab5c3: {
-    en: '<strong>The Data Point</strong> \u2014 market breadth, VIX, and numbers beneath the surface',
-    hi: '<strong>\u0906\u0901\u0915\u0921\u093c\u093e</strong> \u2014 \u092e\u093e\u0930\u094d\u0915\u0947\u091f \u092c\u094d\u0930\u0947\u0921\u094d\u0925, VIX, \u0914\u0930 \u0938\u0924\u0939 \u0915\u0947 \u0928\u0940\u091a\u0947 \u0915\u0947 \u0928\u0902\u092c\u0930'
-  },
-  ab5c4: {
-    en: '<strong>The Flow</strong> \u2014 FII and DII activity, who\'s buying, who\'s selling',
-    hi: '<strong>\u092a\u094d\u0930\u0935\u093e\u0939</strong> \u2014 FII \u0914\u0930 DII \u0917\u0924\u093f\u0935\u093f\u0927\u093f, \u0915\u094c\u0928 \u0916\u093c\u0930\u0940\u0926 \u0930\u0939\u093e, \u0915\u094c\u0928 \u092c\u0947\u091a \u0930\u0939\u093e'
-  },
-  ab5c5: {
-    en: '<strong>The Context</strong> \u2014 crude, rupee, US yields, and global forces',
-    hi: '<strong>\u0938\u0902\u0926\u0930\u094d\u092d</strong> \u2014 \u0915\u094d\u0930\u0942\u0921, \u0930\u0941\u092a\u092f\u093e, US \u092f\u0940\u0932\u094d\u0921, \u0914\u0930 \u0935\u0948\u0936\u094d\u0935\u093f\u0915 \u0924\u093e\u0915\u093c\u0924\u0947\u0902'
-  },
-  abhl2: {
-    en: 'We don\'t predict the market. We don\'t recommend stocks. We don\'t sell tips. We present publicly available data so patterns become visible.',
-    hi: '\u0939\u092e \u092c\u093e\u091c\u093c\u093e\u0930 \u0915\u0940 \u092d\u0935\u093f\u0937\u094d\u092f\u0935\u093e\u0923\u0940 \u0928\u0939\u0940\u0902 \u0915\u0930\u0924\u0947\u0964 \u0936\u0947\u092f\u0930 \u0915\u0940 \u0938\u093f\u092b\u093c\u093e\u0930\u093f\u0936 \u0928\u0939\u0940\u0902 \u0915\u0930\u0924\u0947\u0964 \u091f\u093f\u092a\u094d\u0938 \u0928\u0939\u0940\u0902 \u092c\u0947\u091a\u0924\u0947\u0964 \u0939\u092e \u0938\u093e\u0930\u094d\u0935\u091c\u0928\u093f\u0915 \u0921\u0947\u091f\u093e \u092a\u094d\u0930\u0938\u094d\u0924\u0941\u0924 \u0915\u0930\u0924\u0947 \u0939\u0948\u0902\u0964'
-  },
-  abhow: {
-    en: 'How We Think',
-    hi: '\u0939\u092e \u0915\u0948\u0938\u0947 \u0938\u094b\u091a\u0924\u0947 \u0939\u0948\u0902'
-  },
-  abhowp: {
-    en: 'We focus on <strong>sector rotation</strong> \u2014 money doesn\'t leave the market, it moves. Most people look at the Nifty and react. We look at where the money is actually going.',
-    hi: '\u0939\u092e <strong>\u0938\u0947\u0915\u094d\u091f\u0930 \u0930\u094b\u091f\u0947\u0936\u0928</strong> \u092a\u0930 \u0927\u094d\u092f\u093e\u0928 \u0926\u0947\u0924\u0947 \u0939\u0948\u0902 \u2014 \u092a\u0948\u0938\u093e \u092c\u093e\u091c\u093c\u093e\u0930 \u0938\u0947 \u0928\u0939\u0940\u0902 \u091c\u093e\u0924\u093e, \u0918\u0942\u092e\u0924\u093e \u0939\u0948\u0964 \u0939\u092e \u0926\u0947\u0916\u0924\u0947 \u0939\u0948\u0902 \u092a\u0948\u0938\u093e \u0905\u0938\u0932 \u092e\u0947\u0902 \u0915\u0939\u093e\u0901 \u091c\u093e \u0930\u0939\u093e \u0939\u0948\u0964'
-  },
-  abwhy: {
-    en: 'Why "Gandhis"?',
-    hi: '"Gandhis" \u0915\u094d\u092f\u094b\u0902?'
-  },
-  abwhyp: {
-    en: 'It\'s on every note in your wallet. <strong>Gandhis follow the cash.</strong>',
-    hi: '\u092f\u0939 \u0906\u092a\u0915\u0947 \u092c\u091f\u0941\u090f \u0915\u0947 \u0939\u0930 \u0928\u094b\u091f \u092a\u0930 \u0939\u0948\u0964 <strong>Gandhis \u092a\u0948\u0938\u0947 \u0915\u093e \u092a\u0940\u091b\u093e \u0915\u0930\u0924\u0947 \u0939\u0948\u0902\u0964</strong>'
-  },
-  abquote: {
-    en: '"Everyone\'s watching the index. We\'re watching where the money goes."',
-    hi: '"\u0938\u092c \u0907\u0902\u0921\u0947\u0915\u094d\u0938 \u0926\u0947\u0916 \u0930\u0939\u0947 \u0939\u0948\u0902\u0964 \u0939\u092e \u0926\u0947\u0916 \u0930\u0939\u0947 \u0939\u0948\u0902 \u092a\u0948\u0938\u093e \u0915\u0939\u093e\u0901 \u091c\u093e \u0930\u0939\u093e \u0939\u0948\u0964"'
-  },
-  abcome: {
-    en: 'Come Back Tomorrow',
-    hi: '\u0915\u0932 \u092b\u093f\u0930 \u0906\u0907\u090f'
-  },
-  abcomep: {
-    en: 'See you at 8 PM.',
-    hi: '\u0936\u093e\u092e 8 \u092c\u091c\u0947 \u092e\u093f\u0932\u0924\u0947 \u0939\u0948\u0902\u0964'
-  },
-
-  /* Footer */
-  ftg: {
-    en: 'Follow the Gandhis',
-    hi: 'Follow the Gandhis'
-  },
-  ftm: {
-    en: 'Deep research. Indian markets. Every trading day at 8 PM IST.',
-    hi: '\u0917\u0939\u0930\u0940 \u0930\u093f\u0938\u0930\u094d\u091a\u0964 \u092d\u093e\u0930\u0924\u0940\u092f \u092c\u093e\u091c\u093c\u093e\u0930\u0964 \u0939\u0930 \u091f\u094d\u0930\u0947\u0921\u093f\u0902\u0917 \u0926\u093f\u0928 \u0936\u093e\u092e 8 \u092c\u091c\u0947\u0964'
-  },
-
-  tabM: {
-    en: 'TOP MOVERS',
-    hi: 'टॉप मूवर्स'
-  },
-  tmt: {
-    en: 'Top Movers by Index',
-    hi: 'इंडेक्स के टॉप मूवर्स'
-  },
-  tms: {
-    en: '3 Gainers · 3 Losers · Every Major Index',
-    hi: '3 बढ़े · 3 गिरे · हर प्रमुख इंडेक्स'
-  }
-
+/* ----- FOOTER ----- */
+ftFollow: { en: "Follow the Gandhis", hi: "Gandhis को फॉलो करें" },
+ftTG: { en: "Join Telegram", hi: "टेलीग्राम जॉइन करें" },
+ftIG: { en: "Follow on Instagram", hi: "इंस्टाग्राम पर फॉलो करें" },
+ftWA: { en: "Share on WhatsApp", hi: "व्हाट्सएप पर शेयर करें" },
+ftTagline: {
+  en: "Deep research. Indian markets. Every trading day at 8 PM IST.",
+  hi: "गहरी रिसर्च। भारतीय बाज़ार। हर ट्रेडिंग डे शाम 8 बजे IST।"
+},
+ftDisc: {
+  en: "For educational purposes only. Not SEBI registered. Not investment advice. All data from NSE/BSE public sources.",
+  hi: "केवल शैक्षिक उद्देश्यों के लिए। SEBI पंजीकृत नहीं। निवेश सलाह नहीं। सभी डेटा NSE/BSE सार्वजनिक स्रोतों से।"
+}
 
 };
+
