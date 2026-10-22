@@ -73,18 +73,15 @@
 
 <!-- DISCLAIMER -->
 <div class="dc">For educational purposes only · Not SEBI registered · Not investment advice · <a href="../index.html">Full disclaimer →</a></div>
-
-<div class="lg-toggle" style="text-align:right;padding:8px 12px 0">
-  <button id="btnEn" onclick="setLangA('en')" style="padding:4px 12px;border:1.5px solid #007A3F;border-radius:6px;background:#007A3F;color:#fff;font-size:11px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif">EN</button>
-  <button id="btnHi" onclick="setLangA('hi')" style="padding:4px 12px;border:1.5px solid #ddd;border-radius:6px;background:transparent;color:#777;font-size:11px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif">हि</button>
-</div>
   
 <!-- NAV -->
 <nav class="nv">
-  <a class="nb" href="../index.html" style="color:#007A3F;text-decoration:none;font-weight:700">← LATEST EDITION</a>
+  <a class="nb" href="../index.html" style="color:#007A3F;text-decoration:none;font-weight:700">← LATEST</a>
   <button class="nb" data-t="brief" onclick="goA('brief')" style="color:#007A3F;border-bottom:3px solid #007A3F">19 OCT '26</button>
   <button class="nb" data-t="movers" onclick="goA('movers')">TOP MOVERS</button>
   <button class="nb" data-t="about" onclick="goA('about')">ABOUT</button>
+  <button id="btnEn" class="nb" onclick="setLangA('en')" style="background:#007A3F;color:#fff;border-radius:6px;padding:4px 10px;font-size:11px">EN</button>
+  <button id="btnHi" class="nb" onclick="setLangA('hi')" style="border-radius:6px;padding:4px 10px;font-size:11px">हि</button>
 </nav>
 
 <!-- DATE BAR -->
@@ -167,7 +164,8 @@
   <!-- CARD 1 -->
   <div class="cd">
     <div class="ca" style="background:#D32F2F"></div>
-    <div class="ct"><div class="cb" style="background:#FFF5F5;color:#D32F2F">1</div><div class="cl" style="color:#D32F2F">Where the Money Moved</div></div>
+    <div class="ct"><div class="cb" style="background:#FFF5F5;color:#D32F2F">1</div>
+    <div class="cl" style="color:#D32F2F" data-k="c1label">Where the Money Moved</div>
     <div class="ch">PSU Banks Were the Only Sector in Green (+2.5%) While Everything Else Bled</div>
     <div class="cy">
       Sensex fell 876 points. But the real story was underneath — PSU Banks rallied hard while private banks, IT, and realty all fell. Classic sector rotation.
@@ -187,7 +185,8 @@
   <!-- CARD 2 -->
   <div class="cd">
     <div class="ca" style="background:#1565C0"></div>
-    <div class="ct"><div class="cb" style="background:#F3F7FE;color:#1565C0">2</div><div class="cl" style="color:#1565C0">The Signal</div></div>
+    <div class="ct"><div class="cb" style="background:#F3F7FE;color:#1565C0">2</div>
+    <div class="cl" style="color:#1565C0" data-k="c2label">The Signal</div>
     <div class="ch">PNB +6.6% on Strong Earnings. Axis Bank -4.2% Despite Beating Estimates.</div>
     <div class="cy">
       Two banks. Both beat estimates. Completely opposite stock reactions. The market is telling you something about expectations.
@@ -207,7 +206,8 @@
   <!-- CARD 3 -->
   <div class="cd">
     <div class="ca" style="background:#D4740B"></div>
-    <div class="ct"><div class="cb" style="background:#FFF9F2;color:#D4740B">3</div><div class="cl" style="color:#D4740B">The Data Point</div></div>
+    <div class="ct"><div class="cb" style="background:#FFF9F2;color:#D4740B">3</div>
+    <div class="cl" style="color:#D4740B" data-k="c3label">The Data Point</div>
     <div class="ch">Breadth: 1,211 Advances vs 2,717 Declines — 69% of Stocks Fell</div>
     <div class="cy">
       The Nifty fell 1.11%. But 69% of all listed stocks declined. The damage was wider than the index suggests.
@@ -227,7 +227,8 @@
   <!-- CARD 4 -->
   <div class="cd">
     <div class="ca" style="background:#6A1B9A"></div>
-    <div class="ct"><div class="cb" style="background:#F9F2FB;color:#6A1B9A">4</div><div class="cl" style="color:#6A1B9A">The Flow</div></div>
+    <div class="ct"><div class="cb" style="background:#F9F2FB;color:#6A1B9A">4</div>
+    <div class="cl" style="color:#6A1B9A" data-k="c4label">The Flow</div>
     <div class="ch">FIIs Sold ₹5,285 Cr. DIIs Bought ₹4,120 Cr. The Tug of War Continues.</div>
     <div class="cy">
       FIIs have now sold in 14 of 15 October sessions. DIIs have bought in all 15. The numbers are staggering.
@@ -247,7 +248,8 @@
   <!-- CARD 5 -->
   <div class="cd">
     <div class="ca" style="background:#007A3F"></div>
-    <div class="ct"><div class="cb" style="background:#E8F5EE;color:#007A3F">5</div><div class="cl" style="color:#007A3F">The Context</div></div>
+    <div class="ct"><div class="cb" style="background:#E8F5EE;color:#007A3F">5</div>
+    <div class="cl" style="color:#007A3F" data-k="c5label">The Context</div>
     <div class="ch">Brent $108, Rupee ₹95/$, US 10Y at 5.1% — The Three Forces Driving FII Exits</div>
     <div class="cy">
       Three macro numbers explain why FIIs keep selling Indian equities.
@@ -272,8 +274,8 @@
   <button class="back-btn" onclick="goA('brief')">← Back to 19 Oct '26</button>
 
   <div class="tm-header">
-    <div class="tm-title">Top Movers by Index</div>
-    <div class="tm-sub">3 Gainers · 3 Losers · Every Major Index</div>
+    <div class="tm-title" data-k="tmTitle">Top Movers by Index</div>
+    <div class="tm-sub" data-k="tmSub">3 Gainers · 3 Losers · Every Major Index</div>
     <div class="tm-date">19 OCTOBER 2026 · SATURDAY</div>
   </div>
 
@@ -626,7 +628,7 @@
 <!-- ===== FOOTER ===== -->
 <footer class="ft">
   <div class="fto" style="background:none"><img src="../logo-small.png" alt="Gandhis" style="height:48px;border-radius:50%"></div>
-  <div class="ftg">Follow the Gandhis</div>
+  <div class="ftg" data-k="ftFollow">Follow the Gandhis</div>
   <div class="fts">
     <a class="tg" href="https://t.me/followthegandhis" target="_blank">
       <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
@@ -666,6 +668,50 @@ function goA(t) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+/* Language toggle */
+function setLangA(lang) {
+  var btnEn = document.getElementById('btnEn');
+  var btnHi = document.getElementById('btnHi');
+  if (btnEn) {
+    btnEn.style.background = lang === 'en' ? '#007A3F' : 'transparent';
+    btnEn.style.color = lang === 'en' ? '#fff' : '#777';
+  }
+  if (btnHi) {
+    btnHi.style.background = lang === 'hi' ? '#007A3F' : 'transparent';
+    btnHi.style.color = lang === 'hi' ? '#fff' : '#777';
+  }
+  var els = document.querySelectorAll('[data-k]');
+  for (var i = 0; i < els.length; i++) {
+    var key = els[i].getAttribute('data-k');
+    if (TA[key] && TA[key][lang]) {
+      els[i].innerHTML = TA[key][lang];
+    }
+  }
+}
+
+var TA = {
+  c1label:{en:"Where the Money Moved",hi:"पैसा कहाँ गया"},
+  c1head:{en:"PSU Banks Were the Only Sector in Green (+2.5%) While Everything Else Bled",hi:"PSU Banks एकमात्र हरा सेक्टर रहा (+2.5%) जबकि बाकी सब गिरे"},
+  c1insight:{en:"Educational Context",hi:"शैक्षिक संदर्भ"},
+  c2label:{en:"The Signal",hi:"द सिग्नल"},
+  c2head:{en:"PNB +6.6% on Strong Earnings. Axis Bank -4.2% Despite Beating Estimates.",hi:"PNB +6.6% मज़बूत अर्निंग्स पर। Axis Bank -4.2% अनुमान से बेहतर होने के बावजूद।"},
+  c2insight:{en:"What the Data Shows",hi:"डेटा क्या बताता है"},
+  c3label:{en:"The Data Point",hi:"द डेटा पॉइंट"},
+  c3head:{en:"Breadth: 1,211 Advances vs 2,717 Declines — 69% of Stocks Fell",hi:"ब्रेड्थ: 1,211 बढ़े vs 2,717 गिरे — 69% स्टॉक्स गिरे"},
+  c3insight:{en:"Why Breadth Matters",hi:"ब्रेड्थ क्यों मायने रखती है"},
+  c4label:{en:"The Flow",hi:"द फ्लो"},
+  c4head:{en:"FIIs Sold ₹5,285 Cr. DIIs Bought ₹4,120 Cr. The Tug of War Continues.",hi:"FII ने ₹5,285 करोड़ बेचे। DII ने ₹4,120 करोड़ खरीदे। रस्साकशी जारी।"},
+  c4insight:{en:"The Pattern",hi:"पैटर्न"},
+  c5label:{en:"The Context",hi:"द कॉन्टेक्स्ट"},
+  c5head:{en:"Brent $108, Rupee ₹95/$, US 10Y at 5.1% — The Three Forces Driving FII Exits",hi:"ब्रेंट $108, रुपया ₹95/$, US 10Y 5.1% पर — FII निकासी की तीन ताकतें"},
+  c5insight:{en:"Why These 3 Numbers Matter",hi:"ये 3 नंबर क्यों मायने रखते हैं"},
+  tmTitle:{en:"Top Movers by Index",hi:"इंडेक्स के टॉप मूवर्स"},
+  tmSub:{en:"3 Gainers · 3 Losers · Every Major Index",hi:"3 गेनर्स · 3 लूज़र्स · हर प्रमुख इंडेक्स"},
+  aboutHead:{en:"We read the market so you don't have to. Then we tell you in 90 seconds.",hi:"हम बाज़ार पढ़ते हैं ताकि आपको न पढ़ना पड़े। फिर 90 सेकंड में बता देते हैं।"},
+  aboutSub:{en:"Every trading day. 8 PM. No exceptions.",hi:"हर ट्रेडिंग डे। शाम 8 बजे। कोई अपवाद नहीं।"},
+  ftFollow:{en:"Follow the Gandhis",hi:"Gandhis को फॉलो करें"}
+};
+
 /* Ticker animation */
 (function(){
   var tk = document.getElementById('tkT');
@@ -679,24 +725,7 @@ function goA(t) {
   tk.style.animationDuration = duration + 's';
 })();
 
-/* Show brief on load */
 goA('brief');
-/* Language toggle for archive */
-function setLangA(lang) {
-  var btnEn = document.getElementById('btnEn');
-  var btnHi = document.getElementById('btnHi');
-  if (btnEn) {
-    btnEn.style.background = lang === 'en' ? '#007A3F' : 'transparent';
-    btnEn.style.color = lang === 'en' ? '#fff' : '#777';
-    btnEn.style.borderColor = lang === 'en' ? '#007A3F' : '#ddd';
-  }
-  if (btnHi) {
-    btnHi.style.background = lang === 'hi' ? '#007A3F' : 'transparent';
-    btnHi.style.color = lang === 'hi' ? '#fff' : '#777';
-    btnHi.style.borderColor = lang === 'hi' ? '#007A3F' : '#ddd';
-  }
-  document.documentElement.lang = lang === 'hi' ? 'hi' : 'en';
-}
 </script>
 
 </body>
