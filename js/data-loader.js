@@ -231,6 +231,9 @@ function buildTopMovers(rows) {
       price: parseFloat(rows[i].price) || 0,
       change: parseFloat(rows[i].changepct) || 0,
       type: rows[i].type || "",
+      advances: rows[i].advances || "0",
+      declines: rows[i].declines || "0",
+      total: rows[i].total || "0",
     };
     if (stock.type === "gainer") {
       indices[idx].gainers.push(stock);
@@ -331,14 +334,20 @@ function buildTopMovers(rows) {
 
     html += '</div>'; // close gl-grid
 
-    // idx-summary footer
-    var breadthPct = allStocks.length > 0 ? Math.round((advances / allStocks.length) * 100) : 0;
-    html += '<div class="idx-summary">';
-    html += 'Advances: <strong>' + advances + '</strong> · Declines: <strong>' + declines + '</strong>';
-    html += '<span class="breadth-pct">Breadth: ' + breadthPct + '% ▲</span>';
-    html += '</div>';
+    // idx-summary footer — uses real advances/declines from Python script
+    var adv = parseInt(data.gainers[0] && data.gainers[0].advances) || 0;
+    var dec = parseInt(data.losers[0] && data.losers[0].declines) || 0;
+    var tot = parseInt(data.gainers[0] && data.gainers[0].total) || 0;
+    var breadthPct = tot > 0 ? Math.round((adv / tot) * 100) : 0;
 
-    html += '</div>'; // close idx-section
+    html += '<div class="idx-summary">';
+    if (tot > 0) {
+      html += 'Advances: <strong>' + adv + '</strong> · Declines: <strong>' + dec + '</strong>';
+      html += '<span class="breadth-pct">Breadth: ' + breadthPct + '% ▲</span>';
+    } else {
+      html += 'Top 3 Gainers · Top 3 Losers';
+    }
+    html += '</div>';
   }
 
   container.innerHTML = html;
