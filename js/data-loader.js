@@ -273,15 +273,10 @@ function buildTopMovers(rows) {
     var icon = iconMap[idxName] || idxName.substring(0, 2).toUpperCase();
     var fullName = fullNameMap[idxName] || idxName;
 
-    // Calculate net change from gainers/losers
-    var allStocks = data.gainers.concat(data.losers);
-    var advances = 0;
-    var declines = 0;
-    for (var a = 0; a < allStocks.length; a++) {
-      if (allStocks[a].change >= 0) advances++;
-      else declines++;
-    }
-    var isGreen = advances >= declines;
+     // Use real advances/declines from Python script (all stocks in the index)
+    var realAdv = parseInt(data.gainers.length > 0 ? data.gainers.advances : "0") || 0;
+    var realDec = parseInt(data.gainers.length > 0 ? data.gainers.declines : "0") || 0;
+    var isGreen = realAdv >= realDec;
     var barClass = isGreen ? "bar-green" : "bar-red";
     var iconClass = isGreen ? "ig" : "ir";
 
@@ -348,6 +343,7 @@ function buildTopMovers(rows) {
       html += 'Top 3 Gainers · Top 3 Losers';
     }
     html += '</div>';
+    html += '</div>'; // close idx-section
   }
 
   container.innerHTML = html;
