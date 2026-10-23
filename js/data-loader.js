@@ -1,8 +1,9 @@
 
 // ============================================================
-// GANDHIS.CO — Live Market Data Loader (v7)
+// GANDHIS.CO — Live Market Data Loader (v8)
 // Google Sheets → Ticker + Sector Map + Headline + Top Movers
 // + Auto: Date Bar, Pulse Board, Sector Strip, Macro Strip
+// BUG FIX: moversLines parsing corrected (v7 → v8)
 // ============================================================
 
 // ---- SHEET URLs ----
@@ -48,18 +49,21 @@ function updateDateBar() {
   var monthUpper = monthsUpper[d.getMonth()];
   var year = d.getFullYear();
 
-  // Update date bar: "Thursday, 22 October 2026"
+  // Update date bar: "Friday, 23 October 2026"
   var dateEl = document.querySelector('[data-k="date"]');
   if (dateEl) dateEl.innerHTML = dayName + ", " + dayNum + " " + monthName + " " + year;
 
-  // Update edition: "EDITION #3 · 8:00 PM IST"
+  // Update edition: "EDITION #4 · 8:00 PM IST"
   var edEl = document.querySelector('[data-k="edition"]');
   if (edEl) edEl.innerHTML = "EDITION #" + GANDHIS_CONFIG.edition + " &middot; 8:00 PM IST";
-  
+
+  // Update Top Movers date: "23 OCTOBER 2026 · FRIDAY"
+  var tmDateEl = document.querySelector(".tm-date");
+  if (tmDateEl) tmDateEl.textContent = dayNum + " " + monthUpper + " " + year + " \u00b7 " + dayName.toUpperCase();
 }
 
 // ============================================================
-// TICKER RIBBON (original v3 — exact)
+// TICKER RIBBON
 // ============================================================
 
 function buildTickerItem(r) {
@@ -128,7 +132,7 @@ function buildTicker(rows) {
 }
 
 // ============================================================
-// HEADLINE — NIFTY 50 (original v3 — exact)
+// HEADLINE — NIFTY 50
 // ============================================================
 
 function updateHeadline(rows) {
@@ -161,7 +165,7 @@ function updateHeadline(rows) {
 }
 
 // ============================================================
-// SECTOR MAP (original v3 — exact)
+// SECTOR MAP (8 sectors grid)
 // ============================================================
 
 function updateSectorMap(rows) {
@@ -217,7 +221,7 @@ function updateSectorMap(rows) {
 }
 
 // ============================================================
-// PULSE BOARD: NIFTY 50 VALUE (NEW — auto from sheet)
+// PULSE BOARD: NIFTY 50 VALUE (auto from sheet)
 // ============================================================
 
 function updatePulseNifty(rows) {
@@ -250,7 +254,7 @@ function updatePulseNifty(rows) {
 }
 
 // ============================================================
-// PULSE BOARD: SECTOR STRIP (NEW — 8 chips sorted by performance)
+// PULSE BOARD: SECTOR STRIP (8 chips sorted by performance)
 // ============================================================
 
 function updateSectorStrip(rows) {
@@ -307,7 +311,7 @@ function updateSectorStrip(rows) {
 }
 
 // ============================================================
-// PULSE BOARD: MACRO STRIP (NEW — Brent, USD/INR, US 10Y, Gold, DXY)
+// PULSE BOARD: MACRO STRIP (Brent, USD/INR, US 10Y, Gold, DXY)
 // ============================================================
 
 function updateMacroStrip(rows) {
@@ -360,7 +364,7 @@ function updateMacroStrip(rows) {
 }
 
 // ============================================================
-// TOP MOVERS — Edition 3 card format with advances/declines
+// TOP MOVERS — Card format with advances/declines
 // ============================================================
 
 function buildTopMovers(rows) {
@@ -499,7 +503,7 @@ function buildTopMovers(rows) {
 }
 
 // ============================================================
-// TIMESTAMP (original v3 — exact)
+// TIMESTAMP
 // ============================================================
 
 function updateTimestamp() {
@@ -521,7 +525,7 @@ function updateTimestamp() {
 }
 
 // ============================================================
-// MAIN LOADER (original v3 async/await + NEW automation calls)
+// MAIN LOADER (v8 — BUG FIXED: moversLines parsing)
 // ============================================================
 
 async function loadMarketData() {
@@ -551,21 +555,33 @@ async function loadMarketData() {
     updateHeadline(tickerRows);
     updateTimestamp();
 
+    // Update NEW pulse board components from same ticker data
+    updatePulseNifty(tickerRows);
+    updateSectorStrip(tickerRows);
+    updateMacroStrip(tickerRows);
+
     // ---- FETCH TOP MOVERS DATA ----
     var moversRes = await fetch(TOPMOVERS_CSV);
     if (!moversRes.ok) throw new Error("Top Movers sheet fetch failed: " + moversRes.status);
-        var moversText = await moversRes.text();
+    var moversText = await moversRes.text();
 
-    // Extract date from row 1 before parsing
-    var moversLines = moversText.trim().split("
-");
-    var firstLine = moversLines.split(",").trim().replace(/"/g, "");
+    // ============================================================
+    // BUG FIX (v7 → v8):
+    // v7 had: var firstLine = moversLines.split(",").trim()
+    // moversLines is an ARRAY (from .split("\n")), not a string.
+    // Calling .split(",") on an array returns garbage and crashes.
+    // FIXED: use moversLines[0] to get the first line as a string.
+    // ============================================================
+    var moversLines = moversText.trim().split("\n");
+
+    // Check if row 0 is a date header (contains year + middot)
+    var firstLine = moversLines[0].split(",")[0].trim().replace(/"/g, "");
     var tmDateEl = document.querySelector(".tm-date");
     if (tmDateEl && firstLine.indexOf("20") > -1 && firstLine.indexOf("\u00b7") > -1) {
       tmDateEl.textContent = firstLine;
       console.log("Gandhis: Top Movers date set to: " + firstLine);
-      moversText = moversLines.slice(1).join("
-");
+      // Remove the date header row before parsing as CSV
+      moversText = moversLines.slice(1).join("\n");
     }
 
     var moversRows = parseCSV(moversText);
@@ -580,7 +596,7 @@ async function loadMarketData() {
   }
 }
 
-// ---- INIT (original v3 — exact) ----
+// ---- INIT ----
 document.addEventListener("DOMContentLoaded", function () {
   // Show page + set language immediately
   if (typeof go === 'function') go('brief');
