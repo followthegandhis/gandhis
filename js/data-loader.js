@@ -370,11 +370,15 @@ function buildTopMovers(rows) {
     return;
   }
 
-  // First row may be the date string from Python — extract it
-  if (rows.length > 0 && rows.index && rows.index.indexOf("20") > -1 && rows.index.indexOf("·") > -1) {
-    var tmDateEl = document.querySelector(".tm-date");
-    if (tmDateEl) tmDateEl.textContent = rows.index;
-    rows.shift(); // remove date row so it doesn't break stock parsing
+  // First row's keys contain the date string (parseCSV made it a header)
+  // Check if first key looks like a date instead of "index"
+  if (rows.length > 0) {
+    var firstKey = Object.keys(rows) || "";
+    if (firstKey !== "index" && firstKey.indexOf("20") > -1) {
+      var tmDateEl = document.querySelector(".tm-date");
+      if (tmDateEl) tmDateEl.textContent = firstKey;
+      console.log("Gandhis: Top Movers date set to: " + firstKey);
+    }
   }
 
   // Group by index
