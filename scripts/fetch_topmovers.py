@@ -160,6 +160,7 @@ def fetch_all_nse():
 
     return all_data if all_data else None
 
+
 # ---- YAHOO FINANCE FALLBACK ----
 
 YAHOO_CHART_URL = "https://query1.finance.yahoo.com/v8/finance/chart/"
@@ -421,6 +422,7 @@ def update_indices_tab(spreadsheet):
     else:
         print("  ⚠️ USD/INR row not found in Indices tab")
 
+
 # ---- GOOGLE SHEETS WRITER ----
 
 def write_to_sheet(all_data):
@@ -463,10 +465,11 @@ def write_to_sheet(all_data):
         for l in losers:
             rows.append([index_name, l["symbol"], l["price"], l["changepct"], "loser", advances, declines, total])
 
-     if len(rows) > 1:
+    # BUG FIX: Original had wrong indentation on this if block
+    # (was indented inside the for loop, should be at function level)
+    if len(rows) > 1:
         worksheet.clear()
         # Row 1: today's date for the website to read
-        from datetime import datetime
         date_row = [[datetime.now().strftime('%d %B %Y · %A').upper()]]
         worksheet.update(range_name="A1", values=date_row)
         # Row 2 onwards: header + data
