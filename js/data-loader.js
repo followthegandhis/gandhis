@@ -261,14 +261,14 @@ function updateSectorStrip(rows) {
   if (!container) return;
 
   var sectorMap = {
-    "NIFTY PHARMA": "Pharma",
     "PSU BANK": "PSU Bank",
     "BANK NIFTY": "Bank Nifty",
-    "NIFTY METAL": "Metal",
-    "NIFTY AUTO": "Auto",
-    "NIFTY REALTY": "Realty",
-    "NIFTY IT": "IT",
-    "NIFTY FMCG": "FMCG"
+    "PHARMA": "Pharma",
+    "METAL": "Metal",
+    "AUTO": "Auto",
+    "REALTY": "Realty",
+    "IT": "IT",
+    "FMCG": "FMCG"
   };
 
   var sectors = [];
@@ -553,11 +553,6 @@ async function loadMarketData() {
     updateSectorMap(tickerRows);
     updateHeadline(tickerRows);
     updateTimestamp();
-
-    // NEW: Update pulse board from sheet data
-    updatePulseNifty(tickerRows);
-    updateSectorStrip(tickerRows);
-    updateMacroStrip(tickerRows);
 
     // ---- FETCH TOP MOVERS DATA ----
     var moversRes = await fetch(TOPMOVERS_CSV);
