@@ -1,10 +1,11 @@
 
 """
-GANDHIS.CO — Automated Top Movers Fetcher (v4)
+GANDHIS.CO — Automated Top Movers Fetcher (v5)
 Primary: NSE India API (accurate, auto-updated constituents)
 Fallback: Yahoo Finance (improved accuracy)
 Writes top 3 gainers + 3 losers per index to Google Sheets
-NOW INCLUDES: advances, declines, total per index
+Includes: advances, declines, total per index
+Auto-updates: Crude Oil + USD/INR in Indices tab
 """
 
 import json
@@ -110,7 +111,6 @@ def fetch_nse_index(session, index_name):
                     "price": round(float(price), 2),
                     "changepct": round(change_val, 2),
                 })
-                # Count advances and declines from ALL stocks
                 if change_val >= 0:
                     advances += 1
                 else:
@@ -158,14 +158,10 @@ def fetch_all_nse():
 
     return all_data if all_data else None
 
-# ---- YAHOO FINANCE FALLBACK (v8 CHART ENDPOINT — WORKING) ----
-# Only used if NSE API is blocked/down
-# Uses v8 chart endpoint (confirmed working 2026) with proper close price calculation
+# ---- YAHOO FINANCE FALLBACK ----
 
 YAHOO_CHART_URL = "https://query1.finance.yahoo.com/v8/finance/chart/"
 
-# Yahoo fallback needs hardcoded lists (unlike NSE which auto-updates)
-# Update these quarterly when index constituents change
 YAHOO_FALLBACK = {
     "NIFTY 50": [
         "RELIANCE", "TCS", "HDFCBANK", "INFY", "ICICIBANK", "HINDUNILVR",
@@ -292,7 +288,6 @@ def fetch_all_yahoo():
         print(f"    Got data for {len(stocks)}/{len(symbols)} stocks")
 
         if stocks and len(stocks) >= TOP_N * 2:
-            # Count advances and declines from ALL fetched stocks
             advances = sum(1 for s in stocks if s["changepct"] >= 0)
             declines = sum(1 for s in stocks if s["changepct"] < 0)
             total = advances + declines
@@ -310,14 +305,130 @@ def fetch_all_yahoo():
 
     return all_data if all_data else None
 
+
+# ---- CRUDE OIL + USD/INR FETCHER (for Indices tab) ----
+
+def fetch_crude_oil():
+    """Fetch Brent Crude Oil price and % change from Yahoo Finance."""
+    url = f"{YAHOO_CHART_URL}BZ%3DF?interval=1d&range=5d"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    }
+
+    try:
+        resp = requests.get(url, headers=headers, timeout=10)
+        resp.raise_for_status()
+        data = resp.json()
+        result = data["chart"]["result"][0]
+
+        closes = result["indicators"]["quote"][0]["close"]
+        valid_closes = [c for c in closes if c is not None]
+
+        if len(valid_closes) >= 2:
+            current = valid_closes[-1]
+            previous = valid_closes[-2]
+            changepct = round(((current - previous) / previous) * 100, 2)
+            print(f"  ✅ Crude Oil (Brent): ${round(current, 2)} ({changepct:+.2f}%)")
+            return round(current, 2), changepct
+        elif len(valid_closes) == 1:
+            meta = result["meta"]
+            current = valid_closes[0]
+            previous = meta.get("chartPreviousClose", 0)
+            if previous and previous > 0:
+                changepct = round(((current - previous) / previous) * 100, 2)
+            else:
+                changepct = 0
+            print(f"  ✅ Crude Oil (Brent): ${round(current, 2)} ({changepct:+.2f}%)")
+            return round(current, 2), changepct
+
+    except Exception as e:
+        print(f"  ❌ Crude Oil fetch failed: {e}")
+
+    return None, None
+
+
+def fetch_usdinr_change():
+    """Fetch USD/INR % change from Yahoo Finance."""
+    url = f"{YAHOO_CHART_URL}INR%3DX?interval=1d&range=5d"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    }
+
+    try:
+        resp = requests.get(url, headers=headers, timeout=10)
+        resp.raise_for_status()
+        data = resp.json()
+        result = data["chart"]["result"][0]
+
+        closes = result["indicators"]["quote"][0]["close"]
+        valid_closes = [c for c in closes if c is not None]
+
+        if len(valid_closes) >= 2:
+            current = valid_closes[-1]
+            previous = valid_closes[-2]
+            changepct = round(((current - previous) / previous) * 100, 2)
+            print(f"  ✅ USD/INR: {round(current, 2)} ({changepct:+.2f}%)")
+            return changepct
+
+    except Exception as e:
+        print(f"  ❌ USD/INR fetch failed: {e}")
+
+    return None
+
+
+def update_indices_tab(spreadsheet):
+    """Update Crude Oil and USD/INR in the Indices tab.
+    CRITICAL: Uses cell-level updates to preserve GOOGLEFINANCE formulas.
+    """
+    print("\nUpdating Indices tab (Crude Oil + USD/INR)...")
+
+    try:
+        ws = spreadsheet.worksheet("Indices")
+    except Exception as e:
+        print(f"  ❌ Could not open Indices tab: {e}")
+        return
+
+    all_values = ws.get_all_values()
+
+    crude_row = None
+    usdinr_row = None
+
+    for i, row in enumerate(all_values):
+        if len(row) >= 2:
+            if row[0].strip().upper() in ("CRUDEOIL", "INDEXNSE:CRUDEOIL", "CRUDE OIL") or row[1].strip().upper() == "CRUDE OIL":
+                crude_row = i + 1
+            if row[0].strip().upper() in ("USDINR", "CURRENCY:USDINR", "USD/INR") or row[1].strip().upper() == "USD/INR":
+                usdinr_row = i + 1
+
+    crude_price, crude_change = fetch_crude_oil()
+    if crude_row and crude_price is not None:
+        ws.update_acell(f"C{crude_row}", crude_price)
+        ws.update_acell(f"D{crude_row}", crude_change)
+        print(f"  ✅ Crude Oil updated in row {crude_row}: ${crude_price} ({crude_change:+.2f}%)")
+    elif crude_row:
+        print(f"  ⚠️ Crude Oil row found ({crude_row}) but fetch failed — keeping existing values")
+    else:
+        print("  ⚠️ Crude Oil row not found in Indices tab")
+
+    usdinr_change = fetch_usdinr_change()
+    if usdinr_row and usdinr_change is not None:
+        ws.update_acell(f"D{usdinr_row}", usdinr_change)
+        print(f"  ✅ USD/INR changepct updated in row {usdinr_row}: {usdinr_change:+.2f}%")
+    elif usdinr_row:
+        print(f"  ⚠️ USD/INR row found ({usdinr_row}) but fetch failed — keeping existing value")
+    else:
+        print("  ⚠️ USD/INR row not found in Indices tab")
+
 # ---- GOOGLE SHEETS WRITER ----
 
 def write_to_sheet(all_data):
-    """Write all top movers data to Google Sheets."""
+    """Write all top movers data to Google Sheets.
+    Returns the spreadsheet object for reuse by update_indices_tab.
+    """
     creds_json = os.environ.get("GOOGLE_SHEETS_CREDS")
     if not creds_json:
         print("ERROR: GOOGLE_SHEETS_CREDS not found")
-        return False
+        return None
 
     creds_dict = json.loads(creds_json)
     creds = Credentials.from_service_account_info(
@@ -332,7 +443,7 @@ def write_to_sheet(all_data):
     sheet_url = os.environ.get("GOOGLE_SHEET_URL")
     if not sheet_url:
         print("ERROR: GOOGLE_SHEET_URL not found")
-        return False
+        return None
 
     spreadsheet = client.open_by_url(sheet_url)
 
@@ -341,7 +452,6 @@ def write_to_sheet(all_data):
     except gspread.exceptions.WorksheetNotFound:
         worksheet = spreadsheet.add_worksheet(title="topmovers", rows=200, cols=8)
 
-    # Build rows — now with 8 columns
     rows = [["index", "stock", "price", "changepct", "type", "advances", "declines", "total"]]
 
     for index_name, movers in all_data.items():
@@ -351,25 +461,25 @@ def write_to_sheet(all_data):
         for l in losers:
             rows.append([index_name, l["symbol"], l["price"], l["changepct"], "loser", advances, declines, total])
 
-    # Only clear and write if we have real data (safety net)
     if len(rows) > 1:
         worksheet.clear()
         worksheet.update(range_name="A1", values=rows)
         print(f"SUCCESS: Wrote {len(rows) - 1} rows to 'topmovers' sheet (with breadth data)")
-        return True
     else:
         print("ERROR: No rows to write, keeping existing data")
-        return False
+
+    return spreadsheet
 
 
 # ---- MAIN ----
 
 def main():
     print("=" * 50)
-    print("GANDHIS.CO — Top Movers Fetcher v4")
+    print("GANDHIS.CO — Top Movers Fetcher v5")
+    print("Now with auto Crude Oil + USD/INR updates!")
     print("=" * 50)
 
-    # LAYER 1: Try NSE India API (accurate, auto-updated constituents)
+    # LAYER 1: Try NSE India API
     all_data = fetch_all_nse()
 
     # LAYER 2: If NSE failed, fall back to Yahoo Finance
@@ -377,14 +487,38 @@ def main():
         print("\n" + "-" * 50)
         all_data = fetch_all_yahoo()
 
-    # LAYER 3: Safety net — if both failed, don't touch the sheet
+    # LAYER 3: Write top movers to Google Sheets
+    spreadsheet = None
     if all_data:
         print("\n" + "-" * 50)
         print(f"Writing {len(all_data)} indices to Google Sheets...")
-        write_to_sheet(all_data)
+        spreadsheet = write_to_sheet(all_data)
     else:
         print("\n❌ BOTH SOURCES FAILED — keeping existing sheet data untouched")
-        print("The website will show yesterday's top movers (better than nothing)")
+
+    # LAYER 4: Update Crude Oil + USD/INR in Indices tab
+    # Runs even if top movers failed — these are independent
+    if spreadsheet:
+        update_indices_tab(spreadsheet)
+    else:
+        print("\nConnecting to Google Sheets for Indices tab update...")
+        try:
+            creds_json = os.environ.get("GOOGLE_SHEETS_CREDS")
+            sheet_url = os.environ.get("GOOGLE_SHEET_URL")
+            if creds_json and sheet_url:
+                creds_dict = json.loads(creds_json)
+                creds = Credentials.from_service_account_info(
+                    creds_dict,
+                    scopes=[
+                        "https://www.googleapis.com/auth/spreadsheets",
+                        "https://www.googleapis.com/auth/drive",
+                    ],
+                )
+                client = gspread.authorize(creds)
+                spreadsheet = client.open_by_url(sheet_url)
+                update_indices_tab(spreadsheet)
+        except Exception as e:
+            print(f"  ❌ Could not connect for Indices update: {e}")
 
     print("\n" + "=" * 50)
     print("Done!")
