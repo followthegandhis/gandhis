@@ -14,6 +14,8 @@ import time
 import requests
 import gspread
 from google.oauth2.service_account import Credentials
+from datetime import datetime
+
 
 # ---- CONFIG ----
 TOP_N = 3
@@ -461,9 +463,14 @@ def write_to_sheet(all_data):
         for l in losers:
             rows.append([index_name, l["symbol"], l["price"], l["changepct"], "loser", advances, declines, total])
 
-    if len(rows) > 1:
+     if len(rows) > 1:
         worksheet.clear()
-        worksheet.update(range_name="A1", values=rows)
+        # Row 1: today's date for the website to read
+        from datetime import datetime
+        date_row = [[datetime.now().strftime('%d %B %Y · %A').upper()]]
+        worksheet.update(range_name="A1", values=date_row)
+        # Row 2 onwards: header + data
+        worksheet.update(range_name="A2", values=rows)
         print(f"SUCCESS: Wrote {len(rows) - 1} rows to 'topmovers' sheet (with breadth data)")
     else:
         print("ERROR: No rows to write, keeping existing data")
