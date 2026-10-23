@@ -204,7 +204,8 @@ function updateSectorMap(rows) {
 
 // ============================================================
 // TOP MOVERS — Reads from topmovers sheet tab
-// Targets #movers-container and builds everything inside it
+// Targets #movers-container, builds idx-section cards
+// Uses existing CSS classes from style2.css
 // ============================================================
 
 function buildTopMovers(rows) {
@@ -243,82 +244,104 @@ function buildTopMovers(rows) {
     return;
   }
 
-  // Build the full HTML: buttons + data panels
+  // Icon map for each index
+  var iconMap = {
+    "NIFTY 50": "50", "NIFTY MIDCAP": "MC", "NIFTY SMALLCAP": "SC",
+    "BANK NIFTY": "BN", "NIFTY IT": "IT", "PSU BANK": "PS",
+    "NIFTY AUTO": "AU", "NIFTY METAL": "MT", "NIFTY PHARMA": "PH",
+    "NIFTY FMCG": "FM", "NIFTY REALTY": "RE"
+  };
+
+  // Full name map
+  var fullNameMap = {
+    "NIFTY 50": "NIFTY 50 INDEX", "NIFTY MIDCAP": "NIFTY MIDCAP 100",
+    "NIFTY SMALLCAP": "NIFTY SMALLCAP 250", "BANK NIFTY": "NIFTY BANK INDEX",
+    "NIFTY IT": "NIFTY IT INDEX", "PSU BANK": "NIFTY PSU BANK",
+    "NIFTY AUTO": "NIFTY AUTO INDEX", "NIFTY METAL": "NIFTY METAL INDEX",
+    "NIFTY PHARMA": "NIFTY PHARMA INDEX", "NIFTY FMCG": "NIFTY FMCG INDEX",
+    "NIFTY REALTY": "NIFTY REALTY INDEX"
+  };
+
   var html = '';
 
-  // Index selector buttons
-  html += '<div id="tm-btns" class="tm-btns">';
-  for (var b = 0; b < indexOrder.length; b++) {
-    var active = b === 0 ? " tm-btn-active" : "";
-    html += '<button class="tm-btn' + active + '" data-idx="' + b + '">' + indexOrder[b] + '</button>';
-  }
-  html += '</div>';
-
-  // Data panels
-  html += '<div id="tm-data">';
   for (var p = 0; p < indexOrder.length; p++) {
     var idxName = indexOrder[p];
     var data = indices[idxName];
-    var display = p === 0 ? "block" : "none";
+    var icon = iconMap[idxName] || idxName.substring(0, 2).toUpperCase();
+    var fullName = fullNameMap[idxName] || idxName;
 
-    html += '<div class="tm-panel" data-panel="' + p + '" style="display:' + display + ';">';
+    // Calculate net change from gainers/losers
+    var allStocks = data.gainers.concat(data.losers);
+    var advances = 0;
+    var declines = 0;
+    for (var a = 0; a < allStocks.length; a++) {
+      if (allStocks[a].change >= 0) advances++;
+      else declines++;
+    }
+    var isGreen = advances >= declines;
+    var barClass = isGreen ? "bar-green" : "bar-red";
+    var iconClass = isGreen ? "ig" : "ir";
 
-    // Gainers table
-    html += '<div class="tm-section">';
-    html += '<div class="tm-label tm-gainer-label">▲ Top 3 Gainers</div>';
-    html += '<table class="tm-table">';
-    html += '<tr><th>Stock</th><th>Price (₹)</th><th>Change</th></tr>';
+    // Start idx-section
+    html += '<div class="idx-section">';
+
+    // idx-bar header
+    html += '<div class="idx-bar ' + barClass + '">';
+    html += '<div class="idx-left">';
+    html += '<div class="idx-icon ' + iconClass + '">' + icon + '</div>';
+    html += '<div><div class="idx-name">' + idxName + '</div>';
+    html += '<div class="idx-full">' + fullName + '</div></div>';
+    html += '</div>';
+    html += '</div>';
+
+    // gl-grid: Gainers | Losers
+    html += '<div class="gl-grid">';
+
+    // Gainers column
+    html += '<div class="gl-col">';
+    html += '<div class="gl-label" style="color:#007A3F;">▲ TOP GAINERS</div>';
     for (var g = 0; g < data.gainers.length; g++) {
       var gn = data.gainers[g];
-      html +=
-        '<tr><td class="tm-stock">' + gn.name + '</td>' +
-        '<td class="tm-price">' + Number(gn.price).toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '</td>' +
-        '<td class="tm-change tm-up">▲ ' + Math.abs(gn.change).toFixed(2) + '%</td></tr>';
+      html += '<div class="stk green">';
+      html += '<span class="stk-rank">' + (g + 1) + '</span>';
+      html += '<div class="stk-info">';
+      html += '<div class="stk-name">' + gn.name + '</div>';
+      html += '<div class="stk-price">₹' + Number(gn.price).toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '</div>';
+      html += '</div>';
+      html += '<div class="stk-chg" style="color:#007A3F;">+' + Math.abs(gn.change).toFixed(2) + '%</div>';
+      html += '</div>';
     }
-    html += '</table></div>';
+    html += '</div>';
 
-    // Losers table
-    html += '<div class="tm-section">';
-    html += '<div class="tm-label tm-loser-label">▼ Top 3 Losers</div>';
-    html += '<table class="tm-table">';
-    html += '<tr><th>Stock</th><th>Price (₹)</th><th>Change</th></tr>';
+    // Losers column
+    html += '<div class="gl-col">';
+    html += '<div class="gl-label" style="color:#D32F2F;">▼ TOP LOSERS</div>';
     for (var l = 0; l < data.losers.length; l++) {
       var ln = data.losers[l];
-      html +=
-        '<tr><td class="tm-stock">' + ln.name + '</td>' +
-        '<td class="tm-price">' + Number(ln.price).toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '</td>' +
-        '<td class="tm-change tm-dn">▼ ' + Math.abs(ln.change).toFixed(2) + '%</td></tr>';
+      html += '<div class="stk red">';
+      html += '<span class="stk-rank">' + (l + 1) + '</span>';
+      html += '<div class="stk-info">';
+      html += '<div class="stk-name">' + ln.name + '</div>';
+      html += '<div class="stk-price">₹' + Number(ln.price).toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '</div>';
+      html += '</div>';
+      html += '<div class="stk-chg" style="color:#D32F2F;">-' + Math.abs(ln.change).toFixed(2) + '%</div>';
+      html += '</div>';
     }
-    html += '</table></div>';
-
     html += '</div>';
-  }
-  html += '</div>';
 
-  // Inject into container
+    html += '</div>'; // close gl-grid
+
+    // idx-summary footer
+    var breadthPct = allStocks.length > 0 ? Math.round((advances / allStocks.length) * 100) : 0;
+    html += '<div class="idx-summary">';
+    html += 'Advances: <strong>' + advances + '</strong> · Declines: <strong>' + declines + '</strong>';
+    html += '<span class="breadth-pct">Breadth: ' + breadthPct + '% ▲</span>';
+    html += '</div>';
+
+    html += '</div>'; // close idx-section
+  }
+
   container.innerHTML = html;
-
-  // Add click handlers to buttons
-  var btnContainer = document.getElementById("tm-btns");
-  var dataContainer = document.getElementById("tm-data");
-  var btns = btnContainer.querySelectorAll(".tm-btn");
-
-  for (var c = 0; c < btns.length; c++) {
-    btns[c].addEventListener("click", function () {
-      var idx = this.getAttribute("data-idx");
-      var allBtns = btnContainer.querySelectorAll(".tm-btn");
-      for (var ab = 0; ab < allBtns.length; ab++) {
-        allBtns[ab].classList.remove("tm-btn-active");
-      }
-      this.classList.add("tm-btn-active");
-      var allPanels = dataContainer.querySelectorAll(".tm-panel");
-      for (var ap = 0; ap < allPanels.length; ap++) {
-        allPanels[ap].style.display = "none";
-      }
-      dataContainer.querySelector('[data-panel="' + idx + '"]').style.display = "block";
-    });
-  }
-
   console.log("Gandhis: Top Movers updated — " + indexOrder.length + " indices, " + rows.length + " stocks");
 }
 
