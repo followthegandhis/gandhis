@@ -53,7 +53,6 @@ c1insightbody: {
   hi: 'कल IT एकमात्र बचा था (+2.88%)। आज उसने -1.40% वापस दिया। सेक्टर रोटेशन हिंसक है — जो एक दिन आगे, अगले दिन पीछे। आज सिर्फ <strong>Pharma (+0.12%)</strong> बचा, जो दिखाता है कि बाज़ार <strong>शुद्ध डिफेंसिव</strong> में जा रहा है जैसे-जैसे क्रूड का दबाव बढ़ रहा है।'
 },
 
-
 /* ----- CARD 2: THE SIGNAL ----- */
 c2label: { en: "The Signal", hi: "द सिग्नल" },
 c2head: {
@@ -117,7 +116,6 @@ c5insightbody: {
   en: 'Crude past <strong>$111</strong> = higher import bill = wider trade deficit = inflation. Rupee weakening to <strong>₹94.81</strong> = FII dollar returns erode, accelerating outflows. The one positive: US 10Y yields fell slightly, reducing the pull for FII money towards US bonds. Until crude cools, expect continued pressure.',
   hi: 'क्रूड <strong>$111</strong> के पार = ज़्यादा आयात बिल = बड़ा ट्रेड डेफिसिट = महंगाई। रुपया <strong>₹94.81</strong> तक कमज़ोर = FII के डॉलर रिटर्न और घटे, आउटफ्लो तेज़। एक सकारात्मक बात: US 10Y यील्ड थोड़ी गिरी, FII पैसे की US बॉन्ड्स की ओर खिंचाव कम हुआ। जब तक क्रूड ठंडा नहीं होता, दबाव जारी रहेगा।'
 },
-
 
 /* ----- TOP MOVERS ----- */
 tmTitle: { en: "Top Movers by Index", hi: "इंडेक्स के टॉप मूवर्स" },
