@@ -1,9 +1,10 @@
 
 """
-GANDHIS.CO — Automated Top Movers Fetcher (v3)
+GANDHIS.CO — Automated Top Movers Fetcher (v4)
 Primary: NSE India API (accurate, auto-updated constituents)
 Fallback: Yahoo Finance (improved accuracy)
 Writes top 3 gainers + 3 losers per index to Google Sheets
+NOW INCLUDES: advances, declines, total per index
 """
 
 import json
@@ -28,7 +29,7 @@ NSE_INDICES = [
     "NIFTY METAL",
     "NIFTY PHARMA",
     "NIFTY FMCG",
-    "NIFTY REALTY",   
+    "NIFTY REALTY",
 ]
 
 # Display names for your website (what data-loader.js expects)
@@ -67,10 +68,9 @@ def get_nse_session():
     session = requests.Session()
     session.headers.update(NSE_HEADERS)
     try:
-        # First hit the main page to get cookies
         r = session.get(NSE_BASE, timeout=15)
         r.raise_for_status()
-        time.sleep(1)  # Be polite, wait 1 second
+        time.sleep(1)
         return session
     except Exception as e:
         print(f"  NSE session failed: {e}")
@@ -78,21 +78,25 @@ def get_nse_session():
 
 
 def fetch_nse_index(session, index_name):
-    """Fetch all constituents + prices for an index from NSE."""
+    """Fetch all constituents + prices for an index from NSE.
+    Returns: (stocks_list, advances, declines, total) or (None, 0, 0, 0)
+    """
     import urllib.parse
     encoded = urllib.parse.quote(index_name)
     url = f"{NSE_API}{encoded}"
 
     try:
-        time.sleep(1.5)  # Rate limit: max ~1 request per 1.5 sec
+        time.sleep(1.5)
         r = session.get(url, timeout=15)
         r.raise_for_status()
         data = r.json()
 
         stocks = []
+        advances = 0
+        declines = 0
+
         for item in data.get("data", []):
             symbol = item.get("symbol", "")
-            # Skip the index row itself (e.g., "Nifty 50" row)
             if symbol == index_name or not symbol:
                 continue
 
@@ -100,17 +104,24 @@ def fetch_nse_index(session, index_name):
             change_pct = item.get("pChange", 0)
 
             if price and price > 0:
+                change_val = float(change_pct)
                 stocks.append({
                     "symbol": symbol,
                     "price": round(float(price), 2),
-                    "changepct": round(float(change_pct), 2),
+                    "changepct": round(change_val, 2),
                 })
+                # Count advances and declines from ALL stocks
+                if change_val >= 0:
+                    advances += 1
+                else:
+                    declines += 1
 
-        return stocks
+        total = advances + declines
+        return stocks, advances, declines, total
 
     except Exception as e:
         print(f"  NSE API failed for {index_name}: {e}")
-        return None
+        return None, 0, 0, 0
 
 
 def fetch_all_nse():
@@ -126,28 +137,26 @@ def fetch_all_nse():
 
     for index_name in NSE_INDICES:
         display_name = DISPLAY_NAMES.get(index_name, index_name)
-        stocks = fetch_nse_index(session, index_name)
+        stocks, advances, declines, total = fetch_nse_index(session, index_name)
 
         if stocks and len(stocks) >= TOP_N * 2:
             sorted_stocks = sorted(stocks, key=lambda x: x["changepct"], reverse=True)
             gainers = sorted_stocks[:TOP_N]
-            losers = sorted_stocks[-TOP_N:][::-1]  # Worst first
-            all_data[display_name] = (gainers, losers)
+            losers = sorted_stocks[-TOP_N:][::-1]
+            all_data[display_name] = (gainers, losers, advances, declines, total)
 
             g_names = ", ".join([g["symbol"] for g in gainers])
             l_names = ", ".join([l["symbol"] for l in losers])
-            print(f"  ✅ {display_name}: {len(stocks)} stocks | Gainers [{g_names}] | Losers [{l_names}]")
+            print(f"  ✅ {display_name}: {total} stocks (▲{advances} ▼{declines}) | Gainers [{g_names}] | Losers [{l_names}]")
         else:
             failures += 1
             print(f"  ❌ {display_name}: Failed or insufficient data")
 
-    # If more than half failed, consider NSE blocked — return None to trigger fallback
     if failures > len(NSE_INDICES) // 2:
         print(f"  Too many failures ({failures}/{len(NSE_INDICES)}), NSE likely blocked")
         return None
 
     return all_data if all_data else None
-
 
 # ---- YAHOO FINANCE FALLBACK (v8 CHART ENDPOINT — WORKING) ----
 # Only used if NSE API is blocked/down
@@ -233,15 +242,12 @@ def fetch_stock_yahoo(symbol):
         data = resp.json()
         result = data["chart"]["result"][0]
 
-        # Get close prices from the time series (most accurate)
         closes = result["indicators"]["quote"][0]["close"]
-
-        # Filter out None values
         valid_closes = [c for c in closes if c is not None]
 
         if len(valid_closes) >= 2:
-            current = valid_closes[-1]   # Today's close
-            previous = valid_closes[-2]  # Yesterday's close
+            current = valid_closes[-1]
+            previous = valid_closes[-2]
             changepct = round(((current - previous) / previous) * 100, 2)
             return {
                 "symbol": symbol,
@@ -249,7 +255,6 @@ def fetch_stock_yahoo(symbol):
                 "changepct": changepct,
             }
         elif len(valid_closes) == 1:
-            # Only one day of data, use meta as last resort
             meta = result["meta"]
             current = valid_closes[0]
             previous = meta.get("chartPreviousClose", 0)
@@ -279,7 +284,7 @@ def fetch_all_yahoo():
         stocks = []
 
         for sym in symbols:
-            time.sleep(0.3)  # Rate limit: ~3 requests per second
+            time.sleep(0.3)
             data = fetch_stock_yahoo(sym)
             if data:
                 stocks.append(data)
@@ -287,14 +292,19 @@ def fetch_all_yahoo():
         print(f"    Got data for {len(stocks)}/{len(symbols)} stocks")
 
         if stocks and len(stocks) >= TOP_N * 2:
+            # Count advances and declines from ALL fetched stocks
+            advances = sum(1 for s in stocks if s["changepct"] >= 0)
+            declines = sum(1 for s in stocks if s["changepct"] < 0)
+            total = advances + declines
+
             sorted_stocks = sorted(stocks, key=lambda x: x["changepct"], reverse=True)
             gainers = sorted_stocks[:TOP_N]
             losers = sorted_stocks[-TOP_N:][::-1]
-            all_data[display_name] = (gainers, losers)
+            all_data[display_name] = (gainers, losers, advances, declines, total)
 
             g_names = ", ".join([g["symbol"] for g in gainers])
             l_names = ", ".join([l["symbol"] for l in losers])
-            print(f"    ✅ Gainers [{g_names}] | Losers [{l_names}]")
+            print(f"    ✅ {total} stocks (▲{advances} ▼{declines}) | Gainers [{g_names}] | Losers [{l_names}]")
         else:
             print(f"    ❌ Failed ({len(stocks)} stocks)")
 
@@ -329,23 +339,23 @@ def write_to_sheet(all_data):
     try:
         worksheet = spreadsheet.worksheet("topmovers")
     except gspread.exceptions.WorksheetNotFound:
-        worksheet = spreadsheet.add_worksheet(title="topmovers", rows=200, cols=5)
+        worksheet = spreadsheet.add_worksheet(title="topmovers", rows=200, cols=8)
 
-    # Build rows
-    rows = [["index", "stock", "price", "changepct", "type"]]
+    # Build rows — now with 8 columns
+    rows = [["index", "stock", "price", "changepct", "type", "advances", "declines", "total"]]
 
     for index_name, movers in all_data.items():
-        gainers, losers = movers
+        gainers, losers, advances, declines, total = movers
         for g in gainers:
-            rows.append([index_name, g["symbol"], g["price"], g["changepct"], "gainer"])
+            rows.append([index_name, g["symbol"], g["price"], g["changepct"], "gainer", advances, declines, total])
         for l in losers:
-            rows.append([index_name, l["symbol"], l["price"], l["changepct"], "loser"])
+            rows.append([index_name, l["symbol"], l["price"], l["changepct"], "loser", advances, declines, total])
 
     # Only clear and write if we have real data (safety net)
     if len(rows) > 1:
         worksheet.clear()
         worksheet.update(range_name="A1", values=rows)
-        print(f"SUCCESS: Wrote {len(rows) - 1} rows to 'topmovers' sheet")
+        print(f"SUCCESS: Wrote {len(rows) - 1} rows to 'topmovers' sheet (with breadth data)")
         return True
     else:
         print("ERROR: No rows to write, keeping existing data")
@@ -356,7 +366,7 @@ def write_to_sheet(all_data):
 
 def main():
     print("=" * 50)
-    print("GANDHIS.CO — Top Movers Fetcher v3")
+    print("GANDHIS.CO — Top Movers Fetcher v4")
     print("=" * 50)
 
     # LAYER 1: Try NSE India API (accurate, auto-updated constituents)
