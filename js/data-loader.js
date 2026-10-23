@@ -370,17 +370,6 @@ function buildTopMovers(rows) {
     return;
   }
 
-  // First row's keys contain the date string (parseCSV made it a header)
-  // Check if first key looks like a date instead of "index"
-  if (rows.length > 0) {
-    var firstKey = Object.keys(rows) || "";
-    if (firstKey !== "index" && firstKey.indexOf("20") > -1) {
-      var tmDateEl = document.querySelector(".tm-date");
-      if (tmDateEl) tmDateEl.textContent = firstKey;
-      console.log("Gandhis: Top Movers date set to: " + firstKey);
-    }
-  }
-
   // Group by index
   var indices = {};
   var indexOrder = [];
@@ -565,7 +554,20 @@ async function loadMarketData() {
     // ---- FETCH TOP MOVERS DATA ----
     var moversRes = await fetch(TOPMOVERS_CSV);
     if (!moversRes.ok) throw new Error("Top Movers sheet fetch failed: " + moversRes.status);
-    var moversText = await moversRes.text();
+        var moversText = await moversRes.text();
+
+    // Extract date from row 1 before parsing
+    var moversLines = moversText.trim().split("
+");
+    var firstLine = moversLines.split(",").trim().replace(/"/g, "");
+    var tmDateEl = document.querySelector(".tm-date");
+    if (tmDateEl && firstLine.indexOf("20") > -1 && firstLine.indexOf("\u00b7") > -1) {
+      tmDateEl.textContent = firstLine;
+      console.log("Gandhis: Top Movers date set to: " + firstLine);
+      moversText = moversLines.slice(1).join("
+");
+    }
+
     var moversRows = parseCSV(moversText);
     console.log("Gandhis: Got " + moversRows.length + " top movers rows");
 
