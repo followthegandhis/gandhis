@@ -55,10 +55,7 @@ function updateDateBar() {
   // Update edition: "EDITION #3 · 8:00 PM IST"
   var edEl = document.querySelector('[data-k="edition"]');
   if (edEl) edEl.innerHTML = "EDITION #" + GANDHIS_CONFIG.edition + " &middot; 8:00 PM IST";
-
-  // Update top movers date: "22 OCTOBER 2026 · THURSDAY"
-  var tmDate = document.querySelector(".tm-date");
-  if (tmDate) tmDate.innerHTML = dayNum + " " + monthUpper + " " + year + " &middot; " + dayName.toUpperCase();
+  
 }
 
 // ============================================================
@@ -371,6 +368,13 @@ function buildTopMovers(rows) {
   if (!container || !rows || rows.length === 0) {
     console.warn("Gandhis: Top Movers container #movers-container not found or no data");
     return;
+  }
+
+  // First row may be the date string from Python — extract it
+  if (rows.length > 0 && rows.index && rows.index.indexOf("20") > -1 && rows.index.indexOf("·") > -1) {
+    var tmDateEl = document.querySelector(".tm-date");
+    if (tmDateEl) tmDateEl.textContent = rows.index;
+    rows.shift(); // remove date row so it doesn't break stock parsing
   }
 
   // Group by index
