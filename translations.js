@@ -1,7 +1,7 @@
 
-/* ===== GANDHIS.CO — Translations v3 (Edition #3 · 22 Oct 2026) ===== */
+/* ===== GANDHIS.CO — Translations v4 (Edition #4 · 23 Oct 2026) ===== */
 
-var GANDHIS_CONFIG = { edition: 3, date: "2026-10-22" };
+var GANDHIS_CONFIG = { edition: 4, date: "2026-10-23" };
 
 var T = {
 
@@ -16,107 +16,107 @@ tab2: { en: "PAST WEEK", hi: "पिछला हफ़्ता" },
 tab3: { en: "ARCHIVE", hi: "आर्काइव" },
 tab4: { en: "ABOUT", hi: "हमारे बारे में" },
 
-/* ===== EDITION 3 — 22 OCT 2026 ===== */
+/* ===== EDITION 4 — 23 OCT 2026 ===== */
 
 verdict: {
-  en: "Crude surging past $111 crushed sentiment across the board. FMCG (-1.41%) and IT (-1.40%) led losses. Only Pharma (+0.12%) and PSU Bank (+0.07%) managed to stay green. Third consecutive day of losses.",
-  hi: "क्रूड $111 के पार जाने से पूरे बाज़ार की धारणा टूटी। FMCG (-1.41%) और IT (-1.40%) सबसे ज़्यादा गिरे। सिर्फ Pharma (+0.12%) और PSU Bank (+0.07%) हरे रहे। लगातार तीसरे दिन गिरावट।"
+  en: "4th straight day of losses. Crude surges to $114. ALL sectors red. Small & midcaps crushed.",
+  hi: "लगातार चौथे दिन गिरावट। क्रूड $114 तक उछला। सभी सेक्टर लाल। स्मॉल और मिडकैप धराशायी।"
 },
 
 date: {
-  en: "Thursday, 22 October 2026",
-  hi: "गुरुवार, 22 अक्टूबर 2026"
+  en: "Friday, 23 October 2026",
+  hi: "शुक्रवार, 23 अक्टूबर 2026"
 },
-edition: { en: "EDITION #3 · 8:00 PM IST", hi: "संस्करण #3 · रात 8:00 IST" },
+edition: { en: "EDITION #4 · 8:00 PM IST", hi: "संस्करण #4 · रात 8:00 IST" },
 
 /* ----- PULSE BOARD ----- */
 sectorlabel: { en: "Where the Money Went →", hi: "पैसा कहाँ गया →" },
 gFII: { en: "FII", hi: "FII (विदेशी)" },
 gDII: { en: "DII", hi: "DII (घरेलू)" },
 gBreadth: { en: "Breadth", hi: "ब्रेड्थ" },
-gFIItag: { en: "14/16 DAYS SOLD", hi: "14/16 दिन बेचा" },
-gDIItag: { en: "ABSORBING 107%", hi: "107% सोख रहे हैं" },
-gBreadthtag: { en: "69% STOCKS FELL", hi: "69% स्टॉक गिरे" },
+gFIItag: { en: "15/17 DAYS SOLD", hi: "15/17 दिन बेचा" },
+gDIItag: { en: "17/17 DAYS BOUGHT", hi: "17/17 दिन खरीदा" },
+gBreadthtag: { en: "83% STOCKS FELL", hi: "83% स्टॉक गिरे" },
 gVIXtag: { en: "FEAR RISING", hi: "डर बढ़ रहा है" },
 
 /* ----- CARD 1: WHERE THE MONEY MOVED ----- */
 c1label: { en: "Where the Money Moved", hi: "पैसा कहाँ गया" },
 c1head: {
-  en: "Crude Surging Past $111 Crushed Sentiment. Only Pharma (+0.12%) and PSU Bank (+0.07%) Survived.",
-  hi: "क्रूड $111 के पार जाने से धारणा टूटी। सिर्फ Pharma (+0.12%) और PSU Bank (+0.07%) बचे।"
+  en: "Crude surges to $114 — ALL sectors close red. Metal (-2.98%) and PSU Bank (-2.52%) led the carnage. IT held up best at -0.33%. Fourth consecutive day of losses.",
+  hi: "क्रूड $114 तक उछला — सभी सेक्टर लाल बंद। Metal (-2.98%) और PSU Bank (-2.52%) सबसे ज़्यादा गिरे। IT -0.33% पर सबसे कम गिरा। लगातार चौथे दिन गिरावट।"
 },
 c1body: {
-  en: 'The market opened <strong>1% higher</strong> on optimism around a potential India-US trade deal. Then Brent crude surged past <strong>$111/barrel</strong> intraday, and the rally evaporated. Sensex fell <strong>~1,300 points from the day\'s high</strong>.',
-  hi: 'बाज़ार <strong>1% ऊपर</strong> खुला — भारत-अमेरिका ट्रेड डील की उम्मीद पर। फिर ब्रेंट क्रूड <strong>$111/बैरल</strong> के पार गया और रैली ख़त्म हो गई। सेंसेक्स दिन के हाई से <strong>~1,300 अंक</strong> गिरा।'
+  en: 'Houthi attacks on Saudi Arabia\'s Yanbu port and Shaybah oil field sent Brent crude surging to <strong>$114/barrel</strong> — a 5-month high. The market opened higher on overnight optimism but reversed sharply. Sensex crashed <strong>~1,280 points from the day\'s high</strong>. Not a single sector survived.',
+  hi: 'सऊदी अरब के यानबू पोर्ट और शायबाह ऑयल फील्ड पर हूती हमलों ने ब्रेंट क्रूड को <strong>$114/बैरल</strong> तक पहुँचाया — 5 महीने का उच्चतम। बाज़ार रातोंरात आशावाद पर ऊपर खुला लेकिन तेज़ी से पलटा। सेंसेक्स दिन के हाई से <strong>~1,280 अंक</strong> गिरा। एक भी सेक्टर नहीं बचा।'
 },
 c1insight: { en: "Educational Context", hi: "शैक्षिक संदर्भ" },
 c1insightbody: {
-  en: 'Yesterday IT was the sole survivor (+2.88%). Today it gave back -1.40%. Sector rotation is violent — what leads one day, bleeds the next. Only <strong>Pharma (+0.12%)</strong> survived today, showing the market is rotating into <strong>pure defensive plays</strong> as crude pressure intensifies.',
-  hi: 'कल IT एकमात्र बचा था (+2.88%)। आज उसने -1.40% वापस दिया। सेक्टर रोटेशन हिंसक है — जो एक दिन आगे, अगले दिन पीछे। आज सिर्फ <strong>Pharma (+0.12%)</strong> बचा, जो दिखाता है कि बाज़ार <strong>शुद्ध डिफेंसिव</strong> में जा रहा है जैसे-जैसे क्रूड का दबाव बढ़ रहा है।'
+  en: 'Yesterday Pharma (+0.12%) and PSU Bank (+0.07%) were the only survivors. Today even they fell — Pharma -1.46%, PSU Bank -2.52%. When <strong>every sector turns red</strong>, it signals a macro-driven sell-off, not sector rotation. Crude at $114 is the primary headwind — India imports 85% of its oil, so every $1 rise hits corporate margins and the trade deficit directly.',
+  hi: 'कल Pharma (+0.12%) और PSU Bank (+0.07%) एकमात्र बचे थे। आज वे भी गिरे — Pharma -1.46%, PSU Bank -2.52%। जब <strong>हर सेक्टर लाल</strong> हो जाए, तो यह मैक्रो-ड्रिवन बिकवाली का संकेत है, सेक्टर रोटेशन नहीं। क्रूड $114 पर मुख्य बाधा है — भारत 85% तेल आयात करता है, इसलिए हर $1 की बढ़त कॉर्पोरेट मार्जिन और ट्रेड डेफिसिट पर सीधा असर डालती है।'
 },
 
 /* ----- CARD 2: THE SIGNAL ----- */
 c2label: { en: "The Signal", hi: "द सिग्नल" },
 c2head: {
-  en: "Bajaj Finance Bounced +1.74% After Yesterday's -3.5% Fall. Eternal Fell -2.53% Despite 92% Profit Growth.",
-  hi: "Bajaj Finance कल के -3.5% गिरावट के बाद +1.74% उछला। Eternal 92% मुनाफ़ा बढ़ने के बावजूद -2.53% गिरा।"
+  en: "Small & Midcaps Crushed — MidCap 100 Down 2.21%, SmallCap 100 Down 2.94%. The Broader Market Is Breaking.",
+  hi: "स्मॉल और मिडकैप धराशायी — MidCap 100 में 2.21% गिरावट, SmallCap 100 में 2.94% गिरावट। व्यापक बाज़ार टूट रहा है।"
 },
 c2body: {
-  en: "Two stocks. Both had strong Q2 results. Completely opposite market reactions. The market is rewarding value and punishing growth.",
-  hi: "दो स्टॉक्स। दोनों के Q2 नतीजे मज़बूत। बाज़ार की प्रतिक्रिया बिल्कुल उलट। बाज़ार वैल्यू को इनाम दे रहा है और ग्रोथ को सज़ा।"
+  en: "Nifty fell just 0.39%, but the real damage was in the broader market. Midcaps and smallcaps saw 3x the decline of the headline index. Jio Financial and Tata Steel each dropped ~3%.",
+  hi: "निफ्टी सिर्फ 0.39% गिरा, लेकिन असली नुकसान व्यापक बाज़ार में था। मिडकैप और स्मॉलकैप में हेडलाइन इंडेक्स से 3 गुना गिरावट। Jio Financial और Tata Steel दोनों ~3% गिरे।"
 },
 c2insight: { en: "What the Data Shows", hi: "डेटा क्या बताता है" },
 c2insightbody: {
-  en: 'In a falling market, stocks with proven earnings quality get bought on dips. High-growth stories get sold on results. <strong>Bajaj Finance</strong> bounced because yesterday\'s -3.5% was overdone. <strong>Eternal</strong> fell because 92% profit growth still isn\'t enough when the market demands profitability, not promises.',
-  hi: 'गिरते बाज़ार में, सिद्ध अर्निंग्स क्वालिटी वाले स्टॉक्स गिरावट पर खरीदे जाते हैं। हाई-ग्रोथ कहानियाँ नतीजों पर बेची जाती हैं। <strong>Bajaj Finance</strong> उछला क्योंकि कल का -3.5% ज़्यादा था। <strong>Eternal</strong> गिरा क्योंकि 92% मुनाफ़ा बढ़ना भी काफ़ी नहीं जब बाज़ार प्रॉफिटेबिलिटी माँगता है, वादे नहीं।'
+  en: 'When the Nifty falls 0.39% but smallcaps fall 2.94%, it means <strong>leveraged and speculative positions are being unwound</strong>. This is classic risk-off behaviour — institutions sell the broader market first. The valuation premium that mid and smallcaps carried is now compressing rapidly under the weight of rising crude, FII selling, and elevated VIX.',
+  hi: 'जब निफ्टी 0.39% गिरता है लेकिन स्मॉलकैप 2.94% गिरता है, तो इसका मतलब <strong>लीवरेज्ड और सट्टा पोज़ीशन खुल रही हैं</strong>। यह क्लासिक रिस्क-ऑफ व्यवहार है — संस्थान पहले व्यापक बाज़ार बेचते हैं। मिड और स्मॉलकैप का वैल्यूएशन प्रीमियम अब तेज़ी से सिकुड़ रहा है — बढ़ते क्रूड, FII बिकवाली और ऊँचे VIX के दबाव में।'
 },
 
 /* ----- CARD 3: THE DATA POINT ----- */
 c3label: { en: "The Data Point", hi: "द डेटा पॉइंट" },
 c3head: {
-  en: "Breadth: 1,026 Advances vs 2,512 Declines — 69% of Stocks Fell Today",
-  hi: "ब्रेड्थ: 1,026 बढ़े vs 2,512 गिरे — आज 69% स्टॉक्स गिरे"
+  en: "Breadth: 624 Advances vs 3,011 Declines — 83% of Stocks Fell Today",
+  hi: "ब्रेड्थ: 624 बढ़े vs 3,011 गिरे — आज 83% स्टॉक्स गिरे"
 },
 c3body: {
-  en: "Nifty dropped just 0.54%, but the damage underneath was far wider. Third consecutive day of negative breadth.",
-  hi: "निफ्टी सिर्फ 0.54% गिरा, लेकिन अंदर से नुकसान कहीं ज़्यादा था। लगातार तीसरा नेगेटिव ब्रेड्थ दिन।"
+  en: "The worst breadth reading of the week. Only 624 stocks advanced out of 3,724 traded. This is a broad-based capitulation signal.",
+  hi: "हफ़्ते की सबसे खराब ब्रेड्थ रीडिंग। 3,724 में से सिर्फ 624 स्टॉक बढ़े। यह व्यापक कैपिट्यूलेशन सिग्नल है।"
 },
 c3insight: { en: "Why Breadth Matters", hi: "ब्रेड्थ क्यों मायने रखती है" },
 c3insightbody: {
-  en: 'Nifty fell from 22,555 intraday low to close at 22,688 — a <strong>133-point recovery</strong> from the bottom. Value buying emerged at lower levels, but sellers still dominate. VIX at <strong>15.81</strong> means options market is still pricing in turbulence. Three consecutive days of 69%+ stocks falling = <strong>broad-based weakness</strong>, not just index-level.',
-  hi: 'निफ्टी 22,555 के इंट्राडे लो से 22,688 पर बंद हुआ — तल से <strong>133 अंक की रिकवरी</strong>। निचले स्तरों पर वैल्यू बाइंग आई, लेकिन सेलर्स अभी भी हावी। VIX <strong>15.81</strong> पर यानी ऑप्शन मार्केट अभी भी उथल-पुथल की कीमत लगा रहा है। लगातार तीन दिन 69%+ स्टॉक गिरना = <strong>व्यापक कमज़ोरी</strong>, सिर्फ इंडेक्स-लेवल नहीं।'
+  en: 'Yesterday 69% of stocks fell. Today it\'s <strong>83%</strong>. The advance/decline ratio of 0.21 means for every 1 stock that rose, nearly 5 fell. VIX at <strong>16.77</strong> is the highest in over 4 months — the options market is pricing in continued turbulence. Four consecutive days of deteriorating breadth = <strong>systematic de-risking</strong>, not just profit-booking.',
+  hi: 'कल 69% स्टॉक गिरे थे। आज <strong>83%</strong>। एडवांस/डिक्लाइन रेशियो 0.21 यानी हर 1 बढ़ने वाले स्टॉक पर लगभग 5 गिरे। VIX <strong>16.77</strong> पर 4 महीने से ज़्यादा का उच्चतम — ऑप्शन मार्केट लगातार उथल-पुथल की कीमत लगा रहा है। लगातार चार दिन बिगड़ती ब्रेड्थ = <strong>व्यवस्थित डी-रिस्किंग</strong>, सिर्फ प्रॉफिट-बुकिंग नहीं।'
 },
 
 /* ----- CARD 4: THE FLOW ----- */
 c4label: { en: "The Flow", hi: "द फ्लो" },
 c4head: {
-  en: "FIIs Sold ₹3,459 Cr. DIIs Bought ₹2,891 Cr. The Tug of War Continues.",
-  hi: "FII ने ₹3,459 करोड़ बेचे। DII ने ₹2,891 करोड़ खरीदे। रस्साकशी जारी।"
+  en: "FIIs Sold ₹3,569 Cr. DIIs Bought ₹4,743 Cr. DIIs Step Up — But Can They Hold the Line?",
+  hi: "FII ने ₹3,569 करोड़ बेचे। DII ने ₹4,743 करोड़ खरीदे। DII ने कदम बढ़ाया — लेकिन क्या वे रोक पाएँगे?"
 },
 c4body: {
-  en: "FII selling accelerated back to heavy levels after yesterday's light ₹413 Cr day. DIIs absorbed most of it but the gap is widening.",
-  hi: "FII बिकवाली कल के हल्के ₹413 करोड़ के बाद फिर भारी स्तर पर लौटी। DII ने ज़्यादातर सोखा लेकिन अंतर बढ़ रहा है।"
+  en: "FII selling continues relentlessly — 15 of 17 October sessions have been net sells. But today DIIs bought their largest amount this month, absorbing 133% of FII outflows in a single session.",
+  hi: "FII बिकवाली बेरहमी से जारी — अक्टूबर के 17 में से 15 सत्रों में नेट सेल। लेकिन आज DII ने इस महीने की सबसे बड़ी खरीदारी की, एक ही सत्र में FII आउटफ्लो का 133% सोखा।"
 },
 c4insight: { en: "The Pattern", hi: "पैटर्न" },
 c4insightbody: {
-  en: 'DIIs have absorbed <strong>107% of FII selling</strong> this month — ₹55,875 Cr bought vs ₹52,354 Cr sold. Without them, Nifty would be significantly lower. FIIs hold <strong>2,77,628 net short contracts</strong> in futures — they\'re not just selling cash, they\'re actively betting on further downside.',
-  hi: 'DII ने इस महीने <strong>FII बिकवाली का 107%</strong> सोखा — ₹55,875 करोड़ खरीदे vs ₹52,354 करोड़ बेचे। उनके बिना निफ्टी काफ़ी नीचे होता। FII के पास फ्यूचर्स में <strong>2,77,628 नेट शॉर्ट कॉन्ट्रैक्ट्स</strong> हैं — वे सिर्फ कैश नहीं बेच रहे, आगे और गिरावट पर दाँव लगा रहे हैं।'
+  en: 'DIIs have now absorbed <strong>108% of FII selling</strong> this month — ₹60,618 Cr bought vs ₹55,922 Cr sold. Today\'s ₹4,743 Cr DII buying was the <strong>highest single-day purchase in October</strong>. Mutual fund SIPs and insurance flows are the backbone of this support. Without DIIs, Nifty would be significantly lower. But the question remains: can domestic flows keep pace if crude stays above $114?',
+  hi: 'DII ने इस महीने <strong>FII बिकवाली का 108%</strong> सोखा — ₹60,618 करोड़ खरीदे vs ₹55,922 करोड़ बेचे। आज की ₹4,743 करोड़ DII खरीदारी <strong>अक्टूबर की सबसे बड़ी सिंगल-डे खरीद</strong> थी। म्यूचुअल फंड SIP और बीमा प्रवाह इस सपोर्ट की रीढ़ हैं। DII के बिना निफ्टी काफ़ी नीचे होता। लेकिन सवाल बना हुआ है: अगर क्रूड $114 से ऊपर रहा तो क्या घरेलू प्रवाह तालमेल रख पाएँगे?'
 },
 
 /* ----- CARD 5: THE CONTEXT ----- */
 c5label: { en: "The Context", hi: "द कॉन्टेक्स्ट" },
 c5head: {
-  en: "Brent $111.71, Rupee ₹94.81, US 10Y 5.015% — Crude Is the Market's #1 Enemy",
-  hi: "ब्रेंट $111.71, रुपया ₹94.81, US 10Y 5.015% — क्रूड बाज़ार का #1 दुश्मन"
+  en: "Brent $114, Rupee ₹94.93, US 10Y Crashes Below 5%, Global AI Rout — A Perfect Storm",
+  hi: "ब्रेंट $114, रुपया ₹94.93, US 10Y 5% से नीचे गिरा, वैश्विक AI रूट — एक परफेक्ट स्टॉर्म"
 },
 c5body: {
-  en: "India imports 85% of its oil. Crude above $111 means wider trade deficit, inflation pressure, and corporate margin squeeze.",
-  hi: "भारत 85% तेल आयात करता है। क्रूड $111 से ऊपर यानी बड़ा ट्रेड डेफिसिट, महंगाई का दबाव, और कॉर्पोरेट मार्जिन पर चोट।"
+  en: "Three forces converged today: crude surging on Saudi attacks, a global AI stock rout (Nasdaq -2.6%, Meta -7%, Nvidia -4.4%), and a flight to US Treasuries that crashed the 10Y yield below 5% for the first time in a month.",
+  hi: "आज तीन ताकतें एक साथ आईं: सऊदी हमलों पर क्रूड उछाल, वैश्विक AI स्टॉक रूट (Nasdaq -2.6%, Meta -7%, Nvidia -4.4%), और US ट्रेज़रीज़ की ओर भागदौड़ जिसने 10Y यील्ड को एक महीने में पहली बार 5% से नीचे गिराया।"
 },
-c5insight: { en: "Why These 3 Numbers Matter", hi: "ये 3 नंबर क्यों मायने रखते हैं" },
+c5insight: { en: "Why These Numbers Matter", hi: "ये नंबर क्यों मायने रखते हैं" },
 c5insightbody: {
-  en: 'Crude past <strong>$111</strong> = higher import bill = wider trade deficit = inflation. Rupee weakening to <strong>₹94.81</strong> = FII dollar returns erode, accelerating outflows. The one positive: US 10Y yields fell slightly, reducing the pull for FII money towards US bonds. Until crude cools, expect continued pressure.',
-  hi: 'क्रूड <strong>$111</strong> के पार = ज़्यादा आयात बिल = बड़ा ट्रेड डेफिसिट = महंगाई। रुपया <strong>₹94.81</strong> तक कमज़ोर = FII के डॉलर रिटर्न और घटे, आउटफ्लो तेज़। एक सकारात्मक बात: US 10Y यील्ड थोड़ी गिरी, FII पैसे की US बॉन्ड्स की ओर खिंचाव कम हुआ। जब तक क्रूड ठंडा नहीं होता, दबाव जारी रहेगा।'
+  en: 'Crude at <strong>$114</strong> = higher import bill = wider trade deficit = inflation pressure. Houthi attacks on Saudi Arabia\'s Yanbu port and Shaybah oil field are escalating — oil could go higher. The silver lining: US 10Y yield <strong>crashed below 5%</strong> (biggest single-day drop since Aug 2024) as investors fled to Treasuries from AI stocks. A weaker DXY (101.52) and lower US yields <em>should</em> reduce FII pull towards US bonds — but crude is overwhelming everything else right now.',
+  hi: 'क्रूड <strong>$114</strong> पर = ज़्यादा आयात बिल = बड़ा ट्रेड डेफिसिट = महंगाई का दबाव। सऊदी अरब के यानबू पोर्ट और शायबाह ऑयल फील्ड पर हूती हमले बढ़ रहे हैं — तेल और ऊपर जा सकता है। सकारात्मक बात: US 10Y यील्ड <strong>5% से नीचे गिरी</strong> (अगस्त 2024 के बाद सबसे बड़ी एक दिन की गिरावट) क्योंकि निवेशक AI स्टॉक्स से ट्रेज़रीज़ की ओर भागे। कमज़ोर DXY (101.52) और कम US यील्ड FII की US बॉन्ड्स की ओर खिंचाव <em>कम करनी चाहिए</em> — लेकिन क्रूड अभी बाकी सब पर भारी पड़ रहा है।'
 },
 
 /* ----- TOP MOVERS ----- */
@@ -129,11 +129,11 @@ tmFooter: {
 ctaMovers: { en: "📈 SEE TOP MOVERS BY INDEX →", hi: "📈 इंडेक्स के टॉप मूवर्स देखें →" },
 
 /* ----- PAST WEEK ----- */
-wkTitle: { en: "Week of 14–22 October 2026", hi: "14–22 अक्टूबर 2026 का हफ़्ता" },
-wkSub: { en: "7 trading sessions · Here's what the data showed", hi: "7 ट्रेडिंग सत्र · डेटा ने क्या दिखाया" },
+wkTitle: { en: "Week of 19–23 October 2026", hi: "19–23 अक्टूबर 2026 का हफ़्ता" },
+wkSub: { en: "5 trading sessions · Here's what the data showed", hi: "5 ट्रेडिंग सत्र · डेटा ने क्या दिखाया" },
 wkNifty: { en: "NIFTY WEEKLY", hi: "निफ्टी साप्ताहिक" },
-wkSector: { en: "STRONGEST SECTOR", hi: "सबसे मज़बूत सेक्टर" },
-wkSectorNote: { en: "Only consistent green sector", hi: "एकमात्र लगातार हरा सेक्टर" },
+wkSector: { en: "LEAST DAMAGED SECTOR", hi: "सबसे कम नुकसान वाला सेक्टर" },
+wkSectorNote: { en: "No sector survived the full week", hi: "कोई सेक्टर पूरे हफ़्ते नहीं बचा" },
 wkFII: { en: "FII WEEKLY", hi: "FII साप्ताहिक" },
 wkFIInote: { en: "Sold every single day", hi: "हर दिन बेचा" },
 wkDII: { en: "DII WEEKLY", hi: "DII साप्ताहिक" },
@@ -141,14 +141,14 @@ wkDIInote: { en: "Bought every single day", hi: "हर दिन खरीद�
 wkRotation: { en: "Daily Rotation — Who Led, Who Lagged", hi: "दैनिक रोटेशन — कौन आगे, कौन पीछे" },
 wkInsight: { en: "The Week in One Line", hi: "हफ़्ता एक लाइन में" },
 wkInsightBody: {
-  en: 'FIIs sold over ₹25,000 Cr this week. DIIs absorbed almost all of it. The strongest sector changed almost every day — except IT, which led twice. That\'s <strong>sector rotation with a defensive tilt</strong>.',
-  hi: 'FII ने इस हफ़्ते ₹25,000 करोड़ से ज़्यादा बेचा। DII ने लगभग सब सोख लिया। सबसे मज़बूत सेक्टर लगभग हर दिन बदला — सिवाय IT के, जो दो बार आगे रहा। यह <strong>डिफेंसिव झुकाव के साथ सेक्टर रोटेशन</strong> है।'
+  en: 'FIIs sold over ₹32,200 Cr this week. DIIs absorbed ₹31,200 Cr. The leading sector changed every single day — PSU Banks on Monday, IT on Tuesday, Pharma on Wednesday, and by Friday <strong>every sector was red</strong>. Crude surging from $109 to $114 was the week\'s defining force. Nifty lost 4.4% — the worst week since June.',
+  hi: 'FII ने इस हफ़्ते ₹32,200 करोड़ से ज़्यादा बेचा। DII ने ₹31,200 करोड़ सोखा। सबसे मज़बूत सेक्टर हर दिन बदला — सोमवार को PSU Banks, मंगलवार को IT, बुधवार को Pharma, और शुक्रवार तक <strong>हर सेक्टर लाल</strong>। क्रूड $109 से $114 तक उछलना हफ़्ते की निर्णायक ताकत थी। निफ्टी 4.4% गिरा — जून के बाद सबसे खराब हफ़्ता।'
 },
 
 /* ----- ARCHIVE ----- */
 archTitle: { en: "Past Editions", hi: "पिछले संस्करण" },
-arch22h: { en: "Crude past $111 crushed sentiment. Only Pharma and PSU Bank survived.", hi: "क्रूड $111 के पार, धारणा टूटी। सिर्फ Pharma और PSU Bank बचे।" },
-arch22p: { en: "FIIs sold ₹3,459 Cr · Breadth 69% negative · Third consecutive day of losses", hi: "FII ने ₹3,459 करोड़ बेचे · ब्रेड्थ 69% नेगेटिव · लगातार तीसरे दिन गिरावट" },
+arch22h: { en: "3rd straight loss. Crude past $111. Only Pharma survived.", hi: "लगातार तीसरी गिरावट। क्रूड $111 के पार। सिर्फ Pharma बचा।" },
+arch22p: { en: "FIIs sold ₹3,459 Cr · Breadth 69% negative · VIX at 15.81", hi: "FII ने ₹3,459 करोड़ बेचे · ब्रेड्थ 69% नेगेटिव · VIX 15.81" },
 arch21h: { en: "Opened 1% up. Brent past $111 killed the rally. IT only survivor.", hi: "1% ऊपर खुला। ब्रेंट $111 ने रैली मारी। IT एकमात्र बचा।" },
 arch21p: { en: "FIIs sold ₹413 Cr · Breadth 79% negative · VIX spiked 6.3%", hi: "FII ने ₹413 करोड़ बेचे · ब्रेड्थ 79% नेगेटिव · VIX 6.3% उछला" },
 arch19h: { en: "Broad sell-off. Only PSU Banks survived.", hi: "व्यापक बिकवाली। सिर्फ PSU Banks बचे।" },
