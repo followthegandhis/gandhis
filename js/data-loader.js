@@ -341,8 +341,8 @@ async function loadMarketData() {
 
     // Update ticker components
     buildTicker(tickerRows);
-    // updateSectorMap(tickerRows);
-    // updateHeadline(tickerRows);
+    updateSectorMap(tickerRows);
+    updateHeadline(tickerRows);
     updateTimestamp();
 
     // ---- FETCH TOP MOVERS DATA ----
@@ -353,7 +353,7 @@ async function loadMarketData() {
     console.log("Gandhis: Got " + moversRows.length + " top movers rows");
 
     // Update Top Movers tab
-    // buildTopMovers(moversRows);
+    buildTopMovers(moversRows);
 
     console.log("Gandhis: All live data loaded successfully!");
   } catch (e) {
@@ -372,4 +372,3 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // ---- MANUAL REFRESH ----
 window.refreshGandhisData = loadMarketData;
-
