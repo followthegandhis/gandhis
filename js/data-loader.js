@@ -10,21 +10,22 @@ var TICKER_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTeZE0QV0xuL3x
 
 var TOPMOVERS_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTeZE0QV0xuL3xQX0CCRIWidsmuBIMwSnK-elCCJd9TOVrZ4hb_AsNPXcMGvP9VviNLMMtCZQsa6ZPU/pub?gid=1402174046&single=true&output=csv";
 
-// ---- FALLBACK TICKER DATA (Edition 3 · 22 Oct 2026) ----
+// ---- FALLBACK TICKER DATA (23 Oct 2026 — latest from sheet) ----
 var FALLBACK_TICKER = [
-  { name: "NIFTY 50",    price: "22687.65", changepct: "-0.54" },
-  { name: "SENSEX",      price: "73249.39", changepct: "-0.62" },
-  { name: "BANK NIFTY",  price: "54925.70", changepct: "-0.09" },
-  { name: "IT",          price: "32081.25", changepct: "-1.05" },
-  { name: "PHARMA",      price: "25596.65", changepct: "0.12" },
-  { name: "FMCG",        price: "43105.45", changepct: "-1.41" },
-  { name: "AUTO",        price: "25011.50", changepct: "-0.73" },
-  { name: "METAL",       price: "11798.35", changepct: "-0.52" },
-  { name: "REALTY",      price: "803.45",   changepct: "-0.30" },
-  { name: "PSU BANK",    price: "8257.40",  changepct: "0.07" },
-  { name: "MIDCAP 100",  price: "16410.80", changepct: "-0.54" },
-  { name: "USD/INR",     price: "94.72",    changepct: "0.12" },
-  { name: "CRUDE OIL",   price: "162.63",   changepct: "1.77" }
+  { name: "NIFTY 50",    price: "22417.85", changepct: "-1.19" },
+  { name: "BANK NIFTY",  price: "54194.50", changepct: "-1.33" },
+  { name: "SENSEX",      price: "72580.31", changepct: "-0.91" },
+  { name: "IT",          price: "32087.15", changepct: "0.02" },
+  { name: "PHARMA",      price: "25130.15", changepct: "-1.82" },
+  { name: "FMCG",        price: "42159.00", changepct: "-2.20" },
+  { name: "AUTO",        price: "24511.05", changepct: "-2.00" },
+  { name: "METAL",       price: "11384.35", changepct: "-3.51" },
+  { name: "REALTY",      price: "777.90",   changepct: "-3.18" },
+  { name: "PSU BANK",    price: "8789.80",  changepct: "-2.71" },
+  { name: "CRUDE OIL",   price: "114.50",   changepct: "0.00" },
+  { name: "USD/INR",     price: "94.96",    changepct: "0.00" },
+  { name: "DJIA",        price: "52867.98", changepct: "0.02" },
+  { name: "NASDAQ",      price: "26008.86", changepct: "-2.60" }
 ];
 
 // ---- PARSE CSV ----
