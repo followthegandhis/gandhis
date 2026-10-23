@@ -1,6 +1,8 @@
 
 /* ===== GANDHIS.CO — Translations v3 (Edition #3 · 22 Oct 2026) ===== */
 
+var GANDHIS_CONFIG = { edition: 3, date: "2026-10-22" };
+
 var T = {
 
 /* ----- TAGLINE & TABS ----- */
