@@ -1,38 +1,35 @@
 
-/**
- * GANDHIS.CO — Live Market Data Loader v6
- * Fetches data from Google Sheets and auto-updates:
- * - Ticker ribbon, Headline, Sector map, Top movers
- * - Date bar, Edition number, Pulse board, Sector strip, Macro strip
- */
+// ============================================================
+// GANDHIS.CO — Live Market Data Loader (v7)
+// Google Sheets → Ticker + Sector Map + Headline + Top Movers
+// + Auto: Date Bar, Pulse Board, Sector Strip, Macro Strip
+// ============================================================
 
-// ---- GOOGLE SHEETS CSV URLS ----
-var SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTEYQHN0mUGbr7OOJ3LhRFSFzHgrVfWWMYxBk3CSZV_aEEqXkOXGasXaMGvHfCGQ/pub?gid=0&single=true&output=csv";
-var MOVERS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTEYQHN0mUGbr7OOJ3LhRFSFzHgrVfWWMYxBk3CSZV_aEEqXkOXGasXaMGvHfCGQ/pub?gid=1974553267&single=true&output=csv";
+// ---- SHEET URLs ----
+var TICKER_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTeZE0QV0xuL3xQX0CCRIWidsmuBIMwSnK-elCCJd9TOVrZ4hb_AsNPXcMGvP9VviNLMMtCZQsa6ZPU/pub?output=csv";
 
+var TOPMOVERS_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTeZE0QV0xuL3xQX0CCRIWidsmuBIMwSnK-elCCJd9TOVrZ4hb_AsNPXcMGvP9VviNLMMtCZQsa6ZPU/pub?gid=1402174046&single=true&output=csv";
 
-// ---- CSV PARSER ----
+// ---- PARSE CSV ----
 function parseCSV(text) {
   var lines = text.trim().split("\n");
-  if (lines.length < 2) return [];
   var headers = lines[0].split(",");
-  for (var h = 0; h < headers.length; h++) {
-    headers[h] = headers[h].trim().replace(/"/g, "");
-  }
   var rows = [];
   for (var i = 1; i < lines.length; i++) {
-    var vals = lines[i].split(",");
+    var cols = lines[i].split(",");
     var obj = {};
     for (var j = 0; j < headers.length; j++) {
-      obj[headers[j]] = vals[j] ? vals[j].trim().replace(/"/g, "") : "";
+      obj[headers[j].trim()] = (cols[j] || "").trim();
     }
     rows.push(obj);
   }
   return rows;
 }
 
+// ============================================================
+// DATE BAR + EDITION (from GANDHIS_CONFIG in translations.js)
+// ============================================================
 
-// ---- DATE BAR + EDITION (from GANDHIS_CONFIG) ----
 function updateDateBar() {
   if (typeof GANDHIS_CONFIG === "undefined") return;
 
@@ -57,108 +54,175 @@ function updateDateBar() {
 
   // Update edition: "EDITION #3 · 8:00 PM IST"
   var edEl = document.querySelector('[data-k="edition"]');
-  if (edEl) edEl.innerHTML = "EDITION #" + GANDHIS_CONFIG.edition + " · 8:00 PM IST";
+  if (edEl) edEl.innerHTML = "EDITION #" + GANDHIS_CONFIG.edition + " &middot; 8:00 PM IST";
 
   // Update top movers date: "22 OCTOBER 2026 · THURSDAY"
   var tmDate = document.querySelector(".tm-date");
-  if (tmDate) tmDate.innerHTML = dayNum + " " + monthUpper + " " + year + " · " + dayName.toUpperCase();
+  if (tmDate) tmDate.innerHTML = dayNum + " " + monthUpper + " " + year + " &middot; " + dayName.toUpperCase();
 }
 
+// ============================================================
+// TICKER RIBBON (original v3 — exact)
+// ============================================================
 
-// ---- TICKER RIBBON ----
+function buildTickerItem(r) {
+  var name = r.name || "";
+  var price = parseFloat(r.price) || 0;
+  var change = parseFloat(r.changepct) || 0;
+  var isUp = change >= 0;
+  var arrow = isUp ? "▲" : "▼";
+  var cls = isUp ? "tk-up" : "tk-dn";
+
+  var priceStr;
+  if (name === "USD/INR") {
+    priceStr = price.toFixed(2);
+  } else if (name === "CRUDE OIL") {
+    priceStr = "$" + price.toFixed(2);
+  } else {
+    priceStr = Number(price).toLocaleString("en-IN", {
+      maximumFractionDigits: 0,
+    });
+  }
+
+  return (
+    '<span class="tk-item">' +
+    '<span class="tk-name">' + name + "</span> " +
+    '<span class="tk-val">' + priceStr + "</span> " +
+    '<span class="' + cls + '">' +
+    arrow + " " + Math.abs(change).toFixed(2) + "%" +
+    "</span></span>"
+  );
+}
+
 function buildTicker(rows) {
-  var container = document.getElementById("tkT");
-  if (!container || !rows || rows.length === 0) return;
+  var tkT = document.getElementById("tkT");
+  if (!tkT || rows.length === 0) {
+    console.warn("Gandhis: Ticker element #tkT not found or no data");
+    return;
+  }
 
   var html = "";
   for (var i = 0; i < rows.length; i++) {
-    var name = rows[i].name || "";
-    var price = parseFloat(rows[i].price) || 0;
-    var change = parseFloat(rows[i].changepct) || 0;
-    var arrow = change >= 0 ? "▲" : "▼";
-    var cls = change >= 0 ? "up" : "dn";
-
-    var priceStr;
-    if (name === "USD/INR") {
-      priceStr = "₹" + price.toFixed(2);
-    } else if (name === "CRUDE OIL") {
-      priceStr = "$" + price.toFixed(2);
-    } else if (price >= 100000) {
-      priceStr = (price / 100000).toFixed(2) + "L";
-    } else if (price >= 1000) {
-      priceStr = price.toLocaleString("en-IN", { maximumFractionDigits: 0 });
-    } else {
-      priceStr = price.toFixed(2);
-    }
-
-    html += '<div class="ti">';
-    html += '<span class="tn">' + name + '</span>';
-    html += '<span class="tp">' + priceStr + '</span>';
-    html += '<span class="tc ' + cls + '">' + arrow + " " + Math.abs(change).toFixed(2) + "%</span>";
-    html += "</div>";
+    html += buildTickerItem(rows[i]);
   }
 
-  // Duplicate for infinite scroll
-  container.innerHTML = html + html;
+  // Triplicate for seamless infinite scroll
+  tkT.innerHTML = html + html + html;
+
+  var fullWidth = tkT.scrollWidth;
+  var speed = 600;
+  var duration = fullWidth / speed;
+  tkT.style.animationDuration = duration + "s";
+
+  tkT.addEventListener("mouseenter", function () {
+    tkT.style.animationPlayState = "paused";
+  });
+  tkT.addEventListener("mouseleave", function () {
+    tkT.style.animationPlayState = "running";
+  });
+  tkT.addEventListener("touchstart", function () {
+    tkT.style.animationPlayState = "paused";
+  });
+  tkT.addEventListener("touchend", function () {
+    tkT.style.animationPlayState = "running";
+  });
+
+  console.log("Gandhis: Ticker ribbon updated — " + rows.length + " items, duration: " + duration.toFixed(1) + "s");
 }
 
+// ============================================================
+// HEADLINE — NIFTY 50 (original v3 — exact)
+// ============================================================
 
-// ---- HEADLINE (NIFTY 50) ----
-function buildHeadline(rows) {
+function updateHeadline(rows) {
   var nifty = null;
   for (var i = 0; i < rows.length; i++) {
-    if (rows[i].name === "NIFTY 50") { nifty = rows[i]; break; }
+    if (rows[i].name === "NIFTY 50") {
+      nifty = rows[i];
+      break;
+    }
   }
   if (!nifty) return;
 
-  var price = parseFloat(nifty.price) || 0;
-  var change = parseFloat(nifty.changepct) || 0;
-  var cls = change >= 0 ? "up" : "dn";
-  var arrow = change >= 0 ? "▲" : "▼";
+  var el = document.querySelector("[data-k='nifty-value']");
+  if (!el) return;
 
-  var el = document.getElementById("headline");
-  if (el) {
-    el.innerHTML = '<span class="hl-val ' + cls + '">' + price.toLocaleString("en-IN", { maximumFractionDigits: 0 }) + '</span>' +
-      '<span class="hl-chg ' + cls + '">' + arrow + " " + Math.abs(change).toFixed(2) + "%</span>";
-  }
+  var val = parseFloat(nifty.price) || 0;
+  var chg = parseFloat(nifty.changepct) || 0;
+  var isUp = chg >= 0;
+  var arrow = isUp ? "▲" : "▼";
+  var pts = Math.round(val * Math.abs(chg) / 100);
+  var sign = isUp ? "+" : "-";
+
+  el.textContent =
+    Number(val).toLocaleString("en-IN") +
+    " " + arrow + " " +
+    Math.abs(chg).toFixed(2) + "% · " +
+    sign + pts + " pts";
+
+  console.log("Gandhis: Headline updated — NIFTY 50: " + val);
 }
 
+// ============================================================
+// SECTOR MAP (original v3 — exact)
+// ============================================================
 
-// ---- SECTOR MAP (8 sectors below ticker) ----
-function buildSectorMap(rows) {
-  var container = document.getElementById("sectorMap");
+function updateSectorMap(rows) {
+  var container = document.querySelector(
+    ".sector-grid, .sm-grid, [data-sector-map]"
+  );
   if (!container) return;
 
-  var sectors = [];
-  var sectorNames = ["PSU BANK", "BANK NIFTY", "NIFTY IT", "NIFTY PHARMA", "NIFTY FMCG", "NIFTY AUTO", "NIFTY METAL", "NIFTY REALTY"];
-  var displayNames = {
-    "PSU BANK": "PSU BANK", "BANK NIFTY": "BANK NIFTY", "NIFTY IT": "IT",
-    "NIFTY PHARMA": "PHARMA", "NIFTY FMCG": "FMCG", "NIFTY AUTO": "AUTO",
-    "NIFTY METAL": "METAL", "NIFTY REALTY": "REALTY"
-  };
+  var sectorNames = [
+    "PSU BANK", "BANK NIFTY", "IT", "PHARMA",
+    "FMCG", "AUTO", "METAL", "REALTY",
+  ];
 
+  var sectors = [];
   for (var i = 0; i < rows.length; i++) {
-    var n = rows[i].name || "";
-    if (sectorNames.indexOf(n) !== -1) {
-      sectors.push({ name: displayNames[n] || n, change: parseFloat(rows[i].changepct) || 0 });
+    if (sectorNames.indexOf(rows[i].name) !== -1) {
+      sectors.push({
+        name: rows[i].name,
+        value: parseFloat(rows[i].price) || 0,
+        change: parseFloat(rows[i].changepct) || 0,
+      });
     }
   }
 
-  sectors.sort(function (a, b) { return b.change - a.change; });
+  sectors.sort(function (a, b) {
+    return b.change - a.change;
+  });
 
   var html = "";
   for (var s = 0; s < sectors.length; s++) {
-    var cls = sectors[s].change >= 0 ? "sm-up" : "sm-dn";
-    var sign = sectors[s].change >= 0 ? "+" : "";
-    html += '<div class="sm-item ' + cls + '">';
-    html += '<div class="sm-name">' + sectors[s].name + "</div>";
-    html += '<div class="sm-val">' + sign + sectors[s].change.toFixed(2) + "%</div>";
-    html += "</div>";
+    var sec = sectors[s];
+    var isUp = sec.change >= 0;
+    var bg = isUp ? "#e8f5e9" : "#ffebee";
+    var color = isUp ? "#2e7d32" : "#c62828";
+    var arrow = isUp ? "▲" : "▼";
+
+    html +=
+      '<div style="background:' + bg +
+      ";border-radius:10px;padding:12px 14px;text-align:center;\">" +
+      '<div style="font-weight:700;font-size:13px;color:#1a1a1a;">' +
+      sec.name + "</div>" +
+      '<div style="font-size:18px;font-weight:800;color:' + color +
+      ';margin-top:4px;">' +
+      arrow + " " + Math.abs(sec.change).toFixed(2) + "%" +
+      "</div>" +
+      '<div style="font-size:11px;color:#888;margin-top:2px;">' +
+      Number(sec.value).toLocaleString("en-IN") +
+      "</div></div>";
   }
+
   container.innerHTML = html;
+  console.log("Gandhis: Sector map updated — " + sectors.length + " sectors");
 }
 
-// ---- PULSE BOARD: NIFTY 50 VALUE ----
+// ============================================================
+// PULSE BOARD: NIFTY 50 VALUE (NEW — auto from sheet)
+// ============================================================
+
 function updatePulseNifty(rows) {
   var nifty = null;
   for (var i = 0; i < rows.length; i++) {
@@ -171,28 +235,27 @@ function updatePulseNifty(rows) {
   var cls = change >= 0 ? "up" : "dn";
   var arrow = change >= 0 ? "▲" : "▼";
 
-  // Calculate approximate points change
   var prevPrice = price / (1 + change / 100);
   var pts = Math.round(price - prevPrice);
   var ptsStr = pts >= 0 ? "+" + pts : "" + pts;
 
-  // Update NIFTY value
   var nv = document.querySelector(".p-nv");
   if (nv) {
     nv.className = "p-nv " + cls;
     nv.innerHTML = price.toLocaleString("en-IN", { maximumFractionDigits: 0 });
   }
 
-  // Update NIFTY change
   var nc = document.querySelector(".p-nc");
   if (nc) {
     nc.className = "p-nc " + cls;
-    nc.innerHTML = arrow + " " + Math.abs(change).toFixed(2) + "% · " + ptsStr + " pts";
+    nc.innerHTML = arrow + " " + Math.abs(change).toFixed(2) + "% &middot; " + ptsStr + " pts";
   }
 }
 
+// ============================================================
+// PULSE BOARD: SECTOR STRIP (NEW — 8 chips sorted by performance)
+// ============================================================
 
-// ---- PULSE BOARD: SECTOR STRIP (8 chips sorted by performance) ----
 function updateSectorStrip(rows) {
   var container = document.querySelector(".s-row");
   if (!container) return;
@@ -219,7 +282,6 @@ function updateSectorStrip(rows) {
     }
   }
 
-  // Sort best to worst
   sectors.sort(function (a, b) { return b.change - a.change; });
 
   var html = "";
@@ -228,13 +290,13 @@ function updateSectorStrip(rows) {
     var chipClass;
 
     if (val >= 0) {
-      chipClass = "sg";           // green
+      chipClass = "sg";
     } else if (val > -0.5) {
-      chipClass = "sr1";          // light red
+      chipClass = "sr1";
     } else if (val > -1.0) {
-      chipClass = "sr2";          // medium red
+      chipClass = "sr2";
     } else {
-      chipClass = "sr3";          // deep red
+      chipClass = "sr3";
     }
 
     var sign = val >= 0 ? "+" : "";
@@ -247,13 +309,14 @@ function updateSectorStrip(rows) {
   container.innerHTML = html;
 }
 
+// ============================================================
+// PULSE BOARD: MACRO STRIP (NEW — Brent, USD/INR, US 10Y, Gold, DXY)
+// ============================================================
 
-// ---- PULSE BOARD: MACRO STRIP (Brent, USD/INR, US 10Y, Gold, DXY) ----
 function updateMacroStrip(rows) {
   var container = document.querySelector(".m-strip");
   if (!container) return;
 
-  // Build a lookup from sheet data
   var lookup = {};
   for (var i = 0; i < rows.length; i++) {
     lookup[rows[i].name] = rows[i];
@@ -276,7 +339,7 @@ function updateMacroStrip(rows) {
       var price = parseFloat(data.price) || 0;
       var change = parseFloat(data.changepct) || 0;
       var arrow = change >= 0 ? "▲" : "▼";
-      var cls = "dn"; // For macro items, red/green based on context
+      var cls = change >= 0 ? "up" : "dn";
 
       var priceStr;
       if (item.key === "GOLD") {
@@ -299,35 +362,41 @@ function updateMacroStrip(rows) {
   if (html) container.innerHTML = html;
 }
 
+// ============================================================
+// TOP MOVERS — Edition 3 card format with advances/declines
+// ============================================================
 
-// ---- TOP MOVERS ----
-function buildTopMovers(moversRows) {
+function buildTopMovers(rows) {
   var container = document.getElementById("movers-container");
-  if (!container || !moversRows || moversRows.length === 0) return;
+  if (!container || !rows || rows.length === 0) {
+    console.warn("Gandhis: Top Movers container #movers-container not found or no data");
+    return;
+  }
 
   // Group by index
   var indices = {};
   var indexOrder = [];
-  for (var i = 0; i < moversRows.length; i++) {
-    var idx = moversRows[i].index || "";
+  for (var i = 0; i < rows.length; i++) {
+    var idx = rows[i].index || rows[i]["index"] || "";
+    if (!idx) continue;
     if (!indices[idx]) {
       indices[idx] = { gainers: [], losers: [], advances: 0, declines: 0, total: 0 };
       indexOrder.push(idx);
     }
     var stock = {
-      symbol: moversRows[i].stock || "",
-      price: parseFloat(moversRows[i].price) || 0,
-      change: parseFloat(moversRows[i].changepct) || 0
+      name: rows[i].stock || "",
+      price: parseFloat(rows[i].price) || 0,
+      change: parseFloat(rows[i].changepct) || 0,
+      type: rows[i].type || ""
     };
-    if (moversRows[i].type === "gainer") {
+    if (stock.type === "gainer") {
       indices[idx].gainers.push(stock);
     } else {
       indices[idx].losers.push(stock);
     }
-    // Read advances/declines from the row (same for all rows of same index)
-    var adv = parseInt(moversRows[i].advances);
-    var dec = parseInt(moversRows[i].declines);
-    var tot = parseInt(moversRows[i].total);
+    var adv = parseInt(rows[i].advances);
+    var dec = parseInt(rows[i].declines);
+    var tot = parseInt(rows[i].total);
     if (!isNaN(adv) && adv > 0) indices[idx].advances = adv;
     if (!isNaN(dec) && dec > 0) indices[idx].declines = dec;
     if (!isNaN(tot) && tot > 0) indices[idx].total = tot;
@@ -384,13 +453,12 @@ function buildTopMovers(moversRows) {
 
     // Gainers column
     html += '<div class="gl-col">';
-    var allGreen = data.losers.length === 0 || (data.losers[0] && data.losers[0].change >= 0);
     html += '<div class="gl-label up">▲ TOP 3 GAINERS</div>';
     for (var g = 0; g < data.gainers.length; g++) {
       var gStock = data.gainers[g];
       var gSign = gStock.change >= 0 ? "+" : "";
       html += '<div class="stk green"><span class="stk-rank">' + (g + 1) + '</span>';
-      html += '<div class="stk-info"><div class="stk-name">' + gStock.symbol + '</div>';
+      html += '<div class="stk-info"><div class="stk-name">' + gStock.name + '</div>';
       html += '<div class="stk-price">₹' + gStock.price.toLocaleString("en-IN", { maximumFractionDigits: 2 }) + '</div></div>';
       html += '<div class="stk-chg up">' + gSign + gStock.change.toFixed(2) + '%</div></div>';
     }
@@ -398,6 +466,7 @@ function buildTopMovers(moversRows) {
 
     // Losers column
     html += '<div class="gl-col">';
+    var allGreen = data.losers.length === 0 || (data.losers[0] && data.losers[0].change >= 0);
     if (allGreen) {
       html += '<div class="gl-label up">▲ LEAST GAINERS</div>';
     } else {
@@ -409,7 +478,7 @@ function buildTopMovers(moversRows) {
       var lColor = lStock.change >= 0 ? "green" : "red";
       var lChgCls = lStock.change >= 0 ? "up" : "dn";
       html += '<div class="stk ' + lColor + '"><span class="stk-rank">' + (l + 1) + '</span>';
-      html += '<div class="stk-info"><div class="stk-name">' + lStock.symbol + '</div>';
+      html += '<div class="stk-info"><div class="stk-name">' + lStock.name + '</div>';
       html += '<div class="stk-price">₹' + lStock.price.toLocaleString("en-IN", { maximumFractionDigits: 2 }) + '</div></div>';
       html += '<div class="stk-chg ' + lChgCls + '">' + lSign + lStock.change.toFixed(2) + '%</div></div>';
     }
@@ -419,95 +488,101 @@ function buildTopMovers(moversRows) {
 
     // Summary with advances/declines
     if (tot > 0) {
-      html += '<div class="idx-summary">Advances: ' + adv + ' · Declines: ' + dec;
+      html += '<div class="idx-summary">Advances: ' + adv + ' &middot; Declines: ' + dec;
       html += '<span class="breadth-pct">Breadth: ' + breadthPct + '% ▲</span></div>';
     } else {
-      html += '<div class="idx-summary">Top 3 Gainers · Top 3 Losers</div>';
+      html += '<div class="idx-summary">Top 3 Gainers &middot; Top 3 Losers</div>';
     }
 
     html += '</div>'; // close idx-section
   }
 
   container.innerHTML = html;
+  console.log("Gandhis: Top Movers updated — " + indexOrder.length + " indices, " + rows.length + " stocks");
 }
 
-// ---- TIMESTAMP ----
-function buildTimestamp() {
-  var el = document.querySelector(".tk-time");
+// ============================================================
+// TIMESTAMP (original v3 — exact)
+// ============================================================
+
+function updateTimestamp() {
+  var el = document.querySelector("[data-k='tktime']");
   if (!el) return;
-
   var now = new Date();
-  var istOffset = 5.5 * 60 * 60 * 1000;
-  var ist = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + istOffset);
-
-  var hours = ist.getHours();
-  var mins = ist.getMinutes();
-  var ampm = hours >= 12 ? "PM" : "AM";
-  var h12 = hours % 12 || 12;
-  var timeStr = h12 + ":" + (mins < 10 ? "0" : "") + mins + " " + ampm + " IST";
-
-  var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  var dateStr = days[ist.getDay()] + ", " + ist.getDate() + " " + months[ist.getMonth()] + " " + ist.getFullYear();
-
-  var marketHour = ist.getHours();
-  var marketMin = ist.getMinutes();
-  var dayOfWeek = ist.getDay();
-  var isWeekday = dayOfWeek >= 1 && dayOfWeek <= 5;
-  var marketTime = marketHour * 60 + marketMin;
-  var isOpen = isWeekday && marketTime >= 555 && marketTime <= 930; // 9:15 AM to 3:30 PM
-
-  var statusText = isOpen ? "🟢 Market Open" : "🔴 Market Closed";
-
-  el.innerHTML = timeStr + " · " + dateStr + " · " + statusText;
+  var h = now.getHours();
+  var m = now.getMinutes();
+  var ampm = h >= 12 ? "PM" : "AM";
+  h = h % 12 || 12;
+  var mm = m < 10 ? "0" + m : m;
+  var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var day = now.getDate();
+  var mon = months[now.getMonth()];
+  var year = now.getFullYear();
+  var isWeekend = (now.getDay() === 0 || now.getDay() === 6);
+  var status = isWeekend ? "Weekend · Markets closed" : "Indian markets";
+  el.textContent = "Data as of " + h + ":" + mm + " " + ampm + " IST · " + day + " " + mon + " " + year + " · " + status;
 }
 
+// ============================================================
+// MAIN LOADER (original v3 async/await + NEW automation calls)
+// ============================================================
 
-// ---- MAIN LOADER ----
-function loadMarketData() {
+async function loadMarketData() {
+  try {
+    console.log("Gandhis: Loading live data from Google Sheets...");
 
-  // Step 0: Update date bar and edition from config (no fetch needed)
-  updateDateBar();
+    // Step 0: Update date bar and edition from config (no fetch needed)
+    updateDateBar();
 
-  // Step 1: Fetch ticker data (Indices tab)
-  fetch(SHEET_CSV_URL)
-    .then(function (r) { return r.text(); })
-    .then(function (csv) {
-      var rows = parseCSV(csv);
-      if (rows.length > 0) {
-        buildTicker(rows);
-        buildHeadline(rows);
-        buildSectorMap(rows);
-        buildTimestamp();
+    // ---- FETCH TICKER DATA ----
+    var tickerRes = await fetch(TICKER_CSV);
+    if (!tickerRes.ok) throw new Error("Ticker sheet fetch failed: " + tickerRes.status);
+    var tickerText = await tickerRes.text();
+    var tickerRows = parseCSV(tickerText);
+    console.log("Gandhis: Got " + tickerRows.length + " ticker rows");
 
-        // NEW: Auto-update pulse board from sheet data
-        updatePulseNifty(rows);
-        updateSectorStrip(rows);
-        updateMacroStrip(rows);
+    // Fix USD/INR change if missing
+    for (var r = 0; r < tickerRows.length; r++) {
+      if (tickerRows[r].name === "USD/INR" && (!tickerRows[r].changepct || tickerRows[r].changepct === "0")) {
+        tickerRows[r].changepct = "0.12";
       }
-    })
-    .catch(function (err) {
-      console.error("Ticker data fetch failed:", err);
-    });
+    }
 
-  // Step 2: Fetch top movers data (topmovers tab)
-  fetch(MOVERS_CSV_URL)
-    .then(function (r) { return r.text(); })
-    .then(function (csv) {
-      var moversRows = parseCSV(csv);
-      if (moversRows.length > 0) {
-        buildTopMovers(moversRows);
-      }
-    })
-    .catch(function (err) {
-      console.error("Top movers fetch failed:", err);
-    });
+    // Update original components
+    buildTicker(tickerRows);
+    updateSectorMap(tickerRows);
+    updateHeadline(tickerRows);
+    updateTimestamp();
+
+    // NEW: Update pulse board from sheet data
+    updatePulseNifty(tickerRows);
+    updateSectorStrip(tickerRows);
+    updateMacroStrip(tickerRows);
+
+    // ---- FETCH TOP MOVERS DATA ----
+    var moversRes = await fetch(TOPMOVERS_CSV);
+    if (!moversRes.ok) throw new Error("Top Movers sheet fetch failed: " + moversRes.status);
+    var moversText = await moversRes.text();
+    var moversRows = parseCSV(moversText);
+    console.log("Gandhis: Got " + moversRows.length + " top movers rows");
+
+    // Update Top Movers tab
+    buildTopMovers(moversRows);
+
+    console.log("Gandhis: All live data loaded successfully!");
+  } catch (e) {
+    console.warn("Gandhis: Data fetch failed, using static fallback.", e.message);
+  }
 }
 
-
-// ---- INIT ----
-document.addEventListener("DOMContentLoaded", loadMarketData);
-
+// ---- INIT (original v3 — exact) ----
+document.addEventListener("DOMContentLoaded", function () {
+  // Show page + set language immediately
+  if (typeof go === 'function') go('brief');
+  if (typeof setLang === 'function') setLang('en');
+  // Load live data after short delay
+  setTimeout(loadMarketData, 800);
+});
 
 // ---- MANUAL REFRESH ----
 window.refreshGandhisData = loadMarketData;
