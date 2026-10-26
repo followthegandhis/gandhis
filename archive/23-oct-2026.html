@@ -694,7 +694,13 @@ ftDisc: { en: "For educational purposes only. Not SEBI registered. Not investmen
 };
 </script>
 <script src="../app.js"></script>
-
+<script>
+  // Init: show brief page and set English on load
+  document.addEventListener("DOMContentLoaded", function() {
+    if (typeof go === 'function') go('brief');
+    if (typeof setLang === 'function') setLang('en');
+  });
+</script>
 </body>
 </html>
 
