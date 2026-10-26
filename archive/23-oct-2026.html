@@ -8,7 +8,7 @@
 <meta name="description" content="Edition #4: 5th straight day of FII selling. Breadth collapsed — 83% stocks fell. PSU Bank only survivor. Nifty fell 0.39% to 22,600.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23007A3F'/><text x='50' y='70' text-anchor='middle' font-size='62' font-weight='700' font-family='DM Sans,Arial,sans-serif' fill='white'>G</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;600;700;800&family=Burgues+Script&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../style1.css">
 <link rel="stylesheet" href="../style2.css">
 </head>
@@ -19,197 +19,566 @@
   <a href="https://gandhis.co" style="text-decoration:none">
     <div class="lw" style="border:none;padding:0;width:auto;height:auto"><img src="../logo.gif" alt="Gandhis" style="height:52px;border-radius:50%"></div>
   </a>
-  <div class="tgl2">Your 8 PM Post-Market Guide · 90 Seconds · 5 Things</div>
+  <div class="tgl2" data-k="tagline">Your 8 PM Post-Market Guide · 90 Seconds · 5 Things</div>
 </header>
 
+<!-- ===== STATIC TICKER ===== -->
+<div class="tk">
+  <div id="tkT" class="tt2">
+    <span class="tk-item"><span class="tk-name">SENSEX</span> <span class="tk-val">73,124</span> <span class="tk-dn">▼0.17%</span></span>
+    <span class="tk-item"><span class="tk-name">NIFTY 50</span> <span class="tk-val">22,600</span> <span class="tk-dn">▼0.39%</span></span>
+    <span class="tk-item"><span class="tk-name">BANK NIFTY</span> <span class="tk-val">54,440</span> <span class="tk-dn">▼0.55%</span></span>
+    <span class="tk-item"><span class="tk-name">PSU BANK</span> <span class="tk-val">6,871</span> <span class="tk-up">▲0.50%</span></span>
+    <span class="tk-item"><span class="tk-name">NIFTY IT</span> <span class="tk-val">31,584</span> <span class="tk-dn">▼1.20%</span></span>
+    <span class="tk-item"><span class="tk-name">MIDCAP</span> <span class="tk-val">50,832</span> <span class="tk-dn">▼0.95%</span></span>
+    <span class="tk-item"><span class="tk-name">VIX</span> <span class="tk-val">16.86</span> <span class="tk-dn">▲6.96%</span></span>
+    <span class="tk-item"><span class="tk-name">FII</span> <span class="tk-val">-₹2,961Cr</span> <span class="tk-dn">SOLD</span></span>
+    <span class="tk-item"><span class="tk-name">DII</span> <span class="tk-val">+₹3,235Cr</span> <span class="tk-up">BOUGHT</span></span>
+    <span class="tk-item"><span class="tk-name">USD/INR</span> <span class="tk-val">₹95.00</span> <span class="tk-dn">▲0.20%</span></span>
+    <span class="tk-item"><span class="tk-name">BRENT</span> <span class="tk-val">$116.72</span> <span class="tk-dn">▲3.10%</span></span>
+    <span class="tk-item"><span class="tk-name">GOLD</span> <span class="tk-val">$3,996</span> <span class="tk-dn">▼1.10%</span></span>
+    <span class="tk-item"><span class="tk-name">US 10Y</span> <span class="tk-val">4.963%</span> <span class="tk-dn">▲0.20%</span></span>
+    <span class="tk-item"><span class="tk-name">DJIA</span> <span class="tk-val">51,890</span> <span class="tk-dn">▼0.30%</span></span>
+    <span class="tk-item"><span class="tk-name">NASDAQ</span> <span class="tk-val">25,640</span> <span class="tk-dn">▼0.98%</span></span>
+    <span class="tk-item"><span class="tk-name">SENSEX</span> <span class="tk-val">73,124</span> <span class="tk-dn">▼0.17%</span></span>
+    <span class="tk-item"><span class="tk-name">NIFTY 50</span> <span class="tk-val">22,600</span> <span class="tk-dn">▼0.39%</span></span>
+    <span class="tk-item"><span class="tk-name">BANK NIFTY</span> <span class="tk-val">54,440</span> <span class="tk-dn">▼0.55%</span></span>
+    <span class="tk-item"><span class="tk-name">PSU BANK</span> <span class="tk-val">6,871</span> <span class="tk-up">▲0.50%</span></span>
+    <span class="tk-item"><span class="tk-name">NIFTY IT</span> <span class="tk-val">31,584</span> <span class="tk-dn">▼1.20%</span></span>
+    <span class="tk-item"><span class="tk-name">MIDCAP</span> <span class="tk-val">50,832</span> <span class="tk-dn">▼0.95%</span></span>
+    <span class="tk-item"><span class="tk-name">VIX</span> <span class="tk-val">16.86</span> <span class="tk-dn">▲6.96%</span></span>
+    <span class="tk-item"><span class="tk-name">FII</span> <span class="tk-val">-₹2,961Cr</span> <span class="tk-dn">SOLD</span></span>
+    <span class="tk-item"><span class="tk-name">DII</span> <span class="tk-val">+₹3,235Cr</span> <span class="tk-up">BOUGHT</span></span>
+    <span class="tk-item"><span class="tk-name">USD/INR</span> <span class="tk-val">₹95.00</span> <span class="tk-dn">▲0.20%</span></span>
+    <span class="tk-item"><span class="tk-name">BRENT</span> <span class="tk-val">$116.72</span> <span class="tk-dn">▲3.10%</span></span>
+    <span class="tk-item"><span class="tk-name">GOLD</span> <span class="tk-val">$3,996</span> <span class="tk-dn">▼1.10%</span></span>
+    <span class="tk-item"><span class="tk-name">US 10Y</span> <span class="tk-val">4.963%</span> <span class="tk-dn">▲0.20%</span></span>
+    <span class="tk-item"><span class="tk-name">DJIA</span> <span class="tk-val">51,890</span> <span class="tk-dn">▼0.30%</span></span>
+    <span class="tk-item"><span class="tk-name">NASDAQ</span> <span class="tk-val">25,640</span> <span class="tk-dn">▼0.98%</span></span>
+    <span class="tk-item"><span class="tk-name">SENSEX</span> <span class="tk-val">73,124</span> <span class="tk-dn">▼0.17%</span></span>
+    <span class="tk-item"><span class="tk-name">NIFTY 50</span> <span class="tk-val">22,600</span> <span class="tk-dn">▼0.39%</span></span>
+    <span class="tk-item"><span class="tk-name">BANK NIFTY</span> <span class="tk-val">54,440</span> <span class="tk-dn">▼0.55%</span></span>
+    <span class="tk-item"><span class="tk-name">PSU BANK</span> <span class="tk-val">6,871</span> <span class="tk-up">▲0.50%</span></span>
+    <span class="tk-item"><span class="tk-name">NIFTY IT</span> <span class="tk-val">31,584</span> <span class="tk-dn">▼1.20%</span></span>
+    <span class="tk-item"><span class="tk-name">MIDCAP</span> <span class="tk-val">50,832</span> <span class="tk-dn">▼0.95%</span></span>
+    <span class="tk-item"><span class="tk-name">VIX</span> <span class="tk-val">16.86</span> <span class="tk-dn">▲6.96%</span></span>
+    <span class="tk-item"><span class="tk-name">FII</span> <span class="tk-val">-₹2,961Cr</span> <span class="tk-dn">SOLD</span></span>
+    <span class="tk-item"><span class="tk-name">DII</span> <span class="tk-val">+₹3,235Cr</span> <span class="tk-up">BOUGHT</span></span>
+    <span class="tk-item"><span class="tk-name">USD/INR</span> <span class="tk-val">₹95.00</span> <span class="tk-dn">▲0.20%</span></span>
+    <span class="tk-item"><span class="tk-name">BRENT</span> <span class="tk-val">$116.72</span> <span class="tk-dn">▲3.10%</span></span>
+    <span class="tk-item"><span class="tk-name">GOLD</span> <span class="tk-val">$3,996</span> <span class="tk-dn">▼1.10%</span></span>
+    <span class="tk-item"><span class="tk-name">US 10Y</span> <span class="tk-val">4.963%</span> <span class="tk-dn">▲0.20%</span></span>
+    <span class="tk-item"><span class="tk-name">DJIA</span> <span class="tk-val">51,890</span> <span class="tk-dn">▼0.30%</span></span>
+    <span class="tk-item"><span class="tk-name">NASDAQ</span> <span class="tk-val">25,640</span> <span class="tk-dn">▼0.98%</span></span>
+  </div>
+</div>
+<div class="tk-time">Data as of 8:00 PM IST · 23 Oct 2026 · Indian markets closed</div>
+
 <!-- ===== DISCLAIMER ===== -->
-<div class="dc"><span>For educational purposes only · Not SEBI registered · Not investment advice · </span><a href="https://gandhis.co">← Back to Today's Brief</a></div>
+<div class="dc"><span data-k="disc">For educational purposes only · Not SEBI registered · Not investment advice · </span><a href="#" onclick="go('about');return false" data-k="disclink">Full disclaimer →</a></div>
 
 <!-- ===== ARCHIVE BANNER ===== -->
 <div style="text-align:center;padding:14px 16px;background:#FFF8E1;border-bottom:1px solid #FFE082;font-size:13px;color:#F57F17;font-family:'DM Sans',sans-serif">
   📁 ARCHIVE — This is a past edition. <a href="https://gandhis.co" style="color:#007A3F;font-weight:700;text-decoration:none">See today's brief →</a>
 </div>
 
+<!-- ===== NAV ===== -->
+<nav class="nv">
+  <a href="https://gandhis.co" class="nb" style="text-decoration:none">← LATEST</a>
+  <button class="nb" data-t="brief" onclick="go('brief')" style="font-weight:700">23 OCT '26</button>
+  <button class="nb" data-t="movers" onclick="go('movers')" data-k="tabM">TOP MOVERS</button>
+  <button class="nb" data-t="about" onclick="go('about')" data-k="tab4">ABOUT</button>
+  <div class="lang-tog">
+    <button class="lang-btn" id="btnEn" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="btnHi" onclick="setLang('hi')">हि</button>
+  </div>
+</nav>
+
 <!-- ===== DATE BAR ===== -->
-<div class="db"><strong>Thursday, 23 October 2026</strong> <span class="ed">EDITION #4 · 8:00 PM IST · ARCHIVE</span></div>
+<div class="db"><strong data-k="date">Thursday, 23 October 2026</strong> <span class="ed" data-k="edition">EDITION #4 · 8:00 PM IST</span></div>
 
-<!-- ===== MARKET PULSE BOARD ===== -->
-<div class="pulse">
-  <div class="p-head">
-    <div class="p-verd">
-      <div class="p-dot" style="background:#D32F2F;box-shadow:0 0 8px rgba(211,47,47,.3)"></div>
-      <div class="p-title">5th straight day of FII selling. Breadth collapsed — 83% stocks fell. PSU Bank only survivor. Nifty's 4th consecutive loss.</div>
+<!-- ===== PAGE: TODAY'S BRIEF ===== -->
+<div class="pg" id="pg-brief">
+
+  <!-- MARKET PULSE BOARD -->
+  <div class="pulse">
+    <div class="p-head">
+      <div class="p-verd">
+        <div class="p-dot" style="background:#D32F2F;box-shadow:0 0 8px rgba(211,47,47,.3)"></div>
+        <div class="p-title" data-k="verdict">5th straight day of FII selling. Breadth collapsed — 83% stocks fell. PSU Bank only survivor. Nifty's 4th consecutive loss.</div>
+      </div>
+      <div class="p-nifty">
+        <div class="p-nl">NIFTY 50</div>
+        <div class="p-nv dn">22,600</div>
+        <div class="p-nc dn">▼ 0.39% · -88 pts</div>
+      </div>
     </div>
-    <div class="p-nifty">
-      <div class="p-nl">NIFTY 50</div>
-      <div class="p-nv dn">22,600</div>
-      <div class="p-nc dn">▼ 0.39% · -88 pts</div>
+
+    <!-- SECTOR STRIP -->
+    <div class="s-strip">
+      <div class="s-label" data-k="sectorlabel">Where the Money Went →</div>
+      <div class="s-row">
+        <div class="s-chip sg"><div class="s-cn">PSU Bank</div><div class="s-cv">+0.50%</div></div>
+        <div class="s-chip sr1"><div class="s-cn">Pharma</div><div class="s-cv">-0.30%</div></div>
+        <div class="s-chip sr1"><div class="s-cn">Auto</div><div class="s-cv">-0.45%</div></div>
+        <div class="s-chip sr1"><div class="s-cn">Metal</div><div class="s-cv">-0.80%</div></div>
+        <div class="s-chip sr2"><div class="s-cn">FMCG</div><div class="s-cv">-0.90%</div></div>
+        <div class="s-chip sr2"><div class="s-cn">Realty</div><div class="s-cv">-1.05%</div></div>
+        <div class="s-chip sr2"><div class="s-cn">Bank Nifty</div><div class="s-cv">-0.55%</div></div>
+        <div class="s-chip sr3"><div class="s-cn">IT</div><div class="s-cv">-1.20%</div></div>
+      </div>
+    </div>
+
+    <!-- GAUGES -->
+    <div class="gauges">
+      <div class="gauge">
+        <div class="g-l" data-k="gFII">FII</div>
+        <div class="g-v dn">-₹2,961Cr</div>
+        <div class="g-s">Oct: -₹51,466Cr</div>
+        <div class="g-t sell" data-k="gFIItag">14/16 DAYS SOLD</div>
+      </div>
+      <div class="gauge">
+        <div class="g-l" data-k="gDII">DII</div>
+        <div class="g-v up">+₹3,235Cr</div>
+        <div class="g-s">Oct: +₹55,875Cr</div>
+        <div class="g-t buy" data-k="gDIItag">ABSORBING 109%</div>
+      </div>
+      <div class="gauge">
+        <div class="g-l" data-k="gBreadth">Breadth</div>
+        <div class="g-v dn">17% ▼</div>
+        <div class="g-s">624 adv · 3,011 dec</div>
+        <div class="g-t danger" data-k="gBreadthtag">83% STOCKS FELL</div>
+      </div>
+      <div class="gauge">
+        <div class="g-l">India VIX</div>
+        <div class="g-v dn">16.86</div>
+        <div class="g-s">▲ 6.96% today</div>
+        <div class="g-t danger" data-k="gVIXtag">4-MONTH HIGH</div>
+      </div>
+    </div>
+
+    <!-- MACRO STRIP -->
+    <div class="m-strip">
+      <div class="m-item"><span class="m-icon">🛢</span><span class="m-name">BRENT</span><span class="m-val">$116.72</span><span class="m-chg dn">▲3.10%</span></div>
+      <div class="m-item"><span class="m-icon">💵</span><span class="m-name">USD/INR</span><span class="m-val">₹95.00</span><span class="m-chg dn">▲0.20%</span></div>
+      <div class="m-item"><span class="m-icon">🏦</span><span class="m-name">US 10Y</span><span class="m-val">4.963%</span><span class="m-chg dn">▲0.20%</span></div>
+      <div class="m-item"><span class="m-icon">🥇</span><span class="m-name">GOLD</span><span class="m-val">$3,996</span><span class="m-chg dn">▼1.10%</span></div>
+      <div class="m-item"><span class="m-icon">📊</span><span class="m-name">DXY</span><span class="m-val">101.82</span><span class="m-chg dn">▲0.15%</span></div>
     </div>
   </div>
 
-  <!-- SECTOR STRIP -->
-  <div class="s-strip">
-    <div class="s-label">Where the Money Went →</div>
-    <div class="s-row">
-      <div class="s-chip sg"><div class="s-cn">PSU Bank</div><div class="s-cv">+0.50%</div></div>
-      <div class="s-chip sr1"><div class="s-cn">Pharma</div><div class="s-cv">-0.30%</div></div>
-      <div class="s-chip sr1"><div class="s-cn">Auto</div><div class="s-cv">-0.45%</div></div>
-      <div class="s-chip sr1"><div class="s-cn">Metal</div><div class="s-cv">-0.80%</div></div>
-      <div class="s-chip sr2"><div class="s-cn">FMCG</div><div class="s-cv">-0.90%</div></div>
-      <div class="s-chip sr2"><div class="s-cn">Realty</div><div class="s-cv">-1.05%</div></div>
-      <div class="s-chip sr2"><div class="s-cn">Bank Nifty</div><div class="s-cv">-0.55%</div></div>
-      <div class="s-chip sr3"><div class="s-cn">IT</div><div class="s-cv">-1.20%</div></div>
+  <!-- SEE TOP MOVERS CTA -->
+  <div style="text-align:center;padding:16px 0 4px">
+    <button onclick="go('movers')" style="padding:14px 32px;background:#007A3F;color:#fff;border:none;border-radius:30px;font-size:11px;font-weight:700;letter-spacing:1.5px;cursor:pointer;font-family:'DM Sans',sans-serif" data-k="ctaMovers">📈 SEE TOP MOVERS BY INDEX →</button>
+  </div>
+
+  <!-- ===== CARD 1: WHERE THE MONEY MOVED ===== -->
+  <div class="cd">
+    <div class="ca" style="background:#D32F2F"></div>
+    <div class="ct">
+      <div class="cb" style="background:#FFEBEE;color:#D32F2F">1</div>
+      <div class="cl" style="color:#D32F2F" data-k="c1label">Where the Money Moved</div>
+    </div>
+    <div class="ch" data-k="c1head">All sectors red except PSU Bank (+0.50%). IT (-1.20%) led the decline as Infosys cut FY27 guidance. Breadth collapsed to 83% negative — worst of the week.</div>
+    <div class="cy">
+      <span data-k="c1body">Selling was broad and relentless. IT reversed sharply after Wednesday's +2.88% rally — Infosys cutting FY27 revenue growth guidance to 1-2% from 1.5-3% triggered the selloff. Crude surging to $116.72 (6-month high) crushed sentiment across the board.</span>
+      <div class="pl">
+        <div class="pi"><span class="pn">PSU Bank</span><span class="pv up">▲ 0.50%</span></div>
+        <div class="pi"><span class="pn">IT</span><span class="pv dn">▼ 1.20%</span></div>
+        <div class="pi"><span class="pn">FMCG</span><span class="pv dn">▼ 0.90%</span></div>
+        <div class="pi"><span class="pn">Realty</span><span class="pv dn">▼ 1.05%</span></div>
+      </div>
+      <div class="ins ig">
+        <div class="it" data-k="c1insight">Educational Context</div>
+        <p data-k="c1insightbody">IT went from <strong>best sector (+2.88%)</strong> on Wednesday to <strong>worst sector (-1.20%)</strong> on Thursday. That's the speed of rotation right now. PSU Bank was the only survivor — defensive positioning in state-owned banks when everything else is falling. Crude at $116.72 is the highest since April 2022. India imports 85% of its oil — every $10 rise adds ~0.4% to inflation.</p>
+      </div>
     </div>
   </div>
 
-  <!-- GAUGES -->
-  <div class="gauges">
-    <div class="gauge">
-      <div class="g-l">FII</div>
-      <div class="g-v dn">-₹2,961Cr</div>
-      <div class="g-s">Oct: -₹51,466Cr</div>
-      <div class="g-t sell">14/16 DAYS SOLD</div>
+  <!-- ===== CARD 2: THE SIGNAL ===== -->
+  <div class="cd">
+    <div class="ca" style="background:#1565C0"></div>
+    <div class="ct">
+      <div class="cb" style="background:#F3F7FE;color:#1565C0">2</div>
+      <div class="cl" style="color:#1565C0" data-k="c2label">The Signal</div>
     </div>
-    <div class="gauge">
-      <div class="g-l">DII</div>
-      <div class="g-v up">+₹3,235Cr</div>
-      <div class="g-s">Oct: +₹55,875Cr</div>
-      <div class="g-t buy">ABSORBING 109%</div>
-    </div>
-    <div class="gauge">
-      <div class="g-l">Breadth</div>
-      <div class="g-v dn">17% ▼</div>
-      <div class="g-s">624 adv · 3,011 dec</div>
-      <div class="g-t danger">83% STOCKS FELL</div>
-    </div>
-    <div class="gauge">
-      <div class="g-l">India VIX</div>
-      <div class="g-v dn">16.86</div>
-      <div class="g-s">▲ 6.96% today</div>
-      <div class="g-t danger">4-MONTH HIGH</div>
+    <div class="ch" data-k="c2head">Infosys Cut FY27 Revenue Growth Guidance to 1-2%. Stock Fell. IT Sector Reversed Sharply.</div>
+    <div class="cy">
+      <span data-k="c2body">Infosys reported higher quarterly revenue but slashed its full-year constant-currency growth outlook from 1.5-3% to just 1-2%. The stock fell and dragged the entire IT sector down. It also declared an interim dividend of ₹26 per share.</span>
+      <table class="dt">
+        <tr><td class="dl">Infosys Guidance</td><td class="dv dn">Cut to 1-2% from 1.5-3%</td></tr>
+        <tr><td class="dl">Interim Dividend</td><td class="dv">₹26 per share</td></tr>
+        <tr><td class="dl">IT Sector</td><td class="dv dn">-1.20% (worst sector)</td></tr>
+      </table>
+      <div class="ins ib">
+        <div class="it" data-k="c2insight">What the Data Shows</div>
+        <p data-k="c2insightbody">When the sector leader cuts guidance, the entire sector pays the price. IT went from hero to zero in 24 hours. The guidance cut signals <strong>global demand weakness</strong> — clients are cutting discretionary tech spending as interest rates stay elevated. This is a <strong>leading indicator</strong> for the broader economy.</p>
+      </div>
     </div>
   </div>
 
-  <!-- MACRO STRIP -->
-  <div class="m-strip">
-    <div class="m-item"><span class="m-icon">🛢</span><span class="m-name">BRENT</span><span class="m-val">$116.72</span><span class="m-chg dn">▲3.10%</span></div>
-    <div class="m-item"><span class="m-icon">💵</span><span class="m-name">USD/INR</span><span class="m-val">₹95.00</span><span class="m-chg dn">▲0.20%</span></div>
-    <div class="m-item"><span class="m-icon">🏦</span><span class="m-name">US 10Y</span><span class="m-val">4.963%</span><span class="m-chg dn">▲0.20%</span></div>
-    <div class="m-item"><span class="m-icon">🥇</span><span class="m-name">GOLD</span><span class="m-val">$3,996</span><span class="m-chg dn">▼1.10%</span></div>
-    <div class="m-item"><span class="m-icon">📊</span><span class="m-name">DXY</span><span class="m-val">101.82</span><span class="m-chg dn">▲0.15%</span></div>
+  <!-- ===== CARD 3: THE DATA POINT ===== -->
+  <div class="cd">
+    <div class="ca" style="background:#D4740B"></div>
+    <div class="ct">
+      <div class="cb" style="background:#FFF9F2;color:#D4740B">3</div>
+      <div class="cl" style="color:#D4740B" data-k="c3label">The Data Point</div>
+    </div>
+    <div class="ch" data-k="c3head">Breadth: 624 Advances vs 3,011 Declines — 83% of Stocks Fell. Worst Breadth Day of the Week.</div>
+    <div class="cy">
+      <span data-k="c3body">Only 17% of stocks advanced. VIX surged 6.96% to 16.86 — a 4-month high. The market is not just falling, it's falling broadly.</span>
+      <table class="dt">
+        <tr><td class="dl">Advances</td><td class="dv">624</td></tr>
+        <tr><td class="dl">Declines</td><td class="dv dn">3,011</td></tr>
+        <tr><td class="dl">India VIX</td><td class="dv dn">16.86 (▲ 6.96%)</td></tr>
+      </table>
+      <div class="ins io">
+        <div class="it" data-k="c3insight">Why Breadth Matters</div>
+        <p data-k="c3insightbody">When 83% of stocks fall, it's not a sector problem — it's a <strong>market-wide risk-off</strong>. VIX at 16.86 is the highest since June. Options traders are pricing in more pain ahead. The 624 advances vs 3,011 declines ratio is the worst this month.</p>
+      </div>
+    </div>
   </div>
+
+  <!-- ===== CARD 4: THE FLOW ===== -->
+  <div class="cd">
+    <div class="ca" style="background:#6A1B9A"></div>
+    <div class="ct">
+      <div class="cb" style="background:#F9F2FB;color:#6A1B9A">4</div>
+      <div class="cl" style="color:#6A1B9A" data-k="c4label">The Flow</div>
+    </div>
+    <div class="ch" data-k="c4head">FIIs Sold ₹2,961 Cr. DIIs Bought ₹3,235 Cr. The DII Wall Holds — But FII Selling Is Relentless.</div>
+    <div class="cy">
+      <span data-k="c4body">FIIs reversed from Friday's ₹888 Cr buying back to selling ₹2,961 Cr. DIIs continued their buying streak with ₹3,235 Cr. October FII outflow now at ₹51,466 Cr.</span>
+      <table class="dt">
+        <tr><td class="dl">FII Cash (23 Oct)</td><td class="dv dn">-₹2,961 Cr</td></tr>
+        <tr><td class="dl">DII Cash (23 Oct)</td><td class="dv up">+₹3,235 Cr</td></tr>
+        <tr><td class="dl">FII Oct Total</td><td class="dv dn">-₹51,466 Cr</td></tr>
+        <tr><td class="dl">DII Oct Total</td><td class="dv up">+₹55,875 Cr</td></tr>
+      </table>
+      <div class="ins ip">
+        <div class="it" data-k="c4insight">The Pattern</div>
+        <p data-k="c4insightbody">Friday's FII buying (+₹888 Cr) was a <strong>one-day blip</strong>. They're back to selling. DIIs have absorbed 109% of FII selling this month. The structural FII exit continues — driven by elevated US yields, strong dollar, and crude above $115.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CARD 5: THE CONTEXT ===== -->
+  <div class="cd">
+    <div class="ca" style="background:#007A3F"></div>
+    <div class="ct">
+      <div class="cb" style="background:#E8F5EE;color:#007A3F">5</div>
+      <div class="cl" style="color:#007A3F" data-k="c5label">The Context</div>
+    </div>
+    <div class="ch" data-k="c5head">Brent $116.72 (6-Month High), Rupee ₹95.00, US 10Y 4.96%, Gold Below $4,000 — Crude Is the Story</div>
+    <div class="cy">
+      <span data-k="c5body">Brent surged 3.1% to $116.72 — highest since April 2022. Houthi attacks on Saudi Arabia intensified. Trump said it's "decision time" on Iran. Gold fell below $4,000 for the first time in months.</span>
+      <table class="dt">
+        <tr><td class="dl">Brent Crude</td><td class="dv dn">$116.72 (▲ 3.10%)</td></tr>
+        <tr><td class="dl">USD/INR</td><td class="dv dn">₹95.00 (▲ 0.20%)</td></tr>
+        <tr><td class="dl">US 10Y Yield</td><td class="dv dn">4.963% (▲ 0.20%)</td></tr>
+        <tr><td class="dl">Gold</td><td class="dv dn">$3,996 (▼ 1.10%)</td></tr>
+      </table>
+      <div class="ins ig">
+        <div class="it" data-k="c5insight">Why These Numbers Matter</div>
+        <p data-k="c5insightbody">Crude at $116.72 is the <strong>single biggest threat</strong> to Indian markets right now. Houthi strikes on Saudi airports and oil facilities are escalating. Trump hinted at "finishing off" Iran — any military escalation could push crude past $120. Gold falling below $4,000 shows investors are selling everything for cash — a classic <strong>liquidity crunch</strong> signal. The Nasdaq had its worst day since June on AI spending fears. This week's Jio IPO allotment (Monday) and Fed meeting (Wednesday) are the next catalysts.</p>
+      </div>
+    </div>
+  </div>
+
 </div>
+<!-- END OF TODAY'S BRIEF PAGE -->
 
-<!-- ===== CARD 1: WHERE THE MONEY MOVED ===== -->
-<div class="cd">
-  <div class="ca" style="background:#D32F2F"></div>
-  <div class="ct">
-    <div class="cb" style="background:#FFEBEE;color:#D32F2F">1</div>
-    <div class="cl" style="color:#D32F2F">Where the Money Moved</div>
+
+<!-- ===== PAGE: TOP MOVERS ===== -->
+<div class="pg" id="pg-movers">
+
+  <button class="back-btn" onclick="go('brief')">← Back to 23 Oct '26</button>
+
+  <div class="tm-header">
+    <div class="tm-title" data-k="tmTitle">Top Movers by Index</div>
+    <div class="tm-sub" data-k="tmSub">3 Gainers · 3 Losers · Every Major Index</div>
+    <div class="tm-date">23 OCTOBER 2026 · THURSDAY</div>
   </div>
-  <div class="ch">All sectors red except PSU Bank (+0.50%). IT (-1.20%) led the decline as Infosys cut FY27 guidance. Breadth collapsed to 83% negative — worst of the week.</div>
-  <div class="cy">
-    <span>Selling was broad and relentless. IT reversed sharply after Wednesday's +2.88% rally — Infosys cutting FY27 revenue growth guidance to 1-2% from 1.5-3% triggered the selloff. Crude surging to $116.72 (6-month high) crushed sentiment across the board.</span>
-    <div class="pl">
-      <div class="pi"><span class="pn">PSU Bank</span><span class="pv up">▲ 0.50%</span></div>
-      <div class="pi"><span class="pn">IT</span><span class="pv dn">▼ 1.20%</span></div>
-      <div class="pi"><span class="pn">FMCG</span><span class="pv dn">▼ 0.90%</span></div>
-      <div class="pi"><span class="pn">Realty</span><span class="pv dn">▼ 1.05%</span></div>
+
+  <!-- NIFTY 50 -->
+  <div class="idx-section">
+    <div class="idx-bar bar-red">
+      <div class="idx-left"><div class="idx-icon ir">📈</div><div><div class="idx-name">NIFTY 50</div><div class="idx-full">NSE Benchmark · 50 Stocks</div></div></div>
+      <div class="idx-right"><div class="idx-val">22,600</div><div class="idx-chg dn">▼ 0.39%</div><div class="idx-pts">-88 pts</div></div>
     </div>
-    <div class="ins ig">
-      <div class="it">Educational Context</div>
-      <p>IT went from <strong>best sector (+2.88%)</strong> on Wednesday to <strong>worst sector (-1.20%)</strong> on Thursday. That's the speed of rotation right now. PSU Bank was the only survivor — defensive positioning in state-owned banks when everything else is falling. Crude at $116.72 is the highest since April 2022. India imports 85% of its oil — every $10 rise adds ~0.4% to inflation.</p>
+    <div class="gl-grid">
+      <div class="gl-col">
+        <div class="gl-label up">▲ TOP 3 GAINERS</div>
+        <div class="stk green"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">SBI</div><div class="stk-price">₹618.40</div></div><div class="stk-chg up">+1.20%</div></div>
+        <div class="stk green"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">ONGC</div><div class="stk-price">₹282.60</div></div><div class="stk-chg up">+0.95%</div></div>
+        <div class="stk green"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">NTPC</div><div class="stk-price">₹348.20</div></div><div class="stk-chg up">+0.72%</div></div>
+      </div>
+      <div class="gl-col">
+        <div class="gl-label dn">▼ TOP 3 LOSERS</div>
+        <div class="stk red"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">Infosys</div><div class="stk-price">₹1,096.00</div></div><div class="stk-chg dn">-3.01%</div></div>
+        <div class="stk red"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Wipro</div><div class="stk-price">₹176.20</div></div><div class="stk-chg dn">-3.30%</div></div>
+        <div class="stk red"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Tech Mahindra</div><div class="stk-price">₹1,738.00</div></div><div class="stk-chg dn">-2.47%</div></div>
+      </div>
     </div>
+    <div class="idx-summary">Advances: 8 · Declines: 42<span class="breadth-pct">Breadth: 16% ▲</span></div>
   </div>
+
+  <!-- NIFTY IT -->
+  <div class="idx-section">
+    <div class="idx-bar bar-red">
+      <div class="idx-left"><div class="idx-icon ir">💻</div><div><div class="idx-name">NIFTY IT</div><div class="idx-full">Technology Sector · 10 Stocks</div></div></div>
+      <div class="idx-right"><div class="idx-val">31,584</div><div class="idx-chg dn">▼ 1.20%</div><div class="idx-pts">-384 pts</div></div>
+    </div>
+    <div class="gl-grid">
+      <div class="gl-col">
+        <div class="gl-label dn">▲ LEAST LOSERS</div>
+        <div class="stk red"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">Coforge</div><div class="stk-price">₹7,420.00</div></div><div class="stk-chg dn">-0.27%</div></div>
+        <div class="stk red"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Persistent</div><div class="stk-price">₹4,648.00</div></div><div class="stk-chg dn">-0.90%</div></div>
+        <div class="stk red"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">LTIMindtree</div><div class="stk-price">₹4,980.00</div></div><div class="stk-chg dn">-0.96%</div></div>
+      </div>
+      <div class="gl-col">
+        <div class="gl-label dn">▼ TOP 3 LOSERS</div>
+        <div class="stk red"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">Wipro</div><div class="stk-price">₹176.20</div></div><div class="stk-chg dn">-3.30%</div></div>
+        <div class="stk red"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Infosys</div><div class="stk-price">₹1,096.00</div></div><div class="stk-chg dn">-3.01%</div></div>
+        <div class="stk red"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Tech Mahindra</div><div class="stk-price">₹1,738.00</div></div><div class="stk-chg dn">-2.47%</div></div>
+      </div>
+    </div>
+    <div class="idx-summary">Advances: 0 · Declines: 10<span class="breadth-pct">Breadth: 0% ▲</span></div>
+  </div>
+
+  <!-- NIFTY BANK -->
+  <div class="idx-section">
+    <div class="idx-bar bar-red">
+      <div class="idx-left"><div class="idx-icon ir">🏦</div><div><div class="idx-name">NIFTY BANK</div><div class="idx-full">Banking Sector · 12 Stocks</div></div></div>
+      <div class="idx-right"><div class="idx-val">54,440</div><div class="idx-chg dn">▼ 0.55%</div><div class="idx-pts">-300 pts</div></div>
+    </div>
+    <div class="gl-grid">
+      <div class="gl-col">
+        <div class="gl-label up">▲ TOP 3 GAINERS</div>
+        <div class="stk green"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">SBI</div><div class="stk-price">₹618.40</div></div><div class="stk-chg up">+1.20%</div></div>
+        <div class="stk green"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">PNB</div><div class="stk-price">₹132.60</div></div><div class="stk-chg up">+0.91%</div></div>
+        <div class="stk green"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Bank of Baroda</div><div class="stk-price">₹248.80</div></div><div class="stk-chg up">+0.65%</div></div>
+      </div>
+      <div class="gl-col">
+        <div class="gl-label dn">▼ TOP 3 LOSERS</div>
+        <div class="stk red"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">IndusInd Bank</div><div class="stk-price">₹1,290.00</div></div><div class="stk-chg dn">-2.12%</div></div>
+        <div class="stk red"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Bandhan Bank</div><div class="stk-price">₹188.40</div></div><div class="stk-chg dn">-1.88%</div></div>
+        <div class="stk red"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">ICICI Bank</div><div class="stk-price">₹1,134.00</div></div><div class="stk-chg dn">-1.22%</div></div>
+      </div>
+    </div>
+    <div class="idx-summary">Advances: 3 · Declines: 9<span class="breadth-pct">Breadth: 25% ▲</span></div>
+  </div>
+
+  <!-- PSU BANK -->
+  <div class="idx-section">
+    <div class="idx-bar bar-green">
+      <div class="idx-left"><div class="idx-icon ig">🏛️</div><div><div class="idx-name">NIFTY PSU BANK</div><div class="idx-full">Public Sector Banks · 12 Stocks</div></div></div>
+      <div class="idx-right"><div class="idx-val">6,871</div><div class="idx-chg up">▲ 0.50%</div><div class="idx-pts">+34 pts</div></div>
+    </div>
+    <div class="gl-grid">
+      <div class="gl-col">
+        <div class="gl-label up">▲ TOP 3 GAINERS</div>
+        <div class="stk green"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">SBI</div><div class="stk-price">₹618.40</div></div><div class="stk-chg up">+1.20%</div></div>
+        <div class="stk green"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">PNB</div><div class="stk-price">₹132.60</div></div><div class="stk-chg up">+0.91%</div></div>
+        <div class="stk green"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">UCO Bank</div><div class="stk-price">₹44.20</div></div><div class="stk-chg up">+0.91%</div></div>
+      </div>
+      <div class="gl-col">
+        <div class="gl-label dn">▼ TOP 3 LOSERS</div>
+        <div class="stk red"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">Indian Bank</div><div class="stk-price">₹520.00</div></div><div class="stk-chg dn">-0.77%</div></div>
+        <div class="stk red"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Central Bank</div><div class="stk-price">₹59.60</div></div><div class="stk-chg dn">-1.00%</div></div>
+        <div class="stk red"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">IOB</div><div class="stk-price">₹56.80</div></div><div class="stk-chg dn">-0.70%</div></div>
+      </div>
+    </div>
+    <div class="idx-summary">Advances: 8 · Declines: 4<span class="breadth-pct">Breadth: 67% ▲</span></div>
+  </div>
+
+  <!-- PHARMA -->
+  <div class="idx-section">
+    <div class="idx-bar bar-red">
+      <div class="idx-left"><div class="idx-icon ir">💊</div><div><div class="idx-name">NIFTY PHARMA</div><div class="idx-full">Pharmaceutical Sector · 20 Stocks</div></div></div>
+      <div class="idx-right"><div class="idx-val">17,954</div><div class="idx-chg dn">▼ 0.30%</div><div class="idx-pts">-54 pts</div></div>
+    </div>
+    <div class="gl-grid">
+      <div class="gl-col">
+        <div class="gl-label up">▲ TOP 3 GAINERS</div>
+        <div class="stk green"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">Lupin</div><div class="stk-price">₹2,048.00</div></div><div class="stk-chg up">+0.88%</div></div>
+        <div class="stk green"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Cipla</div><div class="stk-price">₹1,454.00</div></div><div class="stk-chg up">+0.41%</div></div>
+        <div class="stk green"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Dr Reddy's</div><div class="stk-price">₹1,210.00</div></div><div class="stk-chg up">+0.33%</div></div>
+      </div>
+      <div class="gl-col">
+        <div class="gl-label dn">▼ TOP 3 LOSERS</div>
+        <div class="stk red"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">Biocon</div><div class="stk-price">₹276.80</div></div><div class="stk-chg dn">-1.28%</div></div>
+        <div class="stk red"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Glenmark</div><div class="stk-price">₹1,126.00</div></div><div class="stk-chg dn">-1.40%</div></div>
+        <div class="stk red"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Aurobindo</div><div class="stk-price">₹1,088.00</div></div><div class="stk-chg dn">-0.91%</div></div>
+      </div>
+    </div>
+    <div class="idx-summary">Advances: 6 · Declines: 14<span class="breadth-pct">Breadth: 30% ▲</span></div>
+  </div>
+
+  <!-- METAL -->
+  <div class="idx-section">
+    <div class="idx-bar bar-red">
+      <div class="idx-left"><div class="idx-icon ir">⛏️</div><div><div class="idx-name">NIFTY METAL</div><div class="idx-full">Metals & Mining · 15 Stocks</div></div></div>
+      <div class="idx-right"><div class="idx-val">7,804</div><div class="idx-chg dn">▼ 0.80%</div><div class="idx-pts">-63 pts</div></div>
+    </div>
+    <div class="gl-grid">
+      <div class="gl-col">
+        <div class="gl-label up">▲ TOP 3 GAINERS</div>
+        <div class="stk green"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">Coal India</div><div class="stk-price">₹416.80</div></div><div class="stk-chg up">+0.53%</div></div>
+        <div class="stk green"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">NMDC</div><div class="stk-price">₹221.40</div></div><div class="stk-chg up">+0.27%</div></div>
+        <div class="stk red"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Vedanta</div><div class="stk-price">₹442.60</div></div><div class="stk-chg dn">-0.36%</div></div>
+      </div>
+      <div class="gl-col">
+        <div class="gl-label dn">▼ TOP 3 LOSERS</div>
+        <div class="stk red"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">JSW Steel</div><div class="stk-price">₹884.20</div></div><div class="stk-chg dn">-1.58%</div></div>
+        <div class="stk red"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Tata Steel</div><div class="stk-price">₹140.80</div></div><div class="stk-chg dn">-1.26%</div></div>
+        <div class="stk red"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Hindalco</div><div class="stk-price">₹628.40</div></div><div class="stk-chg dn">-0.70%</div></div>
+      </div>
+    </div>
+    <div class="idx-summary">Advances: 2 · Declines: 13<span class="breadth-pct">Breadth: 13% ▲</span></div>
+  </div>
+
+  <!-- AUTO -->
+  <div class="idx-section">
+    <div class="idx-bar bar-red">
+      <div class="idx-left"><div class="idx-icon ir">🚗</div><div><div class="idx-name">NIFTY AUTO</div><div class="idx-full">Automobile Sector · 15 Stocks</div></div></div>
+      <div class="idx-right"><div class="idx-val">21,998</div><div class="idx-chg dn">▼ 0.45%</div><div class="idx-pts">-100 pts</div></div>
+    </div>
+    <div class="gl-grid">
+      <div class="gl-col">
+        <div class="gl-label up">▲ TOP 3 GAINERS</div>
+        <div class="stk green"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">Ashok Leyland</div><div class="stk-price">₹222.00</div></div><div class="stk-chg up">+0.73%</div></div>
+        <div class="stk green"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Tata Motors</div><div class="stk-price">₹782.40</div></div><div class="stk-chg up">+0.31%</div></div>
+        <div class="stk red"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Bajaj Auto</div><div class="stk-price">₹9,840.00</div></div><div class="stk-chg dn">-0.20%</div></div>
+      </div>
+      <div class="gl-col">
+        <div class="gl-label dn">▼ TOP 3 LOSERS</div>
+        <div class="stk red"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">Eicher Motors</div><div class="stk-price">₹7,098.00</div></div><div class="stk-chg dn">-1.14%</div></div>
+        <div class="stk red"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">M&M</div><div class="stk-price">₹2,576.00</div></div><div class="stk-chg dn">-1.38%</div></div>
+        <div class="stk red"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Maruti Suzuki</div><div class="stk-price">₹11,020.00</div></div><div class="stk-chg dn">-1.43%</div></div>
+      </div>
+    </div>
+    <div class="idx-summary">Advances: 2 · Declines: 13<span class="breadth-pct">Breadth: 13% ▲</span></div>
+  </div>
+
+  <!-- REALTY -->
+  <div class="idx-section">
+    <div class="idx-bar bar-red">
+      <div class="idx-left"><div class="idx-icon ir">🏗️</div><div><div class="idx-name">NIFTY REALTY</div><div class="idx-full">Real Estate Sector · 10 Stocks</div></div></div>
+      <div class="idx-right"><div class="idx-val">853</div><div class="idx-chg dn">▼ 1.05%</div><div class="idx-pts">-9 pts</div></div>
+    </div>
+    <div class="gl-grid">
+      <div class="gl-col">
+        <div class="gl-label dn">▲ LEAST LOSERS</div>
+        <div class="stk red"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">Phoenix Mills</div><div class="stk-price">₹1,524.00</div></div><div class="stk-chg dn">-0.52%</div></div>
+        <div class="stk red"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Brigade Ent.</div><div class="stk-price">₹1,072.00</div></div><div class="stk-chg dn">-0.93%</div></div>
+        <div class="stk red"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Prestige Est.</div><div class="stk-price">₹1,282.00</div></div><div class="stk-chg dn">-1.08%</div></div>
+      </div>
+      <div class="gl-col">
+        <div class="gl-label dn">▼ TOP 3 LOSERS</div>
+        <div class="stk red"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">Godrej Prop.</div><div class="stk-price">₹2,248.00</div></div><div class="stk-chg dn">-2.17%</div></div>
+        <div class="stk red"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">DLF</div><div class="stk-price">₹762.00</div></div><div class="stk-chg dn">-1.35%</div></div>
+        <div class="stk red"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Oberoi Realty</div><div class="stk-price">₹1,648.00</div></div><div class="stk-chg dn">-1.44%</div></div>
+      </div>
+    </div>
+    <div class="idx-summary">Advances: 0 · Declines: 10<span class="breadth-pct">Breadth: 0% ▲</span></div>
+  </div>
+
+  <!-- FMCG -->
+  <div class="idx-section">
+    <div class="idx-bar bar-red">
+      <div class="idx-left"><div class="idx-icon ir">🛒</div><div><div class="idx-name">NIFTY FMCG</div><div class="idx-full">Consumer Goods · 15 Stocks</div></div></div>
+      <div class="idx-right"><div class="idx-val">52,728</div><div class="idx-chg dn">▼ 0.90%</div><div class="idx-pts">-480 pts</div></div>
+    </div>
+    <div class="gl-grid">
+      <div class="gl-col">
+        <div class="gl-label up">▲ TOP 3 GAINERS</div>
+        <div class="stk green"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">Godrej Consumer</div><div class="stk-price">₹1,258.00</div></div><div class="stk-chg up">+0.48%</div></div>
+        <div class="stk red"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Dabur</div><div class="stk-price">₹536.00</div></div><div class="stk-chg dn">-0.74%</div></div>
+        <div class="stk red"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">Colgate</div><div class="stk-price">₹2,848.00</div></div><div class="stk-chg dn">-0.70%</div></div>
+      </div>
+      <div class="gl-col">
+        <div class="gl-label dn">▼ TOP 3 LOSERS</div>
+        <div class="stk red"><span class="stk-rank">1</span><div class="stk-info"><div class="stk-name">Trent</div><div class="stk-price">₹5,380.00</div></div><div class="stk-chg dn">-1.82%</div></div>
+        <div class="stk red"><span class="stk-rank">2</span><div class="stk-info"><div class="stk-name">Nestle India</div><div class="stk-price">₹2,078.00</div></div><div class="stk-chg dn">-1.89%</div></div>
+        <div class="stk red"><span class="stk-rank">3</span><div class="stk-info"><div class="stk-name">HUL</div><div class="stk-price">₹2,440.00</div></div><div class="stk-chg dn">-1.29%</div></div>
+      </div>
+    </div>
+    <div class="idx-summary">Advances: 1 · Declines: 14<span class="breadth-pct">Breadth: 7% ▲</span></div>
+  </div>
+
+  <div class="tm-footer" data-k="tmFooter">Data sourced from NSE · For educational purposes only · Not investment advice</div>
+
+  <div style="text-align:center;padding:16px 0">
+    <button class="back-btn" onclick="go('brief')">← Back to 23 Oct '26</button>
+  </div>
+
 </div>
+<!-- END OF TOP MOVERS PAGE -->
 
-<!-- ===== CARD 2: THE SIGNAL ===== -->
-<div class="cd">
-  <div class="ca" style="background:#1565C0"></div>
-  <div class="ct">
-    <div class="cb" style="background:#F3F7FE;color:#1565C0">2</div>
-    <div class="cl" style="color:#1565C0">The Signal</div>
+<!-- ===== PAGE: ABOUT ===== -->
+<div class="pg" id="pg-about">
+
+  <div class="abh">
+    <h2 data-k="aboutHead">We read the market so you don't have to. Then we tell you in 90 seconds.</h2>
+    <p data-k="aboutSub">Every trading day. 8 PM. No exceptions.</p>
   </div>
-  <div class="ch">Infosys Cut FY27 Revenue Growth Guidance to 1-2%. Stock Fell. IT Sector Reversed Sharply.</div>
-  <div class="cy">
-    <span>Infosys reported higher quarterly revenue but slashed its full-year constant-currency growth outlook from 1.5-3% to just 1-2%. The stock fell and dragged the entire IT sector down. It also declared an interim dividend of ₹26 per share.</span>
-    <table class="dt">
-      <tr><td class="dl">Infosys Guidance</td><td class="dv dn">Cut to 1-2% from 1.5-3%</td></tr>
-      <tr><td class="dl">Interim Dividend</td><td class="dv">₹26 per share</td></tr>
-      <tr><td class="dl">IT Sector</td><td class="dv dn">-1.20% (worst sector)</td></tr>
-    </table>
-    <div class="ins ib">
-      <div class="it">What the Data Shows</div>
-      <p>When the sector leader cuts guidance, the entire sector pays the price. IT went from hero to zero in 24 hours. The guidance cut signals <strong>global demand weakness</strong> — clients are cutting discretionary tech spending as interest rates stay elevated. This is a <strong>leading indicator</strong> for the broader economy.</p>
+  <div class="adiv"></div>
+
+  <div class="as">
+    <h3 data-k="aboutWhat">What is Gandhis?</h3>
+    <p data-k="aboutWhatP1">Gandhis is a daily post-market educational guide for the Indian stock market. Every trading day at 8 PM, we publish 5 cards — which sectors moved, what institutions did, and the macro picture.</p>
+    <p data-k="aboutWhatP2">We go through data from NSE, BSE, and official sources so you don't have to. Five cards. Ninety seconds. That's it.</p>
+  </div>
+
+  <div class="ahl">
+    <p><strong data-k="aboutCards">The 5 Cards — Every Day</strong></p>
+    <div class="acl">
+      <div class="aci"><div class="acd" style="background:#D32F2F"></div><span data-k="aboutC1">Where the Money Moved — which sectors saw capital flow in or out</span></div>
+      <div class="aci"><div class="acd" style="background:#1565C0"></div><span data-k="aboutC2">The Signal — the one earnings result or stock move that stood out</span></div>
+      <div class="aci"><div class="acd" style="background:#D4740B"></div><span data-k="aboutC3">The Data Point — market breadth, VIX, and numbers beneath the surface</span></div>
+      <div class="aci"><div class="acd" style="background:#6A1B9A"></div><span data-k="aboutC4">The Flow — FII and DII activity, who's buying, who's selling</span></div>
+      <div class="aci"><div class="acd" style="background:#007A3F"></div><span data-k="aboutC5">The Context — crude, rupee, US yields, and global forces</span></div>
     </div>
   </div>
-</div>
 
-<!-- ===== CARD 3: THE DATA POINT ===== -->
-<div class="cd">
-  <div class="ca" style="background:#D4740B"></div>
-  <div class="ct">
-    <div class="cb" style="background:#FFF9F2;color:#D4740B">3</div>
-    <div class="cl" style="color:#D4740B">The Data Point</div>
+  <div class="as">
+    <p data-k="aboutNoPredict">We don't predict the market. We don't recommend stocks. We don't sell tips. We present publicly available data so patterns become visible.</p>
   </div>
-  <div class="ch">Breadth: 624 Advances vs 3,011 Declines — 83% of Stocks Fell. Worst Breadth Day of the Week.</div>
-  <div class="cy">
-    <span>Only 17% of stocks advanced. VIX surged 6.96% to 16.86 — a 4-month high. The market is not just falling, it's falling broadly.</span>
-    <table class="dt">
-      <tr><td class="dl">Advances</td><td class="dv">624</td></tr>
-      <tr><td class="dl">Declines</td><td class="dv dn">3,011</td></tr>
-      <tr><td class="dl">India VIX</td><td class="dv dn">16.86 (▲ 6.96%)</td></tr>
-    </table>
-    <div class="ins io">
-      <div class="it">Why Breadth Matters</div>
-      <p>When 83% of stocks fall, it's not a sector problem — it's a <strong>market-wide risk-off</strong>. VIX at 16.86 is the highest since June. Options traders are pricing in more pain ahead. The 624 advances vs 3,011 declines ratio is the worst this month.</p>
-    </div>
-  </div>
-</div>
 
-<!-- ===== CARD 4: THE FLOW ===== -->
-<div class="cd">
-  <div class="ca" style="background:#6A1B9A"></div>
-  <div class="ct">
-    <div class="cb" style="background:#F9F2FB;color:#6A1B9A">4</div>
-    <div class="cl" style="color:#6A1B9A">The Flow</div>
+  <div class="as">
+    <h3 data-k="aboutHow">How We Think</h3>
+    <p data-k="aboutHowP">We focus on sector rotation — money doesn't leave the market, it moves. Most people look at the Nifty and react. We look at where the money is actually going.</p>
   </div>
-  <div class="ch">FIIs Sold ₹2,961 Cr. DIIs Bought ₹3,235 Cr. The DII Wall Holds — But FII Selling Is Relentless.</div>
-  <div class="cy">
-    <span>FIIs reversed from Friday's ₹888 Cr buying back to selling ₹2,961 Cr. DIIs continued their buying streak with ₹3,235 Cr. October FII outflow now at ₹51,466 Cr.</span>
-    <table class="dt">
-      <tr><td class="dl">FII Cash (23 Oct)</td><td class="dv dn">-₹2,961 Cr</td></tr>
-      <tr><td class="dl">DII Cash (23 Oct)</td><td class="dv up">+₹3,235 Cr</td></tr>
-      <tr><td class="dl">FII Oct Total</td><td class="dv dn">-₹51,466 Cr</td></tr>
-    </table>
-    <div class="ins ip">
-      <div class="it">The Pattern</div>
-      <p>Friday's FII buying (+₹888 Cr) was a <strong>one-day blip</strong>. They're back to selling. DIIs have absorbed 109% of FII selling this month. The structural FII exit continues — driven by elevated US yields, strong dollar, and crude above $115.</p>
-    </div>
-  </div>
-</div>
 
-<!-- ===== CARD 5: THE CONTEXT ===== -->
-<div class="cd">
-  <div class="ca" style="background:#007A3F"></div>
-  <div class="ct">
-    <div class="cb" style="background:#E8F5EE;color:#007A3F">5</div>
-    <div class="cl" style="color:#007A3F">The Context</div>
+  <div class="as">
+    <h3 data-k="aboutWhy">Why "Gandhis"?</h3>
+    <p data-k="aboutWhyP">It's on every note in your wallet. Gandhis follow the cash.</p>
   </div>
-  <div class="ch">Brent $116.72 (6-Month High), Rupee ₹95.00, US 10Y 4.96%, Gold Below $4,000 — Crude Is the Story</div>
-  <div class="cy">
-    <span>Brent surged 3.1% to $116.72 — highest since April 2022. Houthi attacks on Saudi Arabia intensified. Trump said it's "decision time" on Iran. Gold fell below $4,000 for the first time in months.</span>
-    <table class="dt">
-      <tr><td class="dl">Brent Crude</td><td class="dv dn">$116.72 (▲ 3.10%)</td></tr>
-      <tr><td class="dl">USD/INR</td><td class="dv dn">₹95.00 (▲ 0.20%)</td></tr>
-      <tr><td class="dl">US 10Y Yield</td><td class="dv dn">4.963% (▲ 0.20%)</td></tr>
-      <tr><td class="dl">Gold</td><td class="dv dn">$3,996 (▼ 1.10%)</td></tr>
-    </table>
-    <div class="ins ig">
-      <div class="it">Why These Numbers Matter</div>
-      <p>Crude at $116.72 is the <strong>single biggest threat</strong> to Indian markets right now. Houthi strikes on Saudi airports and oil facilities are escalating. Trump hinted at "finishing off" Iran — any military escalation could push crude past $120. Gold falling below $4,000 shows investors are selling everything for cash — a classic <strong>liquidity crunch</strong> signal. The Nasdaq had its worst day since June on AI spending fears. This week's Jio IPO allotment (Monday) and Fed meeting (Wednesday) are the next catalysts.</p>
-    </div>
+
+  <div class="aq">
+    <p data-k="aboutQuote">"Everyone's watching the index. We're watching where the money goes."</p>
+    <div class="aqa">— GANDHIS</div>
   </div>
+
+  <div class="as">
+    <h3 data-k="aboutCome">Come Back Tomorrow</h3>
+    <p data-k="aboutComeP">See you at 8 PM.</p>
+  </div>
+
+  <div class="lg">
+    <h4 data-k="lgTitle">IMPORTANT DISCLAIMER</h4>
+    <p data-k="lgP1">Gandhis is an educational initiative. We are not registered with SEBI as investment advisors, research analysts, or portfolio managers.</p>
+    <ul>
+      <li data-k="lgL1">We do not recommend buying, selling, or holding any securities</li>
+      <li data-k="lgL2">We do not provide personalized investment advice</li>
+      <li data-k="lgL3">All data is sourced from publicly available NSE/BSE/NSDL/CDSL sources</li>
+      <li data-k="lgL4">Past patterns do not guarantee future results</li>
+      <li data-k="lgL5">Always consult a SEBI-registered advisor before making investment decisions</li>
+    </ul>
+    <p data-k="lgP2">By using this website, you acknowledge that all content is for educational and informational purposes only.</p>
+  </div>
+
 </div>
 
 <!-- ===== BACK TO TODAY'S BRIEF ===== -->
@@ -220,15 +589,15 @@
 <!-- ===== FOOTER ===== -->
 <footer class="ft">
   <div class="fto" style="background:none;width:auto;height:auto"><img src="../logo-small.png" alt="Gandhis" style="height:48px"></div>
-  <div class="ftg">Follow the Gandhis</div>
+  <div class="ftg" data-k="ftFollow">Follow the Gandhis</div>
   <div class="fts">
     <a class="tg" href="https://t.me/followthegandhis" target="_blank">
       <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-      <span>Join Telegram</span>
+      <span data-k="ftTG">Join Telegram</span>
     </a>
     <a class="igb" href="https://instagram.com/followthegandhis" target="_blank">
       <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-      <span>Follow on Instagram</span>
+      <span data-k="ftIG">Follow on Instagram</span>
     </a>
     <a class="wab" href="https://wa.me/?text=Gandhis%20%E2%80%94%20Your%208%20PM%20Post-Market%20Guide%20%C2%B7%2090%20Seconds%20%C2%B7%205%20Things%20%F0%9F%93%88%0Ahttps%3A%2F%2Fgandhis.co" target="_blank">
       <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -237,9 +606,94 @@
   </div>
   <div class="ft-em"></div>
   <div class="ft-em"><a href="mailto:followthegandhis@gmail.com">followthegandhis@gmail.com</a></div>
-  <div class="ftm">Deep research. Indian markets. Every trading day at 8 PM IST.</div>
-  <div class="ftl">For educational purposes only. Not SEBI registered. Not investment advice. All data from NSE/BSE public sources.</div>
+  <div class="ftm" data-k="ftTagline">Deep research. Indian markets. Every trading day at 8 PM IST.</div>
+  <div class="ftl" data-k="ftDisc">For educational purposes only. Not SEBI registered. Not investment advice. All data from NSE/BSE public sources.</div>
 </footer>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+/* ===== INLINE TRANSLATIONS FOR 23 OCT ARCHIVE ===== */
+var T = {
+tagline: { en: "Your 8 PM Post-Market Guide · 90 Seconds · 5 Things", hi: "आपकी शाम 8 बजे की पोस्ट-मार्केट गाइड · 90 सेकंड · 5 बातें" },
+tabM: { en: "TOP MOVERS", hi: "टॉप मूवर्स" },
+tab4: { en: "ABOUT", hi: "हमारे बारे में" },
+disc: { en: "For educational purposes only · Not SEBI registered · Not investment advice · ", hi: "केवल शैक्षिक उद्देश्यों के लिए · SEBI पंजीकृत नहीं · निवेश सलाह नहीं · " },
+disclink: { en: "Full disclaimer →", hi: "पूरा अस्वीकरण →" },
+date: { en: "Thursday, 23 October 2026", hi: "गुरुवार, 23 अक्टूबर 2026" },
+edition: { en: "EDITION #4 · 8:00 PM IST", hi: "संस्करण #4 · रात 8:00 IST" },
+verdict: { en: "5th straight day of FII selling. Breadth collapsed — 83% stocks fell. PSU Bank only survivor. Nifty's 4th consecutive loss.", hi: "FII बिकवाली का लगातार 5वाँ दिन। ब्रेड्थ ध्वस्त — 83% स्टॉक गिरे। PSU Bank एकमात्र बचा। निफ्टी की लगातार 4थी गिरावट।" },
+sectorlabel: { en: "Where the Money Went →", hi: "पैसा कहाँ गया →" },
+gFII: { en: "FII", hi: "FII (विदेशी)" },
+gDII: { en: "DII", hi: "DII (घरेलू)" },
+gBreadth: { en: "Breadth", hi: "ब्रेड्थ" },
+gFIItag: { en: "14/16 DAYS SOLD", hi: "14/16 दिन बेचा" },
+gDIItag: { en: "ABSORBING 109%", hi: "109% सोख रहे हैं" },
+gBreadthtag: { en: "83% STOCKS FELL", hi: "83% स्टॉक गिरे" },
+gVIXtag: { en: "4-MONTH HIGH", hi: "4 महीने का उच्च" },
+ctaMovers: { en: "📈 SEE TOP MOVERS BY INDEX →", hi: "📈 इंडेक्स के टॉप मूवर्स देखें →" },
+c1label: { en: "Where the Money Moved", hi: "पैसा कहाँ गया" },
+c1head: { en: "All sectors red except PSU Bank (+0.50%). IT (-1.20%) led the decline as Infosys cut FY27 guidance. Breadth collapsed to 83% negative — worst of the week.", hi: "PSU Bank (+0.50%) को छोड़कर सभी सेक्टर लाल। IT (-1.20%) ने गिरावट की अगुवाई की — Infosys ने FY27 गाइडेंस कटा। ब्रेड्थ 83% नेगेटिव — हफ़्ते की सबसे बुरी।" },
+c1body: { en: "Selling was broad and relentless. IT reversed sharply after Wednesday's +2.88% rally — Infosys cutting FY27 revenue growth guidance to 1-2% from 1.5-3% triggered the selloff. Crude surging to $116.72 (6-month high) crushed sentiment across the board.", hi: "बिकवाली व्यापक और लगातार थी। बुधवार की +2.88% रैली के बाद IT तेज़ी से पलटा — Infosys ने FY27 रेवेन्यू ग्रोथ गाइडेंस 1.5-3% से घटाकर 1-2% किया। क्रूड $116.72 (6 महीने का उच्च) तक उछलने से सेंटिमेंट ध्वस्त।" },
+c1insight: { en: "Educational Context", hi: "शैक्षिक संदर्भ" },
+c1insightbody: { en: 'IT went from <strong>best sector (+2.88%)</strong> on Wednesday to <strong>worst sector (-1.20%)</strong> on Thursday. That\'s the speed of rotation right now. PSU Bank was the only survivor — defensive positioning in state-owned banks when everything else is falling. Crude at $116.72 is the highest since April 2022. India imports 85% of its oil — every $10 rise adds ~0.4% to inflation.', hi: 'IT बुधवार को <strong>बेस्ट सेक्टर (+2.88%)</strong> से गुरुवार को <strong>सबसे बुरा सेक्टर (-1.20%)</strong> बन गया। यही अभी रोटेशन की रफ़्तार है। PSU Bank एकमात्र बचा — जब सब गिर रहा हो तो सरकारी बैंकों में डिफेंसिव पोज़ीशनिंग। क्रूड $116.72 अप्रैल 2022 के बाद सबसे ऊँचा। भारत 85% तेल आयात करता है — हर $10 बढ़ोतरी ~0.4% महंगाई जोड़ती है।' },
+c2label: { en: "The Signal", hi: "द सिग्नल" },
+c2head: { en: "Infosys Cut FY27 Revenue Growth Guidance to 1-2%. Stock Fell. IT Sector Reversed Sharply.", hi: "Infosys ने FY27 रेवेन्यू ग्रोथ गाइडेंस 1-2% तक कटा। स्टॉक गिरा। IT सेक्टर तेज़ी से पलटा।" },
+c2body: { en: "Infosys reported higher quarterly revenue but slashed its full-year constant-currency growth outlook from 1.5-3% to just 1-2%. The stock fell and dragged the entire IT sector down. It also declared an interim dividend of ₹26 per share.", hi: "Infosys ने ज़्यादा तिमाही रेवेन्यू रिपोर्ट किया लेकिन पूरे साल का कॉन्स्टेंट-करेंसी ग्रोथ आउटलुक 1.5-3% से घटाकर सिर्फ 1-2% किया। स्टॉक गिरा और पूरे IT सेक्टर को नीचे खींचा। ₹26 प्रति शेयर अंतरिम डिविडेंड भी घोषित किया।" },
+c2insight: { en: "What the Data Shows", hi: "डेटा क्या बताता है" },
+c2insightbody: { en: 'When the sector leader cuts guidance, the entire sector pays the price. IT went from hero to zero in 24 hours. The guidance cut signals <strong>global demand weakness</strong> — clients are cutting discretionary tech spending as interest rates stay elevated. This is a <strong>leading indicator</strong> for the broader economy.', hi: 'जब सेक्टर लीडर गाइडेंस काटता है, पूरा सेक्टर कीमत चुकाता है। IT 24 घंटे में हीरो से ज़ीरो। गाइडेंस कट <strong>वैश्विक माँग कमज़ोरी</strong> का संकेत — क्लाइंट ऊँची ब्याज दरों में टेक खर्च काट रहे हैं। यह व्यापक अर्थव्यवस्था का <strong>लीडिंग इंडिकेटर</strong> है।' },
+c3label: { en: "The Data Point", hi: "डेटा पॉइंट" },
+c3head: { en: "Breadth: 624 Advances vs 3,011 Declines — 83% of Stocks Fell. Worst Breadth Day of the Week.", hi: "ब्रेड्थ: 624 बढ़े vs 3,011 गिरे — 83% स्टॉक गिरे। हफ़्ते का सबसे बुरा ब्रेड्थ दिन।" },
+c3body: { en: "Only 17% of stocks advanced. VIX surged 6.96% to 16.86 — a 4-month high. The market is not just falling, it's falling broadly.", hi: "सिर्फ 17% स्टॉक बढ़े। VIX 6.96% उछलकर 16.86 — 4 महीने का उच्च। बाज़ार सिर्फ गिर नहीं रहा, व्यापक रूप से गिर रहा है।" },
+c3insight: { en: "Why Breadth Matters", hi: "ब्रेड्थ क्यों मायने रखती है" },
+c3insightbody: { en: 'When 83% of stocks fall, it\'s not a sector problem — it\'s a <strong>market-wide risk-off</strong>. VIX at 16.86 is the highest since June. Options traders are pricing in more pain ahead. The 624 advances vs 3,011 declines ratio is the worst this month.', hi: 'जब 83% स्टॉक गिरें, यह सेक्टर समस्या नहीं — यह <strong>मार्केट-वाइड रिस्क-ऑफ</strong> है। VIX 16.86 जून के बाद सबसे ऊँचा। ऑप्शन ट्रेडर्स आगे और दर्द की कीमत लगा रहे हैं। 624 बढ़े vs 3,011 गिरे — इस महीने का सबसे बुरा अनुपात।' },
+c4label: { en: "The Flow", hi: "द फ्लो" },
+c4head: { en: "FIIs Sold ₹2,961 Cr. DIIs Bought ₹3,235 Cr. The DII Wall Holds — But FII Selling Is Relentless.", hi: "FII ने ₹2,961 करोड़ बेचे। DII ने ₹3,235 करोड़ ख़रीदे। DII की दीवार टिकी — लेकिन FII बिकवाली लगातार।" },
+c4body: { en: "FIIs reversed from Friday's ₹888 Cr buying back to selling ₹2,961 Cr. DIIs continued their buying streak with ₹3,235 Cr. October FII outflow now at ₹51,466 Cr.", hi: "FII शुक्रवार की ₹888 करोड़ ख़रीदारी से पलटकर ₹2,961 करोड़ बेचने लगे। DII ने ₹3,235 करोड़ की ख़रीदारी जारी रखी। अक्टूबर FII आउटफ्लो अब ₹51,466 करोड़।" },
+c4insight: { en: "The Pattern", hi: "पैटर्न" },
+c4insightbody: { en: 'Friday\'s FII buying (+₹888 Cr) was a <strong>one-day blip</strong>. They\'re back to selling. DIIs have absorbed 109% of FII selling this month. The structural FII exit continues — driven by elevated US yields, strong dollar, and crude above $115.', hi: 'शुक्रवार की FII ख़रीदारी (+₹888 करोड़) <strong>एक दिन का ब्लिप</strong> था। वो वापस बेच रहे हैं। DII ने इस महीने FII बिकवाली का 109% सोखा। स्ट्रक्चरल FII एग्ज़िट जारी — ऊँची US यील्ड, मज़बूत डॉलर, और $115 से ऊपर क्रूड।' },
+c5label: { en: "The Context", hi: "संदर्भ" },
+c5head: { en: "Brent $116.72 (6-Month High), Rupee ₹95.00, US 10Y 4.96%, Gold Below $4,000 — Crude Is the Story", hi: "ब्रेंट $116.72 (6 महीने का उच्च), रुपया ₹95.00, US 10Y 4.96%, सोना $4,000 से नीचे — क्रूड ही कहानी है" },
+c5body: { en: "Brent surged 3.1% to $116.72 — highest since April 2022. Houthi attacks on Saudi Arabia intensified. Trump said it's \"decision time\" on Iran. Gold fell below $4,000 for the first time in months.", hi: "ब्रेंट 3.1% उछलकर $116.72 — अप्रैल 2022 के बाद सबसे ऊँचा। सऊदी अरब पर हूती हमले तेज़। ट्रंप ने कहा ईरान पर \"फ़ैसले का वक़्त\"। सोना महीनों में पहली बार $4,000 से नीचे।" },
+c5insight: { en: "Why These Numbers Matter", hi: "ये नंबर क्यों मायने रखते हैं" },
+c5insightbody: { en: 'Crude at $116.72 is the <strong>single biggest threat</strong> to Indian markets right now. Houthi strikes on Saudi airports and oil facilities are escalating. Trump hinted at "finishing off" Iran — any military escalation could push crude past $120. Gold falling below $4,000 shows investors are selling everything for cash — a classic <strong>liquidity crunch</strong> signal. The Nasdaq had its worst day since June on AI spending fears. This week\'s Jio IPO allotment (Monday) and Fed meeting (Wednesday) are the next catalysts.', hi: 'क्रूड $116.72 अभी भारतीय बाज़ारों के लिए <strong>सबसे बड़ा ख़तरा</strong>। सऊदी हवाई अड्डों और तेल सुविधाओं पर हूती हमले बढ़ रहे हैं। ट्रंप ने ईरान को "ख़त्म करने" का संकेत दिया — कोई भी सैन्य बढ़ोतरी क्रूड $120 पार कर सकती है। सोना $4,000 से नीचे गिरना दिखाता है निवेशक कैश के लिए सब बेच रहे — क्लासिक <strong>लिक्विडिटी क्रंच</strong> संकेत। Nasdaq का जून के बाद सबसे बुरा दिन AI खर्च चिंताओं पर। इस हफ़्ते Jio IPO अलॉटमेंट (सोमवार) और Fed मीटिंग (बुधवार) अगले कैटालिस्ट।' },
+tmTitle: { en: "Top Movers by Index", hi: "इंडेक्स के टॉप मूवर्स" },
+tmSub: { en: "3 Gainers · 3 Losers · Every Major Index", hi: "3 गेनर्स · 3 लूज़र्स · हर प्रमुख इंडेक्स" },
+tmFooter: { en: "Data sourced from NSE · For educational purposes only · Not investment advice", hi: "डेटा NSE से · केवल शैक्षिक उद्देश्यों के लिए · निवेश सलाह नहीं" },
+aboutHead: { en: "We read the market so you don't have to. Then we tell you in 90 seconds.", hi: "हम बाज़ार पढ़ते हैं ताकि आपको न पढ़ना पड़े। फिर 90 सेकंड में बताते हैं।" },
+aboutSub: { en: "Every trading day. 8 PM. No exceptions.", hi: "हर ट्रेडिंग दिन। शाम 8 बजे। कोई अपवाद नहीं।" },
+aboutWhat: { en: "What is Gandhis?", hi: "Gandhis क्या है?" },
+aboutWhatP1: { en: "Gandhis is a daily post-market educational guide for the Indian stock market. Every trading day at 8 PM, we publish 5 cards — which sectors moved, what institutions did, and the macro picture.", hi: "Gandhis भारतीय शेयर बाज़ार के लिए एक दैनिक पोस्ट-मार्केट शैक्षिक गाइड है। हर ट्रेडिंग दिन शाम 8 बजे, हम 5 कार्ड प्रकाशित करते हैं।" },
+aboutWhatP2: { en: "We go through data from NSE, BSE, and official sources so you don't have to. Five cards. Ninety seconds. That's it.", hi: "हम NSE, BSE और आधिकारिक स्रोतों से डेटा देखते हैं ताकि आपको न देखना पड़े। पाँच कार्ड। नब्बे सेकंड। बस।" },
+aboutCards: { en: "The 5 Cards — Every Day", hi: "5 कार्ड — हर दिन" },
+aboutC1: { en: "Where the Money Moved — which sectors saw capital flow in or out", hi: "पैसा कहाँ गया — किन सेक्टरों में पूँजी आई या गई" },
+aboutC2: { en: "The Signal — the one earnings result or stock move that stood out", hi: "द सिग्नल — वो एक अर्निंग रिज़ल्ट या स्टॉक मूव जो अलग दिखा" },
+aboutC3: { en: "The Data Point — market breadth, VIX, and numbers beneath the surface", hi: "डेटा पॉइंट — मार्केट ब्रेड्थ, VIX, और सतह के नीचे के नंबर" },
+aboutC4: { en: "The Flow — FII and DII activity, who's buying, who's selling", hi: "द फ्लो — FII और DII गतिविधि, कौन ख़रीद रहा, कौन बेच रहा" },
+aboutC5: { en: "The Context — crude, rupee, US yields, and global forces", hi: "संदर्भ — क्रूड, रुपया, US यील्ड, और वैश्विक ताक़तें" },
+aboutNoPredict: { en: "We don't predict the market. We don't recommend stocks. We don't sell tips. We present publicly available data so patterns become visible.", hi: "हम बाज़ार की भविष्यवाणी नहीं करते। स्टॉक रेकमेंड नहीं करते। टिप्स नहीं बेचते। हम सार्वजनिक डेटा पेश करते हैं ताकि पैटर्न दिखें।" },
+aboutHow: { en: "How We Think", hi: "हम कैसे सोचते हैं" },
+aboutHowP: { en: "We focus on sector rotation — money doesn't leave the market, it moves. Most people look at the Nifty and react. We look at where the money is actually going.", hi: "हम सेक्टर रोटेशन पर ध्यान देते हैं — पैसा बाज़ार नहीं छोड़ता, वो चलता है।" },
+aboutWhy: { en: 'Why "Gandhis"?', hi: '"Gandhis" क्यों?' },
+aboutWhyP: { en: "It's on every note in your wallet. Gandhis follow the cash.", hi: "यह आपके बटुए के हर नोट पर है। Gandhis कैश को फॉलो करते हैं।" },
+aboutQuote: { en: '"Everyone\'s watching the index. We\'re watching where the money goes."', hi: '"सब इंडेक्स देख रहे हैं। हम देख रहे हैं पैसा कहाँ जा रहा है।"' },
+aboutCome: { en: "Come Back Tomorrow", hi: "कल फिर आइए" },
+aboutComeP: { en: "See you at 8 PM.", hi: "शाम 8 बजे मिलते हैं।" },
+lgTitle: { en: "IMPORTANT DISCLAIMER", hi: "महत्वपूर्ण अस्वीकरण" },
+lgP1: { en: "Gandhis is an educational initiative. We are not registered with SEBI as investment advisors, research analysts, or portfolio managers.", hi: "Gandhis एक शैक्षिक पहल है। हम SEBI के साथ पंजीकृत नहीं हैं।" },
+lgL1: { en: "We do not recommend buying, selling, or holding any securities", hi: "हम किसी भी सिक्योरिटी को ख़रीदने, बेचने या रखने की सिफ़ारिश नहीं करते" },
+lgL2: { en: "We do not provide personalized investment advice", hi: "हम व्यक्तिगत निवेश सलाह नहीं देते" },
+lgL3: { en: "All data is sourced from publicly available NSE/BSE/NSDL/CDSL sources", hi: "सभी डेटा सार्वजनिक NSE/BSE/NSDL/CDSL स्रोतों से है" },
+lgL4: { en: "Past patterns do not guarantee future results", hi: "पिछले पैटर्न भविष्य के परिणामों की गारंटी नहीं देते" },
+lgL5: { en: "Always consult a SEBI-registered advisor before making investment decisions", hi: "निवेश निर्णय लेने से पहले हमेशा SEBI-पंजीकृत सलाहकार से परामर्श करें" },
+lgP2: { en: "By using this website, you acknowledge that all content is for educational and informational purposes only.", hi: "इस वेबसाइट का उपयोग करके, आप स्वीकार करते हैं कि सभी सामग्री केवल शैक्षिक और सूचनात्मक उद्देश्यों के लिए है।" },
+ftFollow: { en: "Follow the Gandhis", hi: "Gandhis को फॉलो करें" },
+ftTG: { en: "Join Telegram", hi: "टेलीग्राम जॉइन करें" },
+ftIG: { en: "Follow on Instagram", hi: "इंस्टाग्राम पर फॉलो करें" },
+ftTagline: { en: "Deep research. Indian markets. Every trading day at 8 PM IST.", hi: "गहरी रिसर्च। भारतीय बाज़ार। हर ट्रेडिंग दिन शाम 8 बजे IST।" },
+ftDisc: { en: "For educational purposes only. Not SEBI registered. Not investment advice. All data from NSE/BSE public sources.", hi: "केवल शैक्षिक उद्देश्यों के लिए। SEBI पंजीकृत नहीं। निवेश सलाह नहीं।" }
+};
+</script>
+<script src="../app.js"></script>
 
 </body>
 </html>
