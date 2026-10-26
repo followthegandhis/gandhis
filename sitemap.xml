@@ -1,45 +1,37 @@
 
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- Homepage (Today's Brief) -->
   <url>
     <loc>https://gandhis.co/</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-
   <url>
     <loc>https://gandhis.co/index.html</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-
-  <!-- Archive: 22 Oct 2026 (Edition #3) -->
+  <url>
+    <loc>https://gandhis.co/archive/23-oct-2026.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <priority>0.7</priority>
+  </url>
   <url>
     <loc>https://gandhis.co/archive/22-oct-2026.html</loc>
     <lastmod>2026-10-22</lastmod>
-    <changefreq>never</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- Archive: 21 Oct 2026 (Edition #2) -->
   <url>
     <loc>https://gandhis.co/archive/21-oct-2026.html</loc>
     <lastmod>2026-10-21</lastmod>
-    <changefreq>never</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- Archive: 19 Oct 2026 (Edition #1) -->
   <url>
     <loc>https://gandhis.co/archive/19-oct-2026.html</loc>
     <lastmod>2026-10-19</lastmod>
-    <changefreq>never</changefreq>
     <priority>0.7</priority>
   </url>
-
 </urlset>
 
