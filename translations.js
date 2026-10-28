@@ -1,241 +1,121 @@
 
-/* ===== GANDHIS.CO — Translations v4 (Edition #4 · 23 Oct 2026) ===== */
-
-var GANDHIS_CONFIG = { edition: 4, date: "2026-10-23" };
+// ==========================================================
+//  GANDHIS.CO — Translations v6 (Edition #6 · 27 Oct 2026)
+// ==========================================================
 
 var T = {
 
-/* ----- TAGLINE & TABS ----- */
-tagline: {
-  en: "Your 8 PM Post-Market Guide · 90 Seconds · 5 Things",
-  hi: "आपकी शाम 8 बजे की पोस्ट-मार्केट गाइड · 90 सेकंड · 5 बातें"
-},
-tab1: { en: "TODAY'S BRIEF", hi: "आज का ब्रीफ" },
-tabM: { en: "TOP MOVERS", hi: "टॉप मूवर्स" },
-tab2: { en: "PAST WEEK", hi: "पिछला हफ़्ता" },
-tab3: { en: "ARCHIVE", hi: "आर्काइव" },
-tab4: { en: "ABOUT", hi: "हमारे बारे में" },
+/* ===== GLOBAL / NAV ===== */
+tagline:   { en: "Your 8 PM Post-Market Guide · 90 Seconds · 5 Things", hi: "आपकी शाम 8 बजे की पोस्ट-मार्केट गाइड · 90 सेकंड · 5 बातें" },
+tab1:      { en: "TODAY", hi: "आज" },
+tabM:      { en: "TOP MOVERS", hi: "टॉप मूवर्स" },
+tab3:      { en: "ARCHIVE", hi: "आर्काइव" },
+tab4:      { en: "ABOUT", hi: "हमारे बारे में" },
+disc:      { en: "For educational purposes only · Not SEBI registered · Not investment advice · ", hi: "केवल शैक्षिक उद्देश्यों के लिए · SEBI पंजीकृत नहीं · निवेश सलाह नहीं · " },
+disclink:  { en: "Full disclaimer →", hi: "पूरा अस्वीकरण →" },
 
-/* ===== EDITION 4 — 23 OCT 2026 ===== */
+/* ===== DATE BAR ===== */
+date:    { en: "Tuesday, 27 October 2026", hi: "मंगलवार, 27 अक्टूबर 2026" },
+edition: { en: "EDITION #6 · 8:00 PM IST", hi: "संस्करण #6 · रात 8:00 IST" },
 
-verdict: {
-  en: "4th straight day of losses. Crude surges to $114. ALL sectors red. Small & midcaps crushed.",
-  hi: "लगातार चौथे दिन गिरावट। क्रूड $114 तक उछला। सभी सेक्टर लाल। स्मॉल और मिडकैप धराशायी।"
-},
-
-date: {
-  en: "Friday, 23 October 2026",
-  hi: "शुक्रवार, 23 अक्टूबर 2026"
-},
-edition: { en: "EDITION #4 · 8:00 PM IST", hi: "संस्करण #4 · रात 8:00 IST" },
-
-/* ----- PULSE BOARD ----- */
+/* ===== PULSE BOARD ===== */
+verdict:     { en: "Nifty flat on monthly expiry. Breadth flipped positive — 69% stocks rose. Pharma, Realty, Media led. IT and Banks dragged. FIIs sold ₹4,699 Cr but DIIs absorbed 110%.", hi: "मासिक एक्सपायरी पर निफ्टी फ्लैट। ब्रेड्थ पॉज़िटिव हुई — 69% स्टॉक बढ़े। फार्मा, रियल्टी, मीडिया आगे। IT और बैंक पिछड़े। FII ने ₹4,699 करोड़ बेचे लेकिन DII ने 110% सोखा।" },
 sectorlabel: { en: "Where the Money Went →", hi: "पैसा कहाँ गया →" },
-gFII: { en: "FII", hi: "FII (विदेशी)" },
-gDII: { en: "DII", hi: "DII (घरेलू)" },
-gBreadth: { en: "Breadth", hi: "ब्रेड्थ" },
-gFIItag: { en: "15/17 DAYS SOLD", hi: "15/17 दिन बेचा" },
-gDIItag: { en: "17/17 DAYS BOUGHT", hi: "17/17 दिन खरीदा" },
-gBreadthtag: { en: "83% STOCKS FELL", hi: "83% स्टॉक गिरे" },
-gVIXtag: { en: "FEAR RISING", hi: "डर बढ़ रहा है" },
 
-/* ----- CARD 1: WHERE THE MONEY MOVED ----- */
-c1label: { en: "Where the Money Moved", hi: "पैसा कहाँ गया" },
-c1head: {
-  en: "Crude surges to $114 — ALL sectors close red. Metal (-2.98%) and PSU Bank (-2.52%) led the carnage. IT held up best at -0.33%. Fourth consecutive day of losses.",
-  hi: "क्रूड $114 तक उछला — सभी सेक्टर लाल बंद। Metal (-2.98%) और PSU Bank (-2.52%) सबसे ज़्यादा गिरे। IT -0.33% पर सबसे कम गिरा। लगातार चौथे दिन गिरावट।"
-},
-c1body: {
-  en: 'Houthi attacks on Saudi Arabia\'s Yanbu port and Shaybah oil field sent Brent crude surging to <strong>$114/barrel</strong> — a 5-month high. The market opened higher on overnight optimism but reversed sharply. Sensex crashed <strong>~1,280 points from the day\'s high</strong>. Not a single sector survived.',
-  hi: 'सऊदी अरब के यानबू पोर्ट और शायबाह ऑयल फील्ड पर हूती हमलों ने ब्रेंट क्रूड को <strong>$114/बैरल</strong> तक पहुँचाया — 5 महीने का उच्चतम। बाज़ार रातोंरात आशावाद पर ऊपर खुला लेकिन तेज़ी से पलटा। सेंसेक्स दिन के हाई से <strong>~1,280 अंक</strong> गिरा। एक भी सेक्टर नहीं बचा।'
-},
-c1insight: { en: "Educational Context", hi: "शैक्षिक संदर्भ" },
-c1insightbody: {
-  en: 'Yesterday Pharma (+0.12%) and PSU Bank (+0.07%) were the only survivors. Today even they fell — Pharma -1.46%, PSU Bank -2.52%. When <strong>every sector turns red</strong>, it signals a macro-driven sell-off, not sector rotation. Crude at $114 is the primary headwind — India imports 85% of its oil, so every $1 rise hits corporate margins and the trade deficit directly.',
-  hi: 'कल Pharma (+0.12%) और PSU Bank (+0.07%) एकमात्र बचे थे। आज वे भी गिरे — Pharma -1.46%, PSU Bank -2.52%। जब <strong>हर सेक्टर लाल</strong> हो जाए, तो यह मैक्रो-ड्रिवन बिकवाली का संकेत है, सेक्टर रोटेशन नहीं। क्रूड $114 पर मुख्य बाधा है — भारत 85% तेल आयात करता है, इसलिए हर $1 की बढ़त कॉर्पोरेट मार्जिन और ट्रेड डेफिसिट पर सीधा असर डालती है।'
-},
+/* ===== GAUGES ===== */
+gFII:        { en: "FII", hi: "FII (विदेशी)" },
+gDII:        { en: "DII", hi: "DII (घरेलू)" },
+gBreadth:    { en: "Breadth", hi: "ब्रेड्थ" },
+gFIItag:     { en: "15/17 DAYS SOLD", hi: "15/17 दिन बेचा" },
+gDIItag:     { en: "ABSORBING 110%", hi: "110% सोख रहे हैं" },
+gBreadthtag: { en: "BREADTH FLIPPED", hi: "ब्रेड्थ पलटी" },
+gVIXtag:     { en: "FEAR EASING", hi: "डर कम हो रहा" },
 
-/* ----- CARD 2: THE SIGNAL ----- */
-c2label: { en: "The Signal", hi: "द सिग्नल" },
-c2head: {
-  en: "Small & Midcaps Crushed — MidCap 100 Down 2.21%, SmallCap 100 Down 2.94%. The Broader Market Is Breaking.",
-  hi: "स्मॉल और मिडकैप धराशायी — MidCap 100 में 2.21% गिरावट, SmallCap 100 में 2.94% गिरावट। व्यापक बाज़ार टूट रहा है।"
-},
-c2body: {
-  en: "Nifty fell just 0.39%, but the real damage was in the broader market. Midcaps and smallcaps saw 3x the decline of the headline index. Jio Financial and Tata Steel each dropped ~3%.",
-  hi: "निफ्टी सिर्फ 0.39% गिरा, लेकिन असली नुकसान व्यापक बाज़ार में था। मिडकैप और स्मॉलकैप में हेडलाइन इंडेक्स से 3 गुना गिरावट। Jio Financial और Tata Steel दोनों ~3% गिरे।"
-},
-c2insight: { en: "What the Data Shows", hi: "डेटा क्या बताता है" },
-c2insightbody: {
-  en: 'When the Nifty falls 0.39% but smallcaps fall 2.94%, it means <strong>leveraged and speculative positions are being unwound</strong>. This is classic risk-off behaviour — institutions sell the broader market first. The valuation premium that mid and smallcaps carried is now compressing rapidly under the weight of rising crude, FII selling, and elevated VIX.',
-  hi: 'जब निफ्टी 0.39% गिरता है लेकिन स्मॉलकैप 2.94% गिरता है, तो इसका मतलब <strong>लीवरेज्ड और सट्टा पोज़ीशन खुल रही हैं</strong>। यह क्लासिक रिस्क-ऑफ व्यवहार है — संस्थान पहले व्यापक बाज़ार बेचते हैं। मिड और स्मॉलकैप का वैल्यूएशन प्रीमियम अब तेज़ी से सिकुड़ रहा है — बढ़ते क्रूड, FII बिकवाली और ऊँचे VIX के दबाव में।'
-},
-
-/* ----- CARD 3: THE DATA POINT ----- */
-c3label: { en: "The Data Point", hi: "द डेटा पॉइंट" },
-c3head: {
-  en: "Breadth: 624 Advances vs 3,011 Declines — 83% of Stocks Fell Today",
-  hi: "ब्रेड्थ: 624 बढ़े vs 3,011 गिरे — आज 83% स्टॉक्स गिरे"
-},
-c3body: {
-  en: "The worst breadth reading of the week. Only 624 stocks advanced out of 3,724 traded. This is a broad-based capitulation signal.",
-  hi: "हफ़्ते की सबसे खराब ब्रेड्थ रीडिंग। 3,724 में से सिर्फ 624 स्टॉक बढ़े। यह व्यापक कैपिट्यूलेशन सिग्नल है।"
-},
-c3insight: { en: "Why Breadth Matters", hi: "ब्रेड्थ क्यों मायने रखती है" },
-c3insightbody: {
-  en: 'Yesterday 69% of stocks fell. Today it\'s <strong>83%</strong>. The advance/decline ratio of 0.21 means for every 1 stock that rose, nearly 5 fell. VIX at <strong>16.77</strong> is the highest in over 4 months — the options market is pricing in continued turbulence. Four consecutive days of deteriorating breadth = <strong>systematic de-risking</strong>, not just profit-booking.',
-  hi: 'कल 69% स्टॉक गिरे थे। आज <strong>83%</strong>। एडवांस/डिक्लाइन रेशियो 0.21 यानी हर 1 बढ़ने वाले स्टॉक पर लगभग 5 गिरे। VIX <strong>16.77</strong> पर 4 महीने से ज़्यादा का उच्चतम — ऑप्शन मार्केट लगातार उथल-पुथल की कीमत लगा रहा है। लगातार चार दिन बिगड़ती ब्रेड्थ = <strong>व्यवस्थित डी-रिस्किंग</strong>, सिर्फ प्रॉफिट-बुकिंग नहीं।'
-},
-
-/* ----- CARD 4: THE FLOW ----- */
-c4label: { en: "The Flow", hi: "द फ्लो" },
-c4head: {
-  en: "FIIs Sold ₹3,569 Cr. DIIs Bought ₹4,743 Cr. DIIs Step Up — But Can They Hold the Line?",
-  hi: "FII ने ₹3,569 करोड़ बेचे। DII ने ₹4,743 करोड़ खरीदे। DII ने कदम बढ़ाया — लेकिन क्या वे रोक पाएँगे?"
-},
-c4body: {
-  en: "FII selling continues relentlessly — 15 of 17 October sessions have been net sells. But today DIIs bought their largest amount this month, absorbing 133% of FII outflows in a single session.",
-  hi: "FII बिकवाली बेरहमी से जारी — अक्टूबर के 17 में से 15 सत्रों में नेट सेल। लेकिन आज DII ने इस महीने की सबसे बड़ी खरीदारी की, एक ही सत्र में FII आउटफ्लो का 133% सोखा।"
-},
-c4insight: { en: "The Pattern", hi: "पैटर्न" },
-c4insightbody: {
-  en: 'DIIs have now absorbed <strong>108% of FII selling</strong> this month — ₹60,618 Cr bought vs ₹55,922 Cr sold. Today\'s ₹4,743 Cr DII buying was the <strong>highest single-day purchase in October</strong>. Mutual fund SIPs and insurance flows are the backbone of this support. Without DIIs, Nifty would be significantly lower. But the question remains: can domestic flows keep pace if crude stays above $114?',
-  hi: 'DII ने इस महीने <strong>FII बिकवाली का 108%</strong> सोखा — ₹60,618 करोड़ खरीदे vs ₹55,922 करोड़ बेचे। आज की ₹4,743 करोड़ DII खरीदारी <strong>अक्टूबर की सबसे बड़ी सिंगल-डे खरीद</strong> थी। म्यूचुअल फंड SIP और बीमा प्रवाह इस सपोर्ट की रीढ़ हैं। DII के बिना निफ्टी काफ़ी नीचे होता। लेकिन सवाल बना हुआ है: अगर क्रूड $114 से ऊपर रहा तो क्या घरेलू प्रवाह तालमेल रख पाएँगे?'
-},
-
-/* ----- CARD 5: THE CONTEXT ----- */
-c5label: { en: "The Context", hi: "द कॉन्टेक्स्ट" },
-c5head: {
-  en: "Brent $114, Rupee ₹94.93, US 10Y Crashes Below 5%, Global AI Rout — A Perfect Storm",
-  hi: "ब्रेंट $114, रुपया ₹94.93, US 10Y 5% से नीचे गिरा, वैश्विक AI रूट — एक परफेक्ट स्टॉर्म"
-},
-c5body: {
-  en: "Three forces converged today: crude surging on Saudi attacks, a global AI stock rout (Nasdaq -2.6%, Meta -7%, Nvidia -4.4%), and a flight to US Treasuries that crashed the 10Y yield below 5% for the first time in a month.",
-  hi: "आज तीन ताकतें एक साथ आईं: सऊदी हमलों पर क्रूड उछाल, वैश्विक AI स्टॉक रूट (Nasdaq -2.6%, Meta -7%, Nvidia -4.4%), और US ट्रेज़रीज़ की ओर भागदौड़ जिसने 10Y यील्ड को एक महीने में पहली बार 5% से नीचे गिराया।"
-},
-c5insight: { en: "Why These Numbers Matter", hi: "ये नंबर क्यों मायने रखते हैं" },
-c5insightbody: {
-  en: 'Crude at <strong>$114</strong> = higher import bill = wider trade deficit = inflation pressure. Houthi attacks on Saudi Arabia\'s Yanbu port and Shaybah oil field are escalating — oil could go higher. The silver lining: US 10Y yield <strong>crashed below 5%</strong> (biggest single-day drop since Aug 2024) as investors fled to Treasuries from AI stocks. A weaker DXY (101.52) and lower US yields <em>should</em> reduce FII pull towards US bonds — but crude is overwhelming everything else right now.',
-  hi: 'क्रूड <strong>$114</strong> पर = ज़्यादा आयात बिल = बड़ा ट्रेड डेफिसिट = महंगाई का दबाव। सऊदी अरब के यानबू पोर्ट और शायबाह ऑयल फील्ड पर हूती हमले बढ़ रहे हैं — तेल और ऊपर जा सकता है। सकारात्मक बात: US 10Y यील्ड <strong>5% से नीचे गिरी</strong> (अगस्त 2024 के बाद सबसे बड़ी एक दिन की गिरावट) क्योंकि निवेशक AI स्टॉक्स से ट्रेज़रीज़ की ओर भागे। कमज़ोर DXY (101.52) और कम US यील्ड FII की US बॉन्ड्स की ओर खिंचाव <em>कम करनी चाहिए</em> — लेकिन क्रूड अभी बाकी सब पर भारी पड़ रहा है।'
-},
-
-/* ----- TOP MOVERS ----- */
-tmTitle: { en: "Top Movers by Index", hi: "इंडेक्स के टॉप मूवर्स" },
-tmSub: { en: "3 Gainers · 3 Losers · Every Major Index", hi: "3 गेनर्स · 3 लूज़र्स · हर प्रमुख इंडेक्स" },
-tmFooter: {
-  en: "Data sourced from NSE · For educational purposes only · Not investment advice",
-  hi: "डेटा NSE से · केवल शैक्षिक उद्देश्यों के लिए · निवेश सलाह नहीं"
-},
+/* ===== CTA ===== */
 ctaMovers: { en: "📈 SEE TOP MOVERS BY INDEX →", hi: "📈 इंडेक्स के टॉप मूवर्स देखें →" },
 
-/* ----- PAST WEEK ----- */
-wkTitle: { en: "Week of 19–23 October 2026", hi: "19–23 अक्टूबर 2026 का हफ़्ता" },
-wkSub: { en: "5 trading sessions · Here's what the data showed", hi: "5 ट्रेडिंग सत्र · डेटा ने क्या दिखाया" },
-wkNifty: { en: "NIFTY WEEKLY", hi: "निफ्टी साप्ताहिक" },
-wkSector: { en: "LEAST DAMAGED SECTOR", hi: "सबसे कम नुकसान वाला सेक्टर" },
-wkSectorNote: { en: "No sector survived the full week", hi: "कोई सेक्टर पूरे हफ़्ते नहीं बचा" },
-wkFII: { en: "FII WEEKLY", hi: "FII साप्ताहिक" },
-wkFIInote: { en: "Sold every single day", hi: "हर दिन बेचा" },
-wkDII: { en: "DII WEEKLY", hi: "DII साप्ताहिक" },
-wkDIInote: { en: "Bought every single day", hi: "हर दिन खरीदा" },
-wkRotation: { en: "Daily Rotation — Who Led, Who Lagged", hi: "दैनिक रोटेशन — कौन आगे, कौन पीछे" },
-wkInsight: { en: "The Week in One Line", hi: "हफ़्ता एक लाइन में" },
-wkInsightBody: {
-  en: 'FIIs sold over ₹32,200 Cr this week. DIIs absorbed ₹31,200 Cr. The leading sector changed every single day — PSU Banks on Monday, IT on Tuesday, Pharma on Wednesday, and by Friday <strong>every sector was red</strong>. Crude surging from $109 to $114 was the week\'s defining force. Nifty lost 4.4% — the worst week since June.',
-  hi: 'FII ने इस हफ़्ते ₹32,200 करोड़ से ज़्यादा बेचा। DII ने ₹31,200 करोड़ सोखा। सबसे मज़बूत सेक्टर हर दिन बदला — सोमवार को PSU Banks, मंगलवार को IT, बुधवार को Pharma, और शुक्रवार तक <strong>हर सेक्टर लाल</strong>। क्रूड $109 से $114 तक उछलना हफ़्ते की निर्णायक ताकत थी। निफ्टी 4.4% गिरा — जून के बाद सबसे खराब हफ़्ता।'
-},
+/* ===== CARD 1: WHERE THE MONEY MOVED ===== */
+c1label:       { en: "Where the Money Moved", hi: "पैसा कहाँ गया" },
+c1head:        { en: "Breadth flipped positive for the first time in 5 sessions. Media (+3.58%), Realty (+2%), Pharma (+1.72%) led. IT (-0.50%) and Private Banks (-0.50%) were the only drags.", hi: "5 सत्रों में पहली बार ब्रेड्थ पॉज़िटिव हुई। मीडिया (+3.58%), रियल्टी (+2%), फार्मा (+1.72%) आगे। IT (-0.50%) और प्राइवेट बैंक (-0.50%) ही पिछड़े।" },
+c1body:        { en: "Monthly F&O expiry drove massive rotation. Money poured out of IT and financials into beaten-down sectors — Media had its best day in months. Midcaps rose 0.6% and smallcaps surged 2.7%, outperforming the flat Nifty. The rotation was sharp and decisive.", hi: "मासिक F&O एक्सपायरी ने बड़ा रोटेशन चलाया। IT और फाइनेंशियल्स से पैसा निकलकर पिटे हुए सेक्टरों में गया — मीडिया का महीनों का सबसे अच्छा दिन। मिडकैप 0.6% और स्मॉलकैप 2.7% बढ़े — फ्लैट निफ्टी से बेहतर। रोटेशन तेज़ और निर्णायक था।" },
+c1insight:     { en: "Educational Context", hi: "शैक्षिक संदर्भ" },
+c1insightbody: { en: 'This is what <strong>healthy rotation</strong> looks like. When the index is flat but 69% of stocks rise, money isn\'t leaving — it\'s moving. Midcaps (+0.6%) and smallcaps (+2.7%) outperforming large-caps is a classic <strong>risk-on signal</strong> within a cautious market. Media\'s +3.58% surge came from nowhere — expiry-driven short covering in beaten-down names.', hi: 'यही <strong>स्वस्थ रोटेशन</strong> दिखता है। जब इंडेक्स फ्लैट हो लेकिन 69% स्टॉक बढ़ें, पैसा जा नहीं रहा — चल रहा है। मिडकैप (+0.6%) और स्मॉलकैप (+2.7%) का लार्ज-कैप से बेहतर प्रदर्शन <strong>रिस्क-ऑन सिग्नल</strong> है। मीडिया का +3.58% उछाल एक्सपायरी-ड्रिवन शॉर्ट कवरिंग से आया।' },
 
-/* ----- ARCHIVE ----- */
-archTitle: { en: "Past Editions", hi: "पिछले संस्करण" },
-arch22h: { en: "3rd straight loss. Crude past $111. Only Pharma survived.", hi: "लगातार तीसरी गिरावट। क्रूड $111 के पार। सिर्फ Pharma बचा।" },
-arch22p: { en: "FIIs sold ₹3,459 Cr · Breadth 69% negative · VIX at 15.81", hi: "FII ने ₹3,459 करोड़ बेचे · ब्रेड्थ 69% नेगेटिव · VIX 15.81" },
-arch21h: { en: "Opened 1% up. Brent past $111 killed the rally. IT only survivor.", hi: "1% ऊपर खुला। ब्रेंट $111 ने रैली मारी। IT एकमात्र बचा।" },
-arch21p: { en: "FIIs sold ₹413 Cr · Breadth 79% negative · VIX spiked 6.3%", hi: "FII ने ₹413 करोड़ बेचे · ब्रेड्थ 79% नेगेटिव · VIX 6.3% उछला" },
-arch19h: { en: "Broad sell-off. Only PSU Banks survived.", hi: "व्यापक बिकवाली। सिर्फ PSU Banks बचे।" },
-arch19p: { en: "FIIs dumped ₹5,285 Cr · Breadth 69% negative · VIX spiked 8.4%", hi: "FII ने ₹5,285 करोड़ बेचे · ब्रेड्थ 69% नेगेटिव · VIX 8.4% उछला" },
-arch18h: { en: "IT rallied 1.8% as TCS beat estimates.", hi: "TCS के अनुमान से बेहतर नतीजों पर IT 1.8% चढ़ा।" },
-arch18p: { en: "FIIs sold ₹4,200 Cr · Nifty flat · Rupee crossed 95", hi: "FII ने ₹4,200 करोड़ बेचे · निफ्टी फ्लैट · रुपया 95 पार" },
-arch17h: { en: "Pharma led. Metal crashed. Rotation accelerated.", hi: "फार्मा आगे। मेटल धराशायी। रोटेशन तेज़।" },
-arch17p: { en: "FIIs sold ₹5,100 Cr · DIIs bought ₹4,800 Cr · VIX at 14.2", hi: "FII ने ₹5,100 करोड़ बेचे · DII ने ₹4,800 करोड़ खरीदे · VIX 14.2" },
-arch16h: { en: "Auto surprised. PSU Banks gave back gains.", hi: "ऑटो ने चौंकाया। PSU Banks ने बढ़त गँवाई।" },
-arch16p: { en: "FIIs sold ₹3,800 Cr · Breadth improved to 45% · Brent hit $110", hi: "FII ने ₹3,800 करोड़ बेचे · ब्रेड्थ 45% सुधरी · ब्रेंट $110" },
-arch14h: { en: "Week opened red. FIIs dumped ₹6,500 Cr on day one.", hi: "हफ़्ता लाल खुला। FII ने पहले दिन ₹6,500 करोड़ बेचे।" },
-arch14p: { en: "Worst opening since June · All sectors red · VIX jumped 12%", hi: "जून के बाद सबसे खराब शुरुआत · सभी सेक्टर लाल · VIX 12% उछला" },
+/* ===== CARD 2: THE SIGNAL ===== */
+c2label:       { en: "The Signal", hi: "द सिग्नल" },
+c2head:        { en: "Tata Consumer Surged 6.78% to ₹1,000 — Best Nifty 50 Performer. Q2 Sales Up 14%, EBITDA Up 17%. Market Rewarded Growth.", hi: "Tata Consumer 6.78% उछलकर ₹1,000 — निफ्टी 50 का बेस्ट परफॉर्मर। Q2 बिक्री 14% ऊपर, EBITDA 17% ऊपर। बाज़ार ने ग्रोथ को पुरस्कृत किया।" },
+c2body:        { en: "Tata Consumer Products delivered strong Q2 results — revenue up 14% and EBITDA up 17%. Multiple brokerages maintained Buy ratings. The stock hit the psychological ₹1,000 mark. Bharti Airtel (+3.20%) and Bajaj Auto (+3.17%) also stood out.", hi: "Tata Consumer Products ने मज़बूत Q2 नतीजे दिए — रेवेन्यू 14% और EBITDA 17% ऊपर। कई ब्रोकरेज ने Buy रेटिंग बनाए रखी। स्टॉक ₹1,000 के मनोवैज्ञानिक स्तर पर पहुँचा। Bharti Airtel (+3.20%) और Bajaj Auto (+3.17%) भी चमके।" },
+c2insight:     { en: "What the Data Shows", hi: "डेटा क्या बताता है" },
+c2insightbody: { en: 'After weeks of the market punishing growth stocks, Tata Consumer\'s +6.78% shows <strong>earnings still matter</strong>. When results beat expectations convincingly, the market rewards — even in a fearful environment. Asian Paints (-1.94%) fell ahead of its results, showing the market is <strong>pre-positioning for disappointment</strong> in consumer discretionary.', hi: 'हफ़्तों तक बाज़ार द्वारा ग्रोथ स्टॉक्स को सज़ा देने के बाद, Tata Consumer का +6.78% दिखाता है <strong>अर्निंग्स अभी भी मायने रखती हैं</strong>। जब नतीजे उम्मीदों से बेहतर हों, बाज़ार पुरस्कृत करता है — डरे हुए माहौल में भी। Asian Paints (-1.94%) नतीजों से पहले गिरा — बाज़ार कंज़्यूमर डिस्क्रीशनरी में <strong>निराशा की तैयारी</strong> कर रहा है।' },
 
-disc: {
-  en: "For educational purposes only · Not SEBI registered · Not investment advice · ",
-  hi: "केवल शैक्षिक उद्देश्यों के लिए · SEBI पंजीकृत नहीं · निवेश सलाह नहीं · "
-},
-disclink: { en: "Full disclaimer →", hi: "पूर्ण अस्वीकरण →" },
 
-/* ----- ABOUT ----- */
-aboutHead: {
-  en: "We read the market so you don't have to. Then we tell you in 90 seconds.",
-  hi: "हम बाज़ार पढ़ते हैं ताकि आपको न पढ़ना पड़े। फिर 90 सेकंड में बता देते हैं।"
-},
-aboutSub: { en: "Every trading day. 8 PM. No exceptions.", hi: "हर ट्रेडिंग डे। शाम 8 बजे। कोई अपवाद नहीं।" },
-aboutWhat: { en: "What is Gandhis?", hi: "Gandhis क्या है?" },
-aboutWhatP1: {
-  en: "Gandhis is a daily post-market educational guide for the Indian stock market. Every trading day at 8 PM, we publish 5 cards — which sectors moved, what institutions did, and the macro picture.",
-  hi: "Gandhis भारतीय शेयर बाज़ार के लिए एक दैनिक पोस्ट-मार्केट शैक्षिक गाइड है। हर ट्रेडिंग डे शाम 8 बजे, हम 5 कार्ड प्रकाशित करते हैं — कौन से सेक्टर चले, संस्थानों ने क्या किया, और मैक्रो तस्वीर।"
-},
-aboutWhatP2: {
-  en: "We go through data from NSE, BSE, and official sources so you don't have to. Five cards. Ninety seconds. That's it.",
-  hi: "हम NSE, BSE और आधिकारिक स्रोतों से डेटा देखते हैं ताकि आपको न देखना पड़े। पाँच कार्ड। नब्बे सेकंड। बस।"
-},
-aboutCards: { en: "The 5 Cards — Every Day", hi: "5 कार्ड — हर दिन" },
-aboutC1: { en: "Where the Money Moved — which sectors saw capital flow in or out", hi: "पैसा कहाँ गया — किन सेक्टरों में पूंजी आई या गई" },
-aboutC2: { en: "The Signal — the one earnings result or stock move that stood out", hi: "द सिग्नल — वो एक अर्निंग्स रिज़ल्ट या स्टॉक मूव जो अलग दिखा" },
-aboutC3: { en: "The Data Point — market breadth, VIX, and numbers beneath the surface", hi: "द डेटा पॉइंट — मार्केट ब्रेड्थ, VIX, और सतह के नीचे के नंबर" },
-aboutC4: { en: "The Flow — FII and DII activity, who's buying, who's selling", hi: "द फ्लो — FII और DII गतिविधि, कौन खरीद रहा, कौन बेच रहा" },
-aboutC5: { en: "The Context — crude, rupee, US yields, and global forces", hi: "द कॉन्टेक्स्ट — क्रूड, रुपया, US यील्ड, और वैश्विक ताकतें" },
-aboutNoPredict: {
-  en: "We don't predict the market. We don't recommend stocks. We don't sell tips. We present publicly available data so patterns become visible.",
-  hi: "हम बाज़ार की भविष्यवाणी नहीं करते। स्टॉक्स रेकमेंड नहीं करते। टिप्स नहीं बेचते। हम सार्वजनिक डेटा पेश करते हैं ताकि पैटर्न दिखें।"
-},
-aboutHow: { en: "How We Think", hi: "हम कैसे सोचते हैं" },
-aboutHowP: {
-  en: "We focus on sector rotation — money doesn't leave the market, it moves. Most people look at the Nifty and react. We look at where the money is actually going.",
-  hi: "हम सेक्टर रोटेशन पर फोकस करते हैं — पैसा बाज़ार नहीं छोड़ता, वो चलता है। ज़्यादातर लोग निफ्टी देखते हैं और रिएक्ट करते हैं। हम देखते हैं पैसा असल में कहाँ जा रहा है।"
-},
-aboutWhy: { en: 'Why "Gandhis"?', hi: '"Gandhis" क्यों?' },
-aboutWhyP: {
-  en: "It's on every note in your wallet. Gandhis follow the cash.",
-  hi: "यह आपके बटुए के हर नोट पर है। Gandhis कैश को फॉलो करते हैं।"
-},
-aboutQuote: {
-  en: '"Everyone\'s watching the index. We\'re watching where the money goes."',
-  hi: '"सब इंडेक्स देख रहे हैं। हम देख रहे हैं पैसा कहाँ जा रहा है।"'
-},
-aboutCome: { en: "Come Back Tomorrow", hi: "कल फिर आइए" },
-aboutComeP: { en: "See you at 8 PM.", hi: "शाम 8 बजे मिलते हैं।" },
+/* ===== CARD 3: THE DATA POINT ===== */
+c3label:       { en: "The Data Point", hi: "डेटा पॉइंट" },
+c3head:        { en: "Breadth: 2,455 Advances vs 1,103 Declines — 69% Stocks Rose. First Positive Breadth Day in 5 Sessions. VIX Fell 4.72%.", hi: "ब्रेड्थ: 2,455 बढ़े vs 1,103 गिरे — 69% स्टॉक बढ़े। 5 सत्रों में पहला पॉज़िटिव ब्रेड्थ दिन। VIX 4.72% गिरा।" },
+c3body:        { en: "After four days of 70-83% stocks falling, breadth finally flipped. VIX dropped from 16.86 to 16.53 — the first meaningful decline in a week. Smallcaps surged 2.7%, their best day this month.", hi: "चार दिन 70-83% स्टॉक गिरने के बाद, ब्रेड्थ आख़िरकार पलटी। VIX 16.86 से गिरकर 16.53 — एक हफ़्ते में पहली सार्थक गिरावट। स्मॉलकैप 2.7% उछले — इस महीने का सबसे अच्छा दिन।" },
+c3insight:     { en: "Why Breadth Matters", hi: "ब्रेड्थ क्यों मायने रखती है" },
+c3insightbody: { en: 'Breadth flipping from 83% negative (Thursday) to 69% positive (Tuesday) is a <strong>significant shift</strong>. VIX falling 4.72% means options traders are pricing in less fear. But one day doesn\'t make a trend — the <strong>Fed decision on Wednesday</strong> will determine if this is a genuine turn or just expiry-day noise. Smallcaps surging 2.7% while Nifty was flat suggests <strong>bottom-fishing in beaten-down names</strong>.', hi: 'ब्रेड्थ का 83% नेगेटिव (गुरुवार) से 69% पॉज़िटिव (मंगलवार) होना <strong>बड़ा बदलाव</strong> है। VIX 4.72% गिरने का मतलब ऑप्शन ट्रेडर्स कम डर की कीमत लगा रहे हैं। लेकिन एक दिन से ट्रेंड नहीं बनता — <strong>बुधवार को Fed का फ़ैसला</strong> तय करेगा यह असली मोड़ है या एक्सपायरी का शोर। निफ्टी फ्लैट रहते स्मॉलकैप 2.7% उछलना <strong>पिटे हुए नामों में बॉटम-फिशिंग</strong> दिखाता है।' },
+
+/* ===== CARD 4: THE FLOW ===== */
+c4label:       { en: "The Flow", hi: "द फ्लो" },
+c4head:        { en: "FIIs Sold ₹4,699 Cr — Heaviest Selling Day This Week. DIIs Bought ₹5,182 Cr. October FII Outflow Crosses ₹56,000 Cr.", hi: "FII ने ₹4,699 करोड़ बेचे — इस हफ़्ते की सबसे भारी बिकवाली। DII ने ₹5,182 करोड़ ख़रीदे। अक्टूबर FII आउटफ्लो ₹56,000 करोड़ पार।" },
+c4body:        { en: "FIIs dumped ₹4,699 Cr on expiry day — the heaviest single-day selling this week. DIIs countered with ₹5,182 Cr, absorbing 110% of FII selling. October FII outflow now at ₹56,165 Cr — the worst month since March 2020.", hi: "FII ने एक्सपायरी दिन ₹4,699 करोड़ बेचे — इस हफ़्ते की सबसे भारी एक-दिवसीय बिकवाली। DII ने ₹5,182 करोड़ से जवाब दिया — FII बिकवाली का 110% सोखा। अक्टूबर FII आउटफ्लो अब ₹56,165 करोड़ — मार्च 2020 के बाद सबसे बुरा महीना।" },
+c4insight:     { en: "The Pattern", hi: "पैटर्न" },
+c4insightbody: { en: 'FIIs have sold in 15 of 17 trading days this October. The ₹56,165 Cr outflow is approaching the worst monthly outflow on record. But here\'s the key: <strong>DIIs have absorbed 110% of every rupee FIIs sold</strong>. That\'s why the Nifty is only down ~1% for the month despite record FII selling. The DII wall — powered by SIP flows — is the only thing holding this market together.', hi: 'FII ने इस अक्टूबर में 17 में से 15 दिन बेचा। ₹56,165 करोड़ आउटफ्लो रिकॉर्ड मासिक आउटफ्लो के क़रीब। लेकिन मुख्य बात: <strong>DII ने FII की हर बेची गई रुपये का 110% सोखा</strong>। इसीलिए रिकॉर्ड FII बिकवाली के बावजूद निफ्टी महीने में सिर्फ ~1% नीचे। DII की दीवार — SIP फ्लो से संचालित — ही इस बाज़ार को थामे हुए है।' },
+
+/* ===== CARD 5: THE CONTEXT ===== */
+c5label:       { en: "The Context", hi: "संदर्भ" },
+c5head:        { en: "Brent $111.21 (Eased from $117 Peak), Rupee ₹95.12, US 10Y 5.003%, Gold Below $4,000 — Fed Meeting Begins Today", hi: "ब्रेंट $111.21 ($117 शिखर से नरम), रुपया ₹95.12, US 10Y 5.003%, सोना $4,000 से नीचे — Fed बैठक आज शुरू" },
+c5body:        { en: "Crude eased from last week's $117 peak to $111.21 as Saudi-Iran diplomacy raised de-escalation hopes. The Fed's 2-day meeting began today — markets expect rates held steady but are watching for hawkish signals on future hikes. Gold hovered near $4,000, its lowest since July.", hi: "पिछले हफ़्ते के $117 शिखर से क्रूड $111.21 तक नरम हुआ — सऊदी-ईरान कूटनीति से तनाव कम होने की उम्मीद। Fed की 2-दिवसीय बैठक आज शुरू — बाज़ार दरें स्थिर रहने की उम्मीद करता है लेकिन भविष्य की बढ़ोतरी पर हॉकिश संकेत देख रहा। सोना $4,000 के पास — जुलाई के बाद सबसे कम।" },
+c5insight:     { en: "Why These Numbers Matter", hi: "ये नंबर क्यों मायने रखते हैं" },
+c5insightbody: { en: 'Crude falling from $117 to $111 is the <strong>first real relief</strong> in a week — Saudi-Iran diplomacy (with Turkey and Pakistan mediating) is calming markets. But $111 is still dangerously high for India. The <strong>Fed decision tomorrow (Wednesday)</strong> is the week\'s biggest catalyst — a hold is expected, but any hint of future rate hikes could send yields and the dollar higher, crushing emerging markets. Gold below $4,000 for the second time this week signals a <strong>cash-is-king</strong> environment. Jio Platforms lists on Wednesday — India\'s biggest IPO debut could set the tone for sentiment.', hi: 'क्रूड $117 से $111 तक गिरना एक हफ़्ते में <strong>पहली असली राहत</strong> — सऊदी-ईरान कूटनीति (तुर्की और पाकिस्तान मध्यस्थता) बाज़ार शांत कर रही। लेकिन $111 भारत के लिए अभी भी ख़तरनाक। <strong>बुधवार को Fed का फ़ैसला</strong> हफ़्ते का सबसे बड़ा कैटालिस्ट — होल्ड अपेक्षित, लेकिन भविष्य की दर बढ़ोतरी का कोई संकेत यील्ड और डॉलर ऊपर भेज सकता है। सोना इस हफ़्ते दूसरी बार $4,000 से नीचे — <strong>कैश-इज़-किंग</strong> माहौल। Jio Platforms बुधवार को लिस्ट होगा — भारत का सबसे बड़ा IPO डेब्यू सेंटिमेंट तय कर सकता है।' },
+
+/* ===== TOP MOVERS PAGE ===== */
+tmTitle:  { en: "Top Movers by Index", hi: "इंडेक्स के टॉप मूवर्स" },
+tmSub:    { en: "3 Gainers · 3 Losers · Every Major Index", hi: "3 गेनर्स · 3 लूज़र्स · हर प्रमुख इंडेक्स" },
+tmFooter: { en: "Data sourced from NSE · For educational purposes only · Not investment advice", hi: "डेटा NSE से · केवल शैक्षिक उद्देश्यों के लिए · निवेश सलाह नहीं" },
+
+/* ===== ARCHIVE PAGE ===== */
+archiveHead: { en: "Past Editions", hi: "पिछले संस्करण" },
+
+/* ===== ABOUT PAGE ===== */
+aboutHead:      { en: "We read the market so you don't have to. Then we tell you in 90 seconds.", hi: "हम बाज़ार पढ़ते हैं ताकि आपको न पढ़ना पड़े। फिर 90 सेकंड में बताते हैं।" },
+aboutSub:       { en: "Every trading day. 8 PM. No exceptions.", hi: "हर ट्रेडिंग दिन। शाम 8 बजे। कोई अपवाद नहीं।" },
+aboutWhat:      { en: "What is Gandhis?", hi: "Gandhis क्या है?" },
+aboutWhatP1:    { en: "Gandhis is a daily post-market educational guide for the Indian stock market. Every trading day at 8 PM, we publish 5 cards — which sectors moved, what institutions did, and the macro picture.", hi: "Gandhis भारतीय शेयर बाज़ार के लिए एक दैनिक पोस्ट-मार्केट शैक्षिक गाइड है। हर ट्रेडिंग दिन शाम 8 बजे, हम 5 कार्ड प्रकाशित करते हैं।" },
+aboutWhatP2:    { en: "We go through data from NSE, BSE, and official sources so you don't have to. Five cards. Ninety seconds. That's it.", hi: "हम NSE, BSE और आधिकारिक स्रोतों से डेटा देखते हैं ताकि आपको न देखना पड़े। पाँच कार्ड। नब्बे सेकंड। बस।" },
+aboutCards:     { en: "The 5 Cards — Every Day", hi: "5 कार्ड — हर दिन" },
+aboutC1:        { en: "Where the Money Moved — which sectors saw capital flow in or out", hi: "पैसा कहाँ गया — किन सेक्टरों में पूँजी आई या गई" },
+aboutC2:        { en: "The Signal — the one earnings result or stock move that stood out", hi: "द सिग्नल — वो एक अर्निंग रिज़ल्ट या स्टॉक मूव जो अलग दिखा" },
+aboutC3:        { en: "The Data Point — market breadth, VIX, and numbers beneath the surface", hi: "डेटा पॉइंट — मार्केट ब्रेड्थ, VIX, और सतह के नीचे के नंबर" },
+aboutC4:        { en: "The Flow — FII and DII activity, who's buying, who's selling", hi: "द फ्लो — FII और DII गतिविधि, कौन ख़रीद रहा, कौन बेच रहा" },
+aboutC5:        { en: "The Context — crude, rupee, US yields, and global forces", hi: "संदर्भ — क्रूड, रुपया, US यील्ड, और वैश्विक ताक़तें" },
+aboutNoPredict: { en: "We don't predict the market. We don't recommend stocks. We don't sell tips. We present publicly available data so patterns become visible.", hi: "हम बाज़ार की भविष्यवाणी नहीं करते। स्टॉक रेकमेंड नहीं करते। टिप्स नहीं बेचते। हम सार्वजनिक डेटा पेश करते हैं ताकि पैटर्न दिखें।" },
+aboutHow:       { en: "How We Think", hi: "हम कैसे सोचते हैं" },
+aboutHowP:      { en: "We focus on sector rotation — money doesn't leave the market, it moves. Most people look at the Nifty and react. We look at where the money is actually going.", hi: "हम सेक्टर रोटेशन पर ध्यान देते हैं — पैसा बाज़ार नहीं छोड़ता, वो चलता है।" },
+aboutWhy:       { en: 'Why "Gandhis"?', hi: '"Gandhis" क्यों?' },
+aboutWhyP:      { en: "It's on every note in your wallet. Gandhis follow the cash.", hi: "यह आपके बटुए के हर नोट पर है। Gandhis कैश को फॉलो करते हैं।" },
+aboutQuote:     { en: '"Everyone\'s watching the index. We\'re watching where the money goes."', hi: '"सब इंडेक्स देख रहे हैं। हम देख रहे हैं पैसा कहाँ जा रहा है।"' },
+aboutCome:      { en: "Come Back Tomorrow", hi: "कल फिर आइए" },
+aboutComeP:     { en: "See you at 8 PM.", hi: "शाम 8 बजे मिलते हैं।" },
+
+/* ===== DISCLAIMER ===== */
 lgTitle: { en: "IMPORTANT DISCLAIMER", hi: "महत्वपूर्ण अस्वीकरण" },
-lgP1: {
-  en: "Gandhis is an educational initiative. We are not registered with SEBI as investment advisors, research analysts, or portfolio managers.",
-  hi: "Gandhis एक शैक्षिक पहल है। हम SEBI के साथ निवेश सलाहकार, रिसर्च एनालिस्ट, या पोर्टफोलियो मैनेजर के रूप में पंजीकृत नहीं हैं।"
-},
-lgL1: { en: "We do not recommend buying, selling, or holding any securities", hi: "हम किसी भी सिक्योरिटी को खरीदने, बेचने या रखने की सिफारिश नहीं करते" },
-lgL2: { en: "We do not provide personalized investment advice", hi: "हम व्यक्तिगत निवेश सलाह नहीं देते" },
-lgL3: { en: "All data is sourced from publicly available NSE/BSE/NSDL/CDSL sources", hi: "सभी डेटा सार्वजनिक NSE/BSE/NSDL/CDSL स्रोतों से है" },
-lgL4: { en: "Past patterns do not guarantee future results", hi: "पिछले पैटर्न भविष्य के परिणामों की गारंटी नहीं देते" },
-lgL5: { en: "Always consult a SEBI-registered advisor before making investment decisions", hi: "निवेश निर्णय लेने से पहले हमेशा SEBI-पंजीकृत सलाहकार से परामर्श करें" },
-lgP2: {
-  en: "By using this website, you acknowledge that all content is for educational and informational purposes only.",
-  hi: "इस वेबसाइट का उपयोग करके, आप स्वीकार करते हैं कि सभी सामग्री केवल शैक्षिक और सूचनात्मक उद्देश्यों के लिए है।"
-},
+lgP1:    { en: "Gandhis is an educational initiative. We are not registered with SEBI as investment advisors, research analysts, or portfolio managers.", hi: "Gandhis एक शैक्षिक पहल है। हम SEBI के साथ पंजीकृत नहीं हैं।" },
+lgL1:    { en: "We do not recommend buying, selling, or holding any securities", hi: "हम किसी भी सिक्योरिटी को ख़रीदने, बेचने या रखने की सिफ़ारिश नहीं करते" },
+lgL2:    { en: "We do not provide personalized investment advice", hi: "हम व्यक्तिगत निवेश सलाह नहीं देते" },
+lgL3:    { en: "All data is sourced from publicly available NSE/BSE/NSDL/CDSL sources", hi: "सभी डेटा सार्वजनिक NSE/BSE/NSDL/CDSL स्रोतों से है" },
+lgL4:    { en: "Past patterns do not guarantee future results", hi: "पिछले पैटर्न भविष्य के परिणामों की गारंटी नहीं देते" },
+lgL5:    { en: "Always consult a SEBI-registered advisor before making investment decisions", hi: "निवेश निर्णय लेने से पहले हमेशा SEBI-पंजीकृत सलाहकार से परामर्श करें" },
+lgP2:    { en: "By using this website, you acknowledge that all content is for educational and informational purposes only.", hi: "इस वेबसाइट का उपयोग करके, आप स्वीकार करते हैं कि सभी सामग्री केवल शैक्षिक और सूचनात्मक उद्देश्यों के लिए है।" },
 
-/* ----- FOOTER ----- */
-ftFollow: { en: "Follow the Gandhis", hi: "Gandhis को फॉलो करें" },
-ftTG: { en: "Join Telegram", hi: "टेलीग्राम जॉइन करें" },
-ftIG: { en: "Follow on Instagram", hi: "इंस्टाग्राम पर फॉलो करें" },
-ftWA: { en: "Share on WhatsApp", hi: "व्हाट्सएप पर शेयर करें" },
-ftTagline: {
-  en: "Deep research. Indian markets. Every trading day at 8 PM IST.",
-  hi: "गहरी रिसर्च। भारतीय बाज़ार। हर ट्रेडिंग डे शाम 8 बजे IST।"
-},
-ftDisc: {
-  en: "For educational purposes only. Not SEBI registered. Not investment advice. All data from NSE/BSE public sources.",
-  hi: "केवल शैक्षिक उद्देश्यों के लिए। SEBI पंजीकृत नहीं। निवेश सलाह नहीं। सभी डेटा NSE/BSE सार्वजनिक स्रोतों से।"
-}
+/* ===== FOOTER ===== */
+ftFollow:  { en: "Follow the Gandhis", hi: "Gandhis को फॉलो करें" },
+ftTG:      { en: "Join Telegram", hi: "टेलीग्राम जॉइन करें" },
+ftIG:      { en: "Follow on Instagram", hi: "इंस्टाग्राम पर फॉलो करें" },
+ftWA:      { en: "Share on WhatsApp", hi: "WhatsApp पर शेयर करें" },
+ftTagline: { en: "Deep research. Indian markets. Every trading day at 8 PM IST.", hi: "गहरी रिसर्च। भारतीय बाज़ार। हर ट्रेडिंग दिन शाम 8 बजे IST।" },
+ftDisc:    { en: "For educational purposes only. Not SEBI registered. Not investment advice. All data from NSE/BSE public sources.", hi: "केवल शैक्षिक उद्देश्यों के लिए। SEBI पंजीकृत नहीं। निवेश सलाह नहीं।" }
 
 };
+
